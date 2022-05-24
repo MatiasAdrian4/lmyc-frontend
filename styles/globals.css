@@ -1,16 +1,19 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
 * {
-  box-sizing: border-box;
+  font-family: Verdana;
+}
+
+html, body {
+  background-color: gray;
+}
+
+button, input {
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+button {
+  background-color: #83BEFD;
+  cursor: pointer;
+  color: #212529db;
+  padding: 5px;
 }
