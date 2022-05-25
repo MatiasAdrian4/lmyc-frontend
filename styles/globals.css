@@ -2,17 +2,22 @@
   font-family: Verdana;
 }
 
-html, body {
+html,
+body {
   background-color: gray;
+  padding-top: 50px; /* to avoid conflicts with the navbar */
+  height: 100%;
+  overflow: hidden; /* check if it is a good approach or not */
 }
 
-button, input {
+button,
+input {
   border: 1px solid gray;
   border-radius: 5px;
 }
 
 button {
-  background-color: #83BEFD;
+  background-color: #83befd;
   cursor: pointer;
   color: #212529db;
   padding: 5px;
