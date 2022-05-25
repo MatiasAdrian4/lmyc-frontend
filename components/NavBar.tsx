@@ -12,27 +12,47 @@ export default function NavBar() {
           <ul>
             <li>
               <Link href="/sales">
-                <a>Ventas</a>
+                <a
+                  className={`${asPath == "/sales" ? styles.selectedTab : ""}`}
+                >
+                  Ventas
+                </a>
               </Link>
             </li>
             <li>
               <Link href="/products">
-                <a>Productos</a>
+                <a
+                  className={`${asPath == "/products" ? styles.selectedTab : ""}`}
+                >
+                  Productos
+                </a>
               </Link>
             </li>
             <li>
               <Link href="/clients">
-                <a>Clientes</a>
+                <a
+                  className={`${asPath == "/clients" ? styles.selectedTab : ""}`}
+                >
+                  Clientes
+                </a>
               </Link>
             </li>
             <li>
               <Link href="/invoices">
-                <a>Remitos</a>
+                <a
+                  className={`${asPath == "/invoices" ? styles.selectedTab : ""}`}
+                >
+                  Remitos
+                </a>
               </Link>
             </li>
             <li>
               <Link href="/sales-history">
-                <a>Historial de Ventas</a>
+                <a
+                  className={`${asPath == "/sales-history" ? styles.selectedTab : ""}`}
+                >
+                  Historial de Ventas
+                </a>
               </Link>
             </li>
             <li>

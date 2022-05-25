@@ -19,3 +19,7 @@
   text-transform: uppercase;
   padding: 10px 15px;
 }
+
+.selectedTab {
+  text-decoration: underline!important;
+}
