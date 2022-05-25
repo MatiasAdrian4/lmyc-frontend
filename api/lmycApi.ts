@@ -2,7 +2,8 @@ import { LMYC_JWT } from "../constants"
 import {
   UsersApi as LMYCUsersApi,
   ClientsApi as LMYCClientsApi,
-  Client
+  Client,
+  User
 } from "../lmyc_client/api"
 import { Configuration } from "../lmyc_client/configuration"
 
@@ -37,6 +38,15 @@ class UsersApi extends LMYCApi {
       username: username,
       password: password
     })
+  }
+
+  async getUser() {
+    try {
+      const user: User = (await this.usersAPI.accountUserGet()).data
+      return user
+    } catch (err) {
+      return undefined
+    }
   }
 }
 
