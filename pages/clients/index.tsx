@@ -1,6 +1,6 @@
 import { GetServerSideProps } from "next"
 import { ClientsApi } from "../../api/lmycApi"
-import { PaginatedTable } from "../../components/PaginatedTable"
+import { BasicTable } from "../../components/BasicTable"
 import {
   get_jwt_from_ctx,
   is_user_authenticated,
@@ -11,7 +11,7 @@ import { COLUMNS } from "./columns"
 export default function ClientList({ clients }) {
   return (
     <>
-      <PaginatedTable columns={COLUMNS} data={clients} />
+      <BasicTable columns={COLUMNS} data={clients} />
     </>
   )
 }
