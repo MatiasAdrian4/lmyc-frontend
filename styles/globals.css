@@ -4,10 +4,10 @@
 
 html,
 body {
-  background-color: gray;
+  background-color: #CAE4FF;
   padding-top: 50px; /* to avoid conflicts with the navbar */
   height: 100%;
-  overflow: hidden; /* check if it is a good approach or not */
+  /*overflow: hidden;*/ /* check if it is a good approach or not */
 }
 
 button,

@@ -1,0 +1,26 @@
+.paginatedTable {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.paginatedTable td,
+.paginatedTable th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.paginatedTable tr {
+  background-color: #f2f2f2;
+}
+
+.paginatedTable tr:hover {
+  background-color: #EAEBEC;
+}
+
+.paginatedTable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: #4b7cb1;
+  color: white;
+}

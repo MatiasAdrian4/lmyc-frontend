@@ -2,8 +2,8 @@ import { LMYC_JWT } from "../constants"
 import {
   UsersApi as LMYCUsersApi,
   ClientsApi as LMYCClientsApi,
-  Client,
-  User
+  User,
+  PaginatedClients
 } from "../lmyc_client/api"
 import { Configuration } from "../lmyc_client/configuration"
 
@@ -57,11 +57,11 @@ class ClientsApi extends LMYCApi {
     this.clientsAPI = new LMYCClientsApi(this.config)
   }
 
-  async getClients(): Promise<Client[]> {
+  async getClients(): Promise<PaginatedClients> {
     try {
       return (await this.clientsAPI.clientesGet()).data
     } catch {
-      return []
+      return undefined
     }
   }
 }
