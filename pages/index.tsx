@@ -3,7 +3,7 @@ import { useRouter } from "next/router"
 import { useState } from "react"
 import { UsersApi } from "../api/lmycApi"
 import styles from "../styles/Home.module.css"
-import { is_user_authenticated, ss_redirect_to_sales_page } from "../utils"
+import { isUserAuthenticated, ssRedirectToSalesPage } from "../utils"
 
 export default function Home() {
   const router = useRouter()
@@ -55,9 +55,9 @@ export default function Home() {
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const is_user_logged_in = await is_user_authenticated(ctx)
+  const is_user_logged_in = await isUserAuthenticated(ctx)
   if (is_user_logged_in) {
-    return ss_redirect_to_sales_page()
+    return ssRedirectToSalesPage()
   }
   return {
     props: {}
