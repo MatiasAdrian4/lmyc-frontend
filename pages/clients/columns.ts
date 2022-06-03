@@ -12,7 +12,7 @@ export const COLUMNS = [
   {
     Header: "localidad",
     accessor: "localidad",
-    width: "10%"
+    width: "15%"
   },
   {
     Header: "Código Postal",
@@ -32,6 +32,6 @@ export const COLUMNS = [
   {
     Header: "Email",
     accessor: "email",
-    width: "25%"
+    width: "20%"
   }
 ]
