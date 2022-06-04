@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 export const COLUMNS = [
   {
     Header: "Id",
@@ -7,7 +9,7 @@ export const COLUMNS = [
   {
     Header: "Nombre",
     accessor: "nombre",
-    width: "25%"
+    width: "20%"
   },
   {
     Header: "Localidad",
@@ -32,6 +34,16 @@ export const COLUMNS = [
   {
     Header: "Email",
     accessor: "email",
-    width: "20%"
+    width: "15%"
+  },
+  {
+    Header: "",
+    accessor: "ir_a",
+    width: "10%",
+    Cell: ({ row }) => (
+      <Link href={`/clientes/${row.original.id}`}>
+        <a>Abrir Cliente</a>
+      </Link>
+    )
   }
 ]

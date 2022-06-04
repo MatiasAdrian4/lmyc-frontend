@@ -24,3 +24,8 @@
   background-color: #4b7cb1;
   color: white;
 }
+
+.basicTable a {
+  color: #4b7cb1;
+  text-decoration: none;
+}

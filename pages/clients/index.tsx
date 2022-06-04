@@ -9,9 +9,9 @@ import {
 } from "../../utils"
 import { COLUMNS } from "./columns"
 
-export const getClients = async (pageNumber: number) => {
+export const getClients = async (pageNumber: number, nombre: string) => {
   const clientsApi = new ClientsApi()
-  return (await clientsApi.getClients(pageNumber))
+  return (await clientsApi.getClients(pageNumber, nombre))
 }
 
 export default function ClientList({ paginatedClients }) {
@@ -23,6 +23,7 @@ export default function ClientList({ paginatedClients }) {
         totalRows={paginatedClients.count}
         rowsPerPage={ROWS_PER_PAGE}
         fetchData={getClients}
+        searchInputPlaceholder={"Buscar por nombre"}
       />
     </>
   )

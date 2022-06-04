@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react"
 import { BasicTable } from "./BasicTable"
-import Pagination from "./Pagination"
+import SearchPagination from "./SearchPagination"
 
 const PaginatedTable = ({
   columns,
   rows,
   totalRows,
   rowsPerPage,
-  fetchData
+  fetchData,
+  searchInputPlaceholder
 }) => {
   const [pageData, setPageData] = useState({
     rows: rows,
@@ -15,12 +16,15 @@ const PaginatedTable = ({
   })
 
   const [currentPage, setCurrentPage] = useState(1)
+  const [text, setText] = useState("")
+  const [reload, setReload] = useState(false)
 
   const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
     if (loaded) {
-      fetchData(currentPage).then((data) => {
+      setReload(false)
+      fetchData(currentPage, text).then((data) => {
         const { count, results } = data
         setPageData({
           rows: results,
@@ -31,19 +35,20 @@ const PaginatedTable = ({
       /* doing this to avoid useEffect in first render */
       setLoaded(true)
     }
-  }, [currentPage])
+  }, [currentPage, reload])
 
   return (
-    <div>
-      <Pagination
+    <>
+      <SearchPagination
         totalRows={pageData.totalRows}
         rowsPerPage={rowsPerPage}
         pageChangeHandler={setCurrentPage}
+        textChangeHandler={setText}
+        searchInputPlaceholder={searchInputPlaceholder}
+        reloadHandler={setReload}
       />
-      <div>
-        <BasicTable columns={columns} data={pageData.rows} />
-      </div>
-    </div>
+      <BasicTable columns={columns} data={pageData.rows} />
+    </>
   )
 }
 

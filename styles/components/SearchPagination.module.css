@@ -1,0 +1,24 @@
+.pagination {
+  display: flex;
+  margin-bottom: 5px;
+  margin-right: 15px;
+}
+
+.pagination input {
+  margin-left: auto;
+  margin-right: 30px;
+  width: 200px;
+  padding: 10px;
+}
+
+.pagination span {
+  padding: 10px;
+}
+
+.pagination button {
+  padding: 10px;
+}
+
+.pagination button:disabled {
+  background-color: #cccccc;
+}

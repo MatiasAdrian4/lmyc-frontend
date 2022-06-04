@@ -1,23 +1,36 @@
 import React, { useState, useEffect } from "react"
-import styles from "../styles/Pagination.module.css"
+import styles from "../styles/components/SearchPagination.module.css"
 
-const Pagination = ({ totalRows, rowsPerPage, pageChangeHandler }) => {
+const SearchPagination = ({
+  totalRows,
+  rowsPerPage,
+  pageChangeHandler,
+  textChangeHandler,
+  searchInputPlaceholder,
+  reloadHandler
+}) => {
   const numberOfPages = Math.ceil(totalRows / rowsPerPage)
 
   const [currentPage, setCurrentPage] = useState(1)
+  const [text, setText] = useState("")
 
   const [canGoBack, setCanGoBack] = useState(false)
   const [canGoNext, setCanGoNext] = useState(true)
 
   const onNextPage = () => setCurrentPage(currentPage + 1)
   const onPrevPage = () => setCurrentPage(currentPage - 1)
-  //const onPageSelect = (pageNumber: number) => setCurrentPage(pageNumber)
 
+  // handlear esto
   useEffect(() => {
     if (numberOfPages === currentPage) {
       setCanGoNext(false)
     } else {
-      setCanGoNext(true)
+      console.log(numberOfPages, currentPage)
+      if (numberOfPages > currentPage) {
+        setCanGoNext(true)
+      } else {
+        setCanGoNext(false)
+      }
     }
     if (currentPage === 1) {
       setCanGoBack(false)
@@ -30,27 +43,29 @@ const Pagination = ({ totalRows, rowsPerPage, pageChangeHandler }) => {
     pageChangeHandler(currentPage)
   }, [currentPage])
 
+  useEffect(() => {
+    textChangeHandler(text)
+    currentPage == 1 ? reloadHandler(true) : setCurrentPage(1)
+  }, [text])
+
   return (
     <>
       <div className={styles.pagination}>
+        <input
+          type="text"
+          placeholder={searchInputPlaceholder}
+          onChange={(e) => setText(e.target.value)}
+        />
         <span>
           Página{" "}
           <strong>
-            {currentPage} de {numberOfPages}
+            {numberOfPages > 0 ? currentPage : '-'} de {numberOfPages}
           </strong>{" "}
         </span>
-        <button
-          onClick={onPrevPage}
-          disabled={!canGoBack}
-          className={styles.paginationButton}
-        >
+        <button onClick={onPrevPage} disabled={!canGoBack}>
           {"<"}
         </button>
-        <button
-          onClick={onNextPage}
-          disabled={!canGoNext}
-          className={styles.paginationButton}
-        >
+        <button onClick={onNextPage} disabled={!canGoNext}>
           {">"}
         </button>
       </div>
@@ -58,4 +73,4 @@ const Pagination = ({ totalRows, rowsPerPage, pageChangeHandler }) => {
   )
 }
 
-export default Pagination
+export default SearchPagination
