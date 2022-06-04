@@ -1,6 +1,6 @@
 import { useMemo } from "react"
 import { useTable } from "react-table"
-import styles from "../styles/BasicTable.module.css"
+import styles from "../styles/components/BasicTable.module.css"
 
 export const BasicTable = ({ columns, data }) => {
   const tableColumns = useMemo(() => columns, [columns])
