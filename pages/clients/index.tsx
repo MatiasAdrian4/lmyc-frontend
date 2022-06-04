@@ -1,31 +1,43 @@
 import { GetServerSideProps } from "next"
 import { ClientsApi } from "../../api/lmycApi"
-import { BasicTable } from "../../components/BasicTable"
+import PaginatedTable from "../../components/PaginatedTable"
+import { ROWS_PER_PAGE } from "../../constants"
 import {
-  get_jwt_from_ctx,
-  is_user_authenticated,
-  ss_redirect_to_login_page
+  getJWTFromCtx,
+  isUserAuthenticated,
+  ssRedirectToLoginPage
 } from "../../utils"
 import { COLUMNS } from "./columns"
 
-export default function ClientList({ clients }) {
+export const getClients = async (pageNumber: number) => {
+  const clientsApi = new ClientsApi()
+  return (await clientsApi.getClients(pageNumber))
+}
+
+export default function ClientList({ paginatedClients }) {
   return (
     <>
-      <BasicTable columns={COLUMNS} data={clients} />
+      <PaginatedTable
+        columns={COLUMNS}
+        rows={paginatedClients.results}
+        totalRows={paginatedClients.count}
+        rowsPerPage={ROWS_PER_PAGE}
+        fetchData={getClients}
+      />
     </>
   )
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const is_user_logged_in = await is_user_authenticated(ctx)
-  if (!is_user_logged_in) {
-    return ss_redirect_to_login_page()
+  const isUserLoggedIn = await isUserAuthenticated(ctx)
+  if (!isUserLoggedIn) {
+    return ssRedirectToLoginPage()
   }
-  const clientsApi = new ClientsApi(get_jwt_from_ctx(ctx))
-  const clients = (await clientsApi.getClients()).results
+  const clientsApi = new ClientsApi(getJWTFromCtx(ctx))
+  const paginatedClients = (await clientsApi.getClients())
   return {
     props: {
-      clients: clients
+      paginatedClients: paginatedClients
     }
   }
 }
