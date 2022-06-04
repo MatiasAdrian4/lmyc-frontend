@@ -1,0 +1,31 @@
+.basicTable {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.basicTable td,
+.basicTable th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.basicTable tr {
+  background-color: #f2f2f2;
+}
+
+.basicTable tr:hover {
+  background-color: #eaebec;
+}
+
+.basicTable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: #4b7cb1;
+  color: white;
+}
+
+.basicTable a {
+  color: #4b7cb1;
+  text-decoration: none;
+}
