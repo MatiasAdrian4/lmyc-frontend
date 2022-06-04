@@ -20,7 +20,6 @@ const SearchPagination = ({
   const onNextPage = () => setCurrentPage(currentPage + 1)
   const onPrevPage = () => setCurrentPage(currentPage - 1)
 
-  // handlear esto
   useEffect(() => {
     if (numberOfPages === currentPage) {
       setCanGoNext(false)
