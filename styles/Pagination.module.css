@@ -1,0 +1,12 @@
+.pagination {
+  margin-bottom: 5px;
+  float: right;
+}
+
+.paginationButton {
+  padding: 10px;
+}
+
+.paginationButton:disabled {
+  background-color: #cccccc;
+}
