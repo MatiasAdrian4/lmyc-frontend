@@ -22,7 +22,7 @@ export default function Home() {
       if (err.status == 403) {
         setErrorMsg("Usuario o contraseña incorrectos.")
       } else {
-        setErrorMsg("Se ha producido un error. Intente de nuevo mas tarde.")
+        setErrorMsg("Se ha producido un error.")
       }
     }
   }

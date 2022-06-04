@@ -57,7 +57,7 @@ class ClientsApi extends LMYCApi {
     this.clientsAPI = new LMYCClientsApi(this.config)
   }
 
-  async getClients(pageNumber = '1'): Promise<PaginatedClients> {
+  async getClients(pageNumber = 1): Promise<PaginatedClients> {
     try {
       return (await this.clientsAPI.clientesGet(pageNumber)).data
     } catch {

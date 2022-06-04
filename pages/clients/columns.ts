@@ -10,19 +10,19 @@ export const COLUMNS = [
     width: "25%"
   },
   {
-    Header: "localidad",
+    Header: "Localidad",
     accessor: "localidad",
     width: "15%"
   },
   {
     Header: "Código Postal",
     accessor: "codigo_postal",
-    width: "10%"
+    width: "5%"
   },
   {
     Header: "Telefono",
     accessor: "telefono",
-    width: "10%"
+    width: "15%"
   },
   {
     Header: "Cuit",
