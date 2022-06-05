@@ -34,8 +34,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   if (!isUserLoggedIn) {
     return ssRedirectToLoginPage()
   }
+  
   const clientsApi = new ClientsApi(getJWTFromCtx(ctx))
-  const paginatedClients = (await clientsApi.getClients())
+  const paginatedClients = await clientsApi.getClients()
   return {
     props: {
       paginatedClients: paginatedClients

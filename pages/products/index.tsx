@@ -14,6 +14,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   if (!isUserLoggedIn) {
     return ssRedirectToLoginPage()
   }
+
   return {
     props: {}
   }

@@ -41,7 +41,7 @@ export const COLUMNS = [
     accessor: "ir_a",
     width: "10%",
     Cell: ({ row }) => (
-      <Link href={`/clientes/${row.original.id}`}>
+      <Link href={`/clients/${row.original.id}`}>
         <a>Abrir Cliente</a>
       </Link>
     )
