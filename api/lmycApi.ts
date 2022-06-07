@@ -2,8 +2,11 @@ import { LMYC_JWT } from "../constants"
 import {
   UsersApi as LMYCUsersApi,
   ClientsApi as LMYCClientsApi,
+  InvoicesApi as LMYCInvoicesApi,
+  FileActionsApi as LMYCFileActionsApi,
   User,
-  PaginatedClients
+  PaginatedClients,
+  Client
 } from "../lmyc_client/api"
 import { Configuration } from "../lmyc_client/configuration"
 
@@ -57,13 +60,54 @@ class ClientsApi extends LMYCApi {
     this.clientsAPI = new LMYCClientsApi(this.config)
   }
 
-  async getClients(pageNumber = 1, nombre = undefined): Promise<PaginatedClients> {
+  async getClients(
+    pageNumber = 1,
+    name: string = undefined
+  ): Promise<PaginatedClients> {
     try {
-      return (await this.clientsAPI.clientesGet(pageNumber, nombre)).data
+      return (await this.clientsAPI.clientesGet(pageNumber, name)).data
+    } catch {
+      return undefined
+    }
+  }
+
+  async getClient(clientId): Promise<Client> {
+    try {
+      return (await this.clientsAPI.clientesClienteIdGet(clientId)).data
     } catch {
       return undefined
     }
   }
 }
 
-export { UsersApi, ClientsApi }
+class InvoicesApi extends LMYCApi {
+  invoicesAPI: LMYCInvoicesApi
+
+  constructor(lmyc_jwt: string = undefined) {
+    super(lmyc_jwt)
+    this.invoicesAPI = new LMYCInvoicesApi(this.config)
+  }
+
+  async getInvoices(pageNumber = 1, name: string = undefined) {
+    try {
+      return (await this.invoicesAPI.remitosGet(pageNumber, name)).data
+    } catch {
+      return undefined
+    }
+  }
+}
+
+class FileActionsApi extends LMYCApi {
+  fileActionsApi: LMYCFileActionsApi
+
+  constructor(lmyc_jwt: string = undefined) {
+    super(lmyc_jwt)
+    this.fileActionsApi = new LMYCFileActionsApi(this.config)
+  }
+
+  async getInvoicePDF(code: number) {
+    return (await this.fileActionsApi.generarRemitoPdfGet(code))
+  }
+}
+
+export { UsersApi, ClientsApi, InvoicesApi, FileActionsApi }

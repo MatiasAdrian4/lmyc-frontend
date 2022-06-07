@@ -28,4 +28,11 @@
 .basicTable a {
   color: #4b7cb1;
   text-decoration: none;
+  cursor: pointer;
+}
+
+.basicTable li {
+  list-style: none;
+  text-align: left;
+  color: #6D6F71;
 }

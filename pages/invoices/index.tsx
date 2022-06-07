@@ -1,10 +1,30 @@
 import { GetServerSideProps } from "next"
-import { isUserAuthenticated, ssRedirectToLoginPage } from "../../utils"
+import { InvoicesApi } from "../../api/lmycApi"
+import PaginatedTable from "../../components/PaginatedTable"
+import { ROWS_PER_PAGE } from "../../constants"
+import {
+  getJWTFromCtx,
+  isUserAuthenticated,
+  ssRedirectToLoginPage
+} from "../../utils"
+import { COLUMNS } from "./columns"
 
-export default function InvoicesList({ invoices }) {
+export const getInvoices = async (pageNumber: number, nombre: string) => {
+  const invoicesApi = new InvoicesApi()
+  return await invoicesApi.getInvoices(pageNumber, nombre)
+}
+
+export default function InvoicesList({ paginatedInvoices }) {
   return (
     <>
-      <h1>{`List of invoices ${invoices}`}</h1>
+      <PaginatedTable
+        columns={COLUMNS}
+        rows={paginatedInvoices.results}
+        totalRows={paginatedInvoices.count}
+        rowsPerPage={ROWS_PER_PAGE}
+        fetchData={getInvoices}
+        searchInputPlaceholder={"Buscar por nombre de cliente"}
+      />
     </>
   )
 }
@@ -14,8 +34,12 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   if (!isUserLoggedIn) {
     return ssRedirectToLoginPage()
   }
-  
+
+  const invoicesApi = new InvoicesApi(getJWTFromCtx(ctx))
+  const paginatedInvoices = await invoicesApi.getInvoices()
   return {
-    props: {}
+    props: {
+      paginatedInvoices: paginatedInvoices
+    }
   }
 }
