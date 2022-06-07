@@ -1,6 +1,6 @@
 import { GetServerSidePropsContext } from "next"
 import { NextApiRequestCookies } from "next/dist/server/api-utils"
-import { UsersApi } from "./api/lmycApi"
+import { FileActionsApi, UsersApi } from "./api/lmycApi"
 import { LMYC_JWT } from "./constants"
 
 export const getJWTFromCtx = (ctx: GetServerSidePropsContext) => {
@@ -30,4 +30,15 @@ export const ssRedirectToLoginPage = () => {
       destination: "/"
     }
   }
+}
+
+export const openInvoicePDF = async (code: number) => {
+  const fileActionsApi = new FileActionsApi()
+  const pdf = await fileActionsApi.getInvoicePDF(code)
+  const url = window.URL.createObjectURL(new Blob([pdf.data as any]))
+  const link = document.createElement("a")
+  link.href = url
+  link.setAttribute("download", `remito_${code}.pdf`)
+  document.body.appendChild(link)
+  link.click()
 }
