@@ -32,7 +32,7 @@ export const ssRedirectToLoginPage = () => {
   }
 }
 
-export const openInvoicePDF = async (code: number) => {
+export const downloadInvoicePDF = async (code: number) => {
   const fileActionsApi = new FileActionsApi()
   const pdf = await fileActionsApi.getInvoicePDF(code)
   const url = window.URL.createObjectURL(new Blob([pdf.data as any]))

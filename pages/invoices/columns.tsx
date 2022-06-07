@@ -1,5 +1,5 @@
 import { format } from "date-fns"
-import { openInvoicePDF } from "../../utils"
+import { downloadInvoicePDF } from "../../utils"
 
 export const COLUMNS = [
   {
@@ -50,6 +50,6 @@ export const COLUMNS = [
     Header: "",
     accessor: "ir_a",
     width: "10%",
-    Cell: ({ row }) => <a onClick={() => openInvoicePDF(row.original.codigo)}>Descargar PDF</a>
+    Cell: ({ row }) => <a onClick={() => downloadInvoicePDF(row.original.codigo)}>Descargar PDF</a>
   }
 ]
