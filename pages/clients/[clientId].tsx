@@ -34,7 +34,7 @@ export default function Client({ client }) {
       <CustomForm
         data={client}
         sections={sections}
-        updateFunction={updateClient}
+        submitFunction={updateClient}
       />
     </>
   )

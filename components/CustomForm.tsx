@@ -7,14 +7,14 @@ export interface FormSection {
   fields: string[]
 }
 
-export const CustomForm = ({ data, sections, updateFunction }) => {
+export const CustomForm = ({ data, sections, submitFunction }) => {
   const [model, setModel] = useState(data)
   const [updating, setUpdating] = useState(false)
   const [errors, setErrors] = useState({})
 
-  const saveChanges = async() => {
+  const saveChanges = async () => {
     try {
-      await updateFunction(data.id, model)
+      await submitFunction(data.id, model)
       setErrors({})
       setUpdating(false)
     } catch (error) {
@@ -32,7 +32,9 @@ export const CustomForm = ({ data, sections, updateFunction }) => {
               {section.fields.map((field) => {
                 return (
                   <>
-                    <label htmlFor={field}>{toTitleCase(field.replace("_", " "))}</label>
+                    <label htmlFor={field}>
+                      {toTitleCase(field.replace("_", " "))}
+                    </label>
                     <input
                       id={field}
                       type="text"
@@ -41,7 +43,7 @@ export const CustomForm = ({ data, sections, updateFunction }) => {
                         setModel({ ...model, [field]: e.target.value })
                         setUpdating(true)
                       }}
-                      className={errors[field] ? styles.error : ''}
+                      className={errors[field] ? styles.error : ""}
                     />
                   </>
                 )
@@ -49,7 +51,11 @@ export const CustomForm = ({ data, sections, updateFunction }) => {
             </fieldset>
           )
         })}
-        <button className={styles.submitButton} onClick={saveChanges} disabled={!updating}>
+        <button
+          className={styles.submitButton}
+          onClick={saveChanges}
+          disabled={!updating}
+        >
           Guardar Cambios
         </button>
       </div>
