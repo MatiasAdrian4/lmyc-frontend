@@ -18,7 +18,3 @@
 .pagination button {
   padding: 10px;
 }
-
-.pagination button:disabled {
-  background-color: #cccccc;
-}

@@ -22,3 +22,8 @@ button {
   color: #212529db;
   padding: 5px;
 }
+
+button:disabled {
+  background-color: #cccccc;
+  cursor: default;
+}

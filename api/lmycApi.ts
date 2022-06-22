@@ -78,6 +78,10 @@ class ClientsApi extends LMYCApi {
       return undefined
     }
   }
+
+  async updateClient(clientId: number, data: Client) {
+    return (await this.clientsAPI.clientesClienteIdPatch(clientId, data))
+  }
 }
 
 class InvoicesApi extends LMYCApi {
