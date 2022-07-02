@@ -3,10 +3,12 @@ import {
   UsersApi as LMYCUsersApi,
   ClientsApi as LMYCClientsApi,
   InvoicesApi as LMYCInvoicesApi,
+  InvoiceItemsApi as LMYCInvoiceItemsApi,
   FileActionsApi as LMYCFileActionsApi,
   User,
   PaginatedClients,
-  Client
+  Client,
+  ExtendedClient
 } from "../lmyc_client/api"
 import { Configuration } from "../lmyc_client/configuration"
 
@@ -71,7 +73,7 @@ class ClientsApi extends LMYCApi {
     }
   }
 
-  async getClient(clientId): Promise<Client> {
+  async getClient(clientId: number): Promise<ExtendedClient> {
     try {
       return (await this.clientsAPI.clientesClienteIdGet(clientId)).data
     } catch {
@@ -80,7 +82,7 @@ class ClientsApi extends LMYCApi {
   }
 
   async updateClient(clientId: number, data: Client) {
-    return (await this.clientsAPI.clientesClienteIdPatch(clientId, data))
+    return await this.clientsAPI.clientesClienteIdPatch(clientId, data)
   }
 }
 
@@ -101,6 +103,28 @@ class InvoicesApi extends LMYCApi {
   }
 }
 
+class InvoiceItemsApi extends LMYCApi {
+  invoiceItemsApi: LMYCInvoiceItemsApi
+
+  constructor(lmyc_jwt: string = undefined) {
+    super(lmyc_jwt)
+    this.invoiceItemsApi = new LMYCInvoiceItemsApi(this.config)
+  }
+
+  async getInvoiceItems(
+    codigoCliente: number = undefined,
+    pago: boolean = undefined
+  ) {
+    try {
+      return (
+        await this.invoiceItemsApi.elementosRemitoGet(codigoCliente, pago)
+      ).data
+    } catch {
+      return undefined
+    }
+  }
+}
+
 class FileActionsApi extends LMYCApi {
   fileActionsApi: LMYCFileActionsApi
 
@@ -110,8 +134,8 @@ class FileActionsApi extends LMYCApi {
   }
 
   async getInvoicePDF(code: number) {
-    return (await this.fileActionsApi.generarRemitoPdfGet(code))
+    return await this.fileActionsApi.generarRemitoPdfGet(code)
   }
 }
 
-export { UsersApi, ClientsApi, InvoicesApi, FileActionsApi }
+export { UsersApi, ClientsApi, InvoicesApi, InvoiceItemsApi, FileActionsApi }

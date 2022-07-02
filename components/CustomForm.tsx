@@ -24,7 +24,7 @@ export const CustomForm = ({ data, sections, submitFunction }) => {
 
   return (
     <>
-      <div className={styles.form}>
+      <div>
         {sections.map((section) => {
           return (
             <fieldset className={styles.formSection}>
