@@ -1,4 +1,4 @@
-import { LMYC_JWT } from "../constants"
+import { LMYC_JWT } from "../utils/constants"
 import {
   UsersApi as LMYCUsersApi,
   ClientsApi as LMYCClientsApi,

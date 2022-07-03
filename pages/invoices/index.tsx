@@ -2,7 +2,7 @@ import { GetServerSideProps } from "next"
 import { InvoicesApi } from "../../api/lmycApi"
 import { INVOICE_COLUMNS } from "../../utils/columns"
 import PaginatedTable from "../../components/table/PaginatedTable"
-import { ROWS_PER_PAGE } from "../../constants"
+import { ROWS_PER_PAGE } from "../../utils/constants"
 import {
   getJWTFromCtx,
   isUserAuthenticated,

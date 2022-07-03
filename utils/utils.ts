@@ -1,7 +1,7 @@
 import { GetServerSidePropsContext } from "next"
 import { NextApiRequestCookies } from "next/dist/server/api-utils"
 import { FileActionsApi, UsersApi } from "../api/lmycApi"
-import { LMYC_JWT } from "../constants"
+import { LMYC_JWT } from "./constants"
 
 export const getJWTFromCtx = (ctx: GetServerSidePropsContext) => {
   const cookies: NextApiRequestCookies = ctx.req.cookies
