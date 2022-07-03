@@ -1,6 +1,6 @@
 import { format } from "date-fns"
 import Link from "next/link"
-import { downloadInvoicePDF } from "../../utils"
+import { downloadInvoicePDF } from "./utils"
 
 export const CLIENT_COLUMNS = [
   {

@@ -1,13 +1,13 @@
 import { GetServerSideProps } from "next"
 import { InvoicesApi } from "../../api/lmycApi"
-import { INVOICE_COLUMNS } from "../../components/table/columns"
+import { INVOICE_COLUMNS } from "../../utils/columns"
 import PaginatedTable from "../../components/table/PaginatedTable"
 import { ROWS_PER_PAGE } from "../../constants"
 import {
   getJWTFromCtx,
   isUserAuthenticated,
   ssRedirectToLoginPage
-} from "../../utils"
+} from "../../utils/utils"
 
 export const getInvoices = async (pageNumber: number, nombre: string) => {
   const invoicesApi = new InvoicesApi()

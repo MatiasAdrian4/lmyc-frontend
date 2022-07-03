@@ -1,6 +1,6 @@
-import { useState } from "react"
+import { Fragment, useState } from "react"
 import styles from "../styles/components/CustomForm.module.css"
-import { toTitleCase } from "../utils"
+import { toTitleCase } from "../utils/utils"
 
 export interface FormSection {
   name: string
@@ -25,13 +25,13 @@ export const CustomForm = ({ data, sections, submitFunction }) => {
   return (
     <>
       <div>
-        {sections.map((section) => {
+        {sections.map((section, i) => {
           return (
-            <fieldset className={styles.formSection}>
+            <fieldset className={styles.formSection} key={i}>
               <legend>{section.name}</legend>
-              {section.fields.map((field) => {
+              {section.fields.map((field, j) => {
                 return (
-                  <>
+                  <Fragment key={j}>
                     <label htmlFor={field}>
                       {toTitleCase(field.replace("_", " "))}
                     </label>
@@ -45,7 +45,7 @@ export const CustomForm = ({ data, sections, submitFunction }) => {
                       }}
                       className={errors[field] ? styles.error : ""}
                     />
-                  </>
+                  </Fragment>
                 )
               })}
             </fieldset>

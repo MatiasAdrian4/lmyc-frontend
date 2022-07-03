@@ -1,13 +1,13 @@
 import { GetServerSideProps } from "next"
 import { ClientsApi } from "../../api/lmycApi"
-import { CLIENT_COLUMNS } from "../../components/table/columns"
+import { CLIENT_COLUMNS } from "../../utils/columns"
 import PaginatedTable from "../../components/table/PaginatedTable"
 import { ROWS_PER_PAGE } from "../../constants"
 import {
   getJWTFromCtx,
   isUserAuthenticated,
   ssRedirectToLoginPage
-} from "../../utils"
+} from "../../utils/utils"
 
 export const getClients = async (pageNumber: number, nombre: string) => {
   const clientsApi = new ClientsApi()
