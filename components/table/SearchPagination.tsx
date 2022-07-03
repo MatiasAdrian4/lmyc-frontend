@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import styles from "../styles/components/SearchPagination.module.css"
+import styles from "../../styles/components/SearchPagination.module.css"
 
 const SearchPagination = ({
   totalRows,
