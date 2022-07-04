@@ -20,7 +20,7 @@ button {
   background-color: #83befd;
   cursor: pointer;
   color: #212529db;
-  padding: 5px;
+  padding: 10px;
 }
 
 button:disabled {
