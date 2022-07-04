@@ -17,6 +17,7 @@
 }
 
 .signin input, .signin button {
+  padding: 10px;
   margin: 15px;
 }
 
