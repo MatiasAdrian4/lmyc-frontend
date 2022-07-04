@@ -21,21 +21,26 @@ const PaginatedTable = ({
 
   const [loaded, setLoaded] = useState(false)
 
-  useEffect(() => {
-    if (loaded) {
-      setReload(false)
-      fetchData(currentPage, text).then((data) => {
-        const { count, results } = data
-        setPageData({
-          rows: results,
-          totalRows: count
-        })
+  const fetchDataAndUpdateTable = () => {
+    fetchData(currentPage, text).then((data) => {
+      const { count, results } = data
+      setPageData({
+        rows: results,
+        totalRows: count
       })
-    } else {
-      /* doing this to avoid useEffect in first render */
-      setLoaded(true)
+    })
+  }
+
+  useEffect(() => {
+    loaded ? fetchDataAndUpdateTable() : setLoaded(true)
+  }, [currentPage])
+
+  useEffect(() => {
+    if(reload) {
+      fetchDataAndUpdateTable()
+      setReload(false)
     }
-  }, [currentPage, reload])
+  }, [reload])
 
   return (
     <>
