@@ -1,5 +1,5 @@
 import { GetServerSideProps } from "next"
-import { isUserAuthenticated, ssRedirectToLoginPage } from "../../utils"
+import { isUserAuthenticated, ssRedirectToLoginPage } from "../../utils/utils"
 
 export default function ProductsList({ products }) {
   return (

@@ -1,6 +1,6 @@
 import { GetServerSidePropsContext } from "next"
 import { NextApiRequestCookies } from "next/dist/server/api-utils"
-import { FileActionsApi, UsersApi } from "./api/lmycApi"
+import { FileActionsApi, UsersApi } from "../api/lmycApi"
 import { LMYC_JWT } from "./constants"
 
 export const getJWTFromCtx = (ctx: GetServerSidePropsContext) => {
@@ -30,6 +30,12 @@ export const ssRedirectToLoginPage = () => {
       destination: "/"
     }
   }
+}
+
+export function toTitleCase(str) {
+  return str.replace(/\w\S*/g, function (txt) {
+    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
+  })
 }
 
 export const downloadInvoicePDF = async (code: number) => {

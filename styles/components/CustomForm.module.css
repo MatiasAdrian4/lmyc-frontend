@@ -1,0 +1,24 @@
+.formSection {
+  border: 0.5px solid gray;
+  padding: 10px;
+  margin: 10px;
+}
+
+.formSection label {
+  margin-left: 10px;
+  margin-right: 5px;
+}
+
+.formSection input {
+  padding: 5px;
+  margin: 5px;
+}
+
+.submitButton {
+  margin-top: 10px;
+  margin-left: 20px;
+}
+
+.error {
+  border: 1.5px solid red;
+}

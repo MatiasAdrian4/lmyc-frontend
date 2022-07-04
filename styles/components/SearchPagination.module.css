@@ -14,11 +14,3 @@
 .pagination span {
   padding: 10px;
 }
-
-.pagination button {
-  padding: 10px;
-}
-
-.pagination button:disabled {
-  background-color: #cccccc;
-}

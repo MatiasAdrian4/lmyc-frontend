@@ -1,0 +1,18 @@
+.sectionTitle {
+  margin-left: 20px;
+  margin-bottom: 30px;
+}
+
+.invoicesSection {
+  width: 90%;
+}
+
+.debtSection p,
+.debtSection button {
+  margin-left: 5px;
+}
+
+.section {
+  margin-bottom: 50px;
+  margin-left: 20px;
+}

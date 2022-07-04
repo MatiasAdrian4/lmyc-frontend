@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import styles from "../styles/components/SearchPagination.module.css"
+import styles from "../../styles/components/SearchPagination.module.css"
 
 const SearchPagination = ({
   totalRows,
@@ -24,18 +24,9 @@ const SearchPagination = ({
     if (numberOfPages === currentPage) {
       setCanGoNext(false)
     } else {
-      console.log(numberOfPages, currentPage)
-      if (numberOfPages > currentPage) {
-        setCanGoNext(true)
-      } else {
-        setCanGoNext(false)
-      }
+      numberOfPages > currentPage ? setCanGoNext(true) : setCanGoNext(false)
     }
-    if (currentPage === 1) {
-      setCanGoBack(false)
-    } else {
-      setCanGoBack(true)
-    }
+    currentPage === 1 ? setCanGoBack(false) : setCanGoBack(true)
   }, [numberOfPages, currentPage])
 
   useEffect(() => {
@@ -58,7 +49,7 @@ const SearchPagination = ({
         <span>
           Página{" "}
           <strong>
-            {numberOfPages > 0 ? currentPage : '-'} de {numberOfPages}
+            {numberOfPages > 0 ? currentPage : "-"} de {numberOfPages}
           </strong>{" "}
         </span>
         <button onClick={onPrevPage} disabled={!canGoBack}>
