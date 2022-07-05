@@ -38,6 +38,6 @@ jobs:
       - name: Install Dependencies
         run: npm ci
       - name: Generate Backend Client
-        run: npm generate-backend-client
+        run: npm run generate-backend-client
       - name: Build
         run: npm run build
