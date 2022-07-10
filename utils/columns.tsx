@@ -1,8 +1,14 @@
-import { format } from "date-fns"
 import Link from "next/link"
-import { downloadInvoicePDF } from "./utils"
+import { downloadInvoicePDF, formatDate } from "./utils"
 
-export const CLIENT_COLUMNS = [
+export interface Column {
+  Header: string
+  accessor: string
+  width: string
+  Cell?: Function
+}
+
+export const CLIENT_COLUMNS: Column[] = [
   {
     Header: "Id",
     accessor: "id",
@@ -65,7 +71,7 @@ export const CLIENT_INVOICE_COLUMNS = [
     accessor: "fecha",
     width: "15%",
     Cell: ({ value }) => {
-      return format(new Date(value), "dd/MM/yyyy")
+      return formatDate(value)
     }
   },
   {
@@ -98,7 +104,11 @@ export const CLIENT_INVOICE_COLUMNS = [
     Header: "",
     accessor: "ir_a",
     width: "15%",
-    Cell: ({ row }) => <a onClick={() => downloadInvoicePDF(row.original.codigo)}>Descargar PDF</a>
+    Cell: ({ row }) => (
+      <a onClick={() => downloadInvoicePDF(row.original.codigo)}>
+        Descargar PDF
+      </a>
+    )
   }
 ]
 
@@ -118,7 +128,7 @@ export const INVOICE_COLUMNS = [
     accessor: "fecha",
     width: "10%",
     Cell: ({ value }) => {
-      return format(new Date(value), "dd/MM/yyyy")
+      return formatDate(value)
     }
   },
   {
@@ -151,6 +161,10 @@ export const INVOICE_COLUMNS = [
     Header: "",
     accessor: "ir_a",
     width: "10%",
-    Cell: ({ row }) => <a onClick={() => downloadInvoicePDF(row.original.codigo)}>Descargar PDF</a>
+    Cell: ({ row }) => (
+      <a onClick={() => downloadInvoicePDF(row.original.codigo)}>
+        Descargar PDF
+      </a>
+    )
   }
 ]

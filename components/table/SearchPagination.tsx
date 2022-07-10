@@ -1,14 +1,25 @@
 import React, { useState, useEffect } from "react"
 import styles from "../../styles/components/SearchPagination.module.css"
 
-const SearchPagination = ({
+interface SearchPaginationProps {
+  totalRows: number
+  rowsPerPage: number
+  pageChangeHandler: Function
+  textChangeHandler: Function
+  withInputSearch?: boolean
+  searchInputPlaceholder?: string
+  reloadHandler: Function
+}
+
+const SearchPagination: React.FC<SearchPaginationProps> = ({
   totalRows,
   rowsPerPage,
   pageChangeHandler,
   textChangeHandler,
+  withInputSearch = true,
   searchInputPlaceholder,
   reloadHandler
-}) => {
+}: SearchPaginationProps) => {
   const numberOfPages = Math.ceil(totalRows / rowsPerPage)
 
   const [currentPage, setCurrentPage] = useState(1)
@@ -41,11 +52,13 @@ const SearchPagination = ({
   return (
     <>
       <div className={styles.pagination}>
-        <input
-          type="text"
-          placeholder={searchInputPlaceholder}
-          onChange={(e) => setText(e.target.value)}
-        />
+        {withInputSearch && (
+          <input
+            type="text"
+            placeholder={searchInputPlaceholder}
+            onChange={(e) => setText(e.target.value)}
+          />
+        )}
         <span>
           Página{" "}
           <strong>
