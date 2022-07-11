@@ -4,13 +4,16 @@
   margin-right: 15px;
 }
 
-.pagination input {
+.paginationBar {
   margin-left: auto;
+}
+
+.paginationBar input {
   margin-right: 30px;
   width: 200px;
   padding: 10px;
 }
 
-.pagination span {
+.paginationBar span {
   padding: 10px;
 }

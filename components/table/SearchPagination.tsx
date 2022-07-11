@@ -52,25 +52,27 @@ const SearchPagination: React.FC<SearchPaginationProps> = ({
   return (
     <>
       <div className={styles.pagination}>
-        {withInputSearch && (
-          <input
-            type="text"
-            placeholder={searchInputPlaceholder}
-            onChange={(e) => setText(e.target.value)}
-          />
-        )}
-        <span>
-          Página{" "}
-          <strong>
-            {numberOfPages > 0 ? currentPage : "-"} de {numberOfPages}
-          </strong>{" "}
-        </span>
-        <button onClick={onPrevPage} disabled={!canGoBack}>
-          {"<"}
-        </button>
-        <button onClick={onNextPage} disabled={!canGoNext}>
-          {">"}
-        </button>
+        <div className={styles.paginationBar}>
+          {withInputSearch && (
+            <input
+              type="text"
+              placeholder={searchInputPlaceholder}
+              onChange={(e) => setText(e.target.value)}
+            />
+          )}
+          <span>
+            Página{" "}
+            <strong>
+              {numberOfPages > 0 ? currentPage : "-"} de {numberOfPages}
+            </strong>{" "}
+          </span>
+          <button onClick={onPrevPage} disabled={!canGoBack}>
+            {"<"}
+          </button>
+          <button onClick={onNextPage} disabled={!canGoNext}>
+            {">"}
+          </button>
+        </div>
       </div>
     </>
   )
