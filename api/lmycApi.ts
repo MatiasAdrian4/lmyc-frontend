@@ -5,6 +5,7 @@ import {
   InvoicesApi as LMYCInvoicesApi,
   InvoiceItemsApi as LMYCInvoiceItemsApi,
   FileActionsApi as LMYCFileActionsApi,
+  SalesApi as LMYCSalesApi,
   User,
   PaginatedClients,
   Client,
@@ -125,6 +126,23 @@ class InvoiceItemsApi extends LMYCApi {
   }
 }
 
+class SalesApi extends LMYCApi {
+  salesHistoryApi: LMYCSalesApi
+
+  constructor(lmyc_jwt: string = undefined) {
+    super(lmyc_jwt)
+    this.salesHistoryApi = new LMYCSalesApi(this.config)
+  }
+
+  async getSales(pageNumber = 1, day?: string, month?: string, year?: string) {
+    try {
+      await this.salesHistoryApi.ventasGet(day, month, year)
+    } catch {
+      return undefined
+    }
+  }
+}
+
 class FileActionsApi extends LMYCApi {
   fileActionsApi: LMYCFileActionsApi
 
@@ -138,4 +156,11 @@ class FileActionsApi extends LMYCApi {
   }
 }
 
-export { UsersApi, ClientsApi, InvoicesApi, InvoiceItemsApi, FileActionsApi }
+export {
+  UsersApi,
+  ClientsApi,
+  InvoicesApi,
+  InvoiceItemsApi,
+  FileActionsApi,
+  SalesApi
+}

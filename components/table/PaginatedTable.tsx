@@ -9,8 +9,8 @@ interface PaginatedTableProps {
   totalRows: number
   rowsPerPage: number
   fetchData: Function
-  withInputSearch?: boolean
   searchInputPlaceholder?: string
+  useDatePicker?: boolean
 }
 
 const PaginatedTable: React.FC<PaginatedTableProps> = ({
@@ -19,8 +19,8 @@ const PaginatedTable: React.FC<PaginatedTableProps> = ({
   totalRows,
   rowsPerPage,
   fetchData,
-  withInputSearch = true,
-  searchInputPlaceholder
+  searchInputPlaceholder,
+  useDatePicker = false
 }: PaginatedTableProps) => {
   const [pageData, setPageData] = useState({
     rows: rows,
@@ -61,8 +61,8 @@ const PaginatedTable: React.FC<PaginatedTableProps> = ({
         rowsPerPage={rowsPerPage}
         pageChangeHandler={setCurrentPage}
         textChangeHandler={setText}
-        withInputSearch={withInputSearch}
         searchInputPlaceholder={searchInputPlaceholder}
+        useDatePicker={useDatePicker}
         reloadHandler={setReload}
       />
       <BasicTable columns={columns} data={pageData.rows} />

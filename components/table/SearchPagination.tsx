@@ -6,8 +6,8 @@ interface SearchPaginationProps {
   rowsPerPage: number
   pageChangeHandler: Function
   textChangeHandler: Function
-  withInputSearch?: boolean
   searchInputPlaceholder?: string
+  useDatePicker?: boolean
   reloadHandler: Function
 }
 
@@ -16,8 +16,8 @@ const SearchPagination: React.FC<SearchPaginationProps> = ({
   rowsPerPage,
   pageChangeHandler,
   textChangeHandler,
-  withInputSearch = true,
   searchInputPlaceholder,
+  useDatePicker = false,
   reloadHandler
 }: SearchPaginationProps) => {
   const numberOfPages = Math.ceil(totalRows / rowsPerPage)
@@ -53,7 +53,7 @@ const SearchPagination: React.FC<SearchPaginationProps> = ({
     <>
       <div className={styles.pagination}>
         <div className={styles.paginationBar}>
-          {withInputSearch && (
+          {!useDatePicker && (
             <input
               type="text"
               placeholder={searchInputPlaceholder}
