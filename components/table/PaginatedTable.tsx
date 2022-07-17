@@ -63,6 +63,7 @@ const PaginatedTable: React.FC<PaginatedTableProps> = ({
         textChangeHandler={setText}
         searchInputPlaceholder={searchInputPlaceholder}
         useDatePicker={useDatePicker}
+        dateChangeHandler={setText}
         reloadHandler={setReload}
       />
       <BasicTable columns={columns} data={pageData.rows} />

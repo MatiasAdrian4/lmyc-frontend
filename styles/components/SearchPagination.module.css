@@ -8,12 +8,35 @@
   margin-left: auto;
 }
 
-.paginationBar input {
-  margin-right: 30px;
-  width: 200px;
+.searchInput,
+.datepicker input {
+  margin-right: 15px;
   padding: 10px;
 }
 
-.paginationBar span {
+.searchInput {
+  width: 200px;
+}
+
+.datepicker input {
+  width: 100px;
+  text-align: center;
+}
+
+.datepicker,
+.datepickerType {
+  display: inline-block;
+}
+
+.datepickerType {
+  margin-right: 30px;
+  padding: 2px;
+}
+
+.datepickerType input {
+  margin-left: 20px;
+}
+
+.currentPageInfo {
   padding: 10px;
 }

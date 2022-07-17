@@ -168,3 +168,29 @@ export const INVOICE_COLUMNS = [
     )
   }
 ]
+
+export const SALES_HISTORY_COLUMNS = [
+  {
+    Header: "Producto",
+    accessor: "producto.detalle",
+    width: "55%"
+  },
+  {
+    Header: "Cantidad",
+    accessor: "cantidad",
+    width: "15%"
+  },
+  {
+    Header: "Precio",
+    accessor: "precio",
+    width: "15%"
+  },
+  {
+    Header: "Fecha",
+    accessor: "fecha",
+    width: "15%",
+    Cell: ({ value }) => {
+      return formatDate(value)
+    }
+  }
+]

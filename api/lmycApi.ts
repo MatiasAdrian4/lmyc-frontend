@@ -136,7 +136,7 @@ class SalesApi extends LMYCApi {
 
   async getSales(pageNumber = 1, day?: string, month?: string, year?: string) {
     try {
-      await this.salesHistoryApi.ventasGet(day, month, year)
+      return (await this.salesHistoryApi.ventasGet(pageNumber, day, month, year)).data
     } catch {
       return undefined
     }
