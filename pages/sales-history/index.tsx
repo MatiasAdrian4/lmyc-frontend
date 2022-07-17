@@ -1,21 +1,42 @@
-import { GetServerSideProps } from "next"
-import { isUserAuthenticated, ssRedirectToLoginPage } from "../../utils/utils"
+import PaginatedTable from "../../components/table/PaginatedTable"
+import { SALES_HISTORY_COLUMNS } from "../../utils/columns"
+import { ROWS_PER_PAGE } from "../../utils/constants"
+import { SalesApi } from "../../api/lmycApi"
 
-export default function SalesList({ sales }) {
-  return (
-    <>
-      <h1>{`List of sales ${sales}`}</h1>
-    </>
-  )
+export const getSales = async (pageNumber: number, date: string) => {
+  if (!date) {
+    return { count: 0, next: null, previous: null, results: [] }
+  }
+
+  const salesApi = new SalesApi()
+  const splitDate = date.split("/")
+  switch (splitDate.length) {
+    case 3: {
+      return await salesApi.getSales(pageNumber, splitDate[0], splitDate[1], splitDate[2])
+    }
+    case 2: {
+      return await salesApi.getSales(pageNumber, '', splitDate[0], splitDate[1])
+    }
+    case 1: {
+      return await salesApi.getSales(pageNumber, '', '', splitDate[0])
+    }
+    default: {
+      return { count: 0, next: null, previous: null, results: [] }
+    }
+  }
 }
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const isUserLoggedIn = await isUserAuthenticated(ctx)
-  if (!isUserLoggedIn) {
-    return ssRedirectToLoginPage()
-  }
-  
-  return {
-    props: {}
-  }
+export default function SalesList() {
+  return (
+    <>
+      <PaginatedTable
+        columns={SALES_HISTORY_COLUMNS}
+        rows={[]}
+        totalRows={0}
+        rowsPerPage={ROWS_PER_PAGE}
+        fetchData={getSales}
+        useDatePicker={true}
+      />
+    </>
+  )
 }

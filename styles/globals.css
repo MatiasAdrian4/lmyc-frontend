@@ -1,5 +1,5 @@
 * {
-  font-family: Verdana;
+  font-family: "Trebuchet MS";
 }
 
 html,
@@ -26,4 +26,18 @@ button {
 button:disabled {
   background-color: #cccccc;
   cursor: default;
+}
+
+/* React-Datepicker custom styles */
+
+.react-datepicker__current-month, .react-datepicker__month-text {
+  text-transform: capitalize;
+}
+
+.react-datepicker__month-wrapper div {
+  padding: 5px;
+}
+
+.react-datepicker__year-wrapper {
+  display: block!important;
 }

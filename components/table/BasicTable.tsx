@@ -1,8 +1,17 @@
 import { useMemo } from "react"
 import { useTable } from "react-table"
 import styles from "../../styles/components/BasicTable.module.css"
+import { Column } from "../../utils/columns"
 
-export const BasicTable = ({ columns, data }) => {
+interface BasicTableProps {
+  columns: Column[]
+  data: any[]
+}
+
+export const BasicTable: React.FC<BasicTableProps> = ({
+  columns,
+  data
+}: BasicTableProps) => {
   const tableColumns = useMemo(() => columns, [columns])
   const tableData = useMemo(() => data, [data])
 
@@ -15,7 +24,11 @@ export const BasicTable = ({ columns, data }) => {
         {headerGroups.map((headerGroup, i) => (
           <tr {...headerGroup.getHeaderGroupProps()} key={i}>
             {headerGroup.headers.map((column, j) => (
-              <th style={{ width: column.width }} {...column.getHeaderProps()} key={j}>
+              <th
+                style={{ width: column.width }}
+                {...column.getHeaderProps()}
+                key={j}
+              >
                 {column.render("Header")}
               </th>
             ))}
@@ -28,7 +41,11 @@ export const BasicTable = ({ columns, data }) => {
           return (
             <tr {...row.getRowProps()} key={i}>
               {row.cells.map((cell, j) => {
-                return <td {...cell.getCellProps()} key={j}>{cell.render("Cell")}</td>
+                return (
+                  <td {...cell.getCellProps()} key={j}>
+                    {cell.render("Cell")}
+                  </td>
+                )
               })}
             </tr>
           )

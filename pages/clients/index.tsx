@@ -11,7 +11,7 @@ import {
 
 export const getClients = async (pageNumber: number, nombre: string) => {
   const clientsApi = new ClientsApi()
-  return (await clientsApi.getClients(pageNumber, nombre))
+  return await clientsApi.getClients(pageNumber, nombre)
 }
 
 export default function ClientList({ paginatedClients }) {
@@ -34,7 +34,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   if (!isUserLoggedIn) {
     return ssRedirectToLoginPage()
   }
-  
+
   const clientsApi = new ClientsApi(getJWTFromCtx(ctx))
   const paginatedClients = await clientsApi.getClients()
   return {

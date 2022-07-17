@@ -1,15 +1,27 @@
 import { useEffect, useState } from "react"
+import { Column } from "../../utils/columns"
 import { BasicTable } from "./BasicTable"
 import SearchPagination from "./SearchPagination"
 
-const PaginatedTable = ({
+interface PaginatedTableProps {
+  columns: Column[]
+  rows: any[]
+  totalRows: number
+  rowsPerPage: number
+  fetchData: Function
+  searchInputPlaceholder?: string
+  useDatePicker?: boolean
+}
+
+const PaginatedTable: React.FC<PaginatedTableProps> = ({
   columns,
   rows,
   totalRows,
   rowsPerPage,
   fetchData,
-  searchInputPlaceholder
-}) => {
+  searchInputPlaceholder,
+  useDatePicker = false
+}: PaginatedTableProps) => {
   const [pageData, setPageData] = useState({
     rows: rows,
     totalRows: totalRows
@@ -36,7 +48,7 @@ const PaginatedTable = ({
   }, [currentPage])
 
   useEffect(() => {
-    if(reload) {
+    if (reload) {
       fetchDataAndUpdateTable()
       setReload(false)
     }
@@ -50,6 +62,8 @@ const PaginatedTable = ({
         pageChangeHandler={setCurrentPage}
         textChangeHandler={setText}
         searchInputPlaceholder={searchInputPlaceholder}
+        useDatePicker={useDatePicker}
+        dateChangeHandler={setText}
         reloadHandler={setReload}
       />
       <BasicTable columns={columns} data={pageData.rows} />

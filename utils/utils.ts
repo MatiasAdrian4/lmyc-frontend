@@ -1,3 +1,4 @@
+import { format } from "date-fns"
 import { GetServerSidePropsContext } from "next"
 import { NextApiRequestCookies } from "next/dist/server/api-utils"
 import { FileActionsApi, UsersApi } from "../api/lmycApi"
@@ -36,6 +37,10 @@ export function toTitleCase(str) {
   return str.replace(/\w\S*/g, function (txt) {
     return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
   })
+}
+
+export const formatDate = (value) => {
+  return format(new Date(value), "dd/MM/yyyy")
 }
 
 export const downloadInvoicePDF = async (code: number) => {
