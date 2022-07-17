@@ -87,16 +87,20 @@ const SearchPagination: React.FC<SearchPaginationProps> = ({
   }
 
   useEffect(() => {
-    dateChangeHandler(getFormattedDate())
-    currentPage == 1 ? reloadHandler(true) : setCurrentPage(1)
+    if(useDatePicker) {
+      dateChangeHandler(getFormattedDate())
+      currentPage == 1 ? reloadHandler(true) : setCurrentPage(1)
+    }
   }, [date])
 
   useEffect(() => {
-    if (date) {
-      setDate(null)
-    } else {
-      dateChangeHandler(getFormattedDate())
-      currentPage == 1 ? reloadHandler(true) : setCurrentPage(1)
+    if(useDatePicker) {
+      if (date) {
+        setDate(null)
+      } else {
+        dateChangeHandler(getFormattedDate())
+        currentPage == 1 ? reloadHandler(true) : setCurrentPage(1)
+      }
     }
   }, [datepickerSelected])
 
