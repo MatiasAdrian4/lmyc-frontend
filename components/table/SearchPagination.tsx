@@ -34,7 +34,7 @@ const SearchPagination: React.FC<SearchPaginationProps> = ({
   const numberOfPages = Math.ceil(totalRows / rowsPerPage)
 
   const [currentPage, setCurrentPage] = useState(1)
-  const [text, setText] = useState("")
+  const [text, setText] = useState(null)
   const [date, setDate] = useState(null)
   const [datepickerSelected, setDatepickerSelected] = useState(
     DatepickerType.Day
@@ -60,8 +60,10 @@ const SearchPagination: React.FC<SearchPaginationProps> = ({
   }, [currentPage])
 
   useEffect(() => {
-    textChangeHandler(text)
-    currentPage == 1 ? reloadHandler(true) : setCurrentPage(1)
+    if (text != null) {
+      textChangeHandler(text)
+      currentPage == 1 ? reloadHandler(true) : setCurrentPage(1)
+    }
   }, [text])
 
   const getFormattedDate = () => {
@@ -87,14 +89,14 @@ const SearchPagination: React.FC<SearchPaginationProps> = ({
   }
 
   useEffect(() => {
-    if(useDatePicker) {
+    if (useDatePicker) {
       dateChangeHandler(getFormattedDate())
       currentPage == 1 ? reloadHandler(true) : setCurrentPage(1)
     }
   }, [date])
 
   useEffect(() => {
-    if(useDatePicker) {
+    if (useDatePicker) {
       if (date) {
         setDate(null)
       } else {

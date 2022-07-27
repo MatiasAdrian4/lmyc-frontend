@@ -9,9 +9,9 @@ import {
   ssRedirectToLoginPage
 } from "../../utils/utils"
 
-export const getClients = async (pageNumber: number, nombre: string) => {
+export const getClients = async (pageNumber: number, name: string) => {
   const clientsApi = new ClientsApi()
-  return await clientsApi.getClients(pageNumber, nombre)
+  return await clientsApi.getClients(pageNumber, name)
 }
 
 export default function ClientList({ paginatedClients }) {

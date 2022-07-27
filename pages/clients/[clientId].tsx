@@ -43,13 +43,6 @@ export default function Client({ client }) {
           submitFunction={updateClient}
         />
       </div>
-      <h3 className={styles.sectionTitle}>Historial de remitos</h3>
-      <div className={`${styles.invoicesSection} ${styles.section}`}>
-        <BasicTable
-          columns={CLIENT_INVOICE_COLUMNS}
-          data={client.lista_remitos}
-        />
-      </div>
       <h3 className={styles.sectionTitle}>Deudas</h3>
       <div className={`${styles.debtSection} ${styles.section}`}>
         {client.deuda_actual > 0 && (
@@ -61,6 +54,13 @@ export default function Client({ client }) {
           </>
         )}
         {client.deuda_actual == 0 && <p>No posee ninguna deuda.</p>}
+      </div>
+      <h3 className={styles.sectionTitle}>Historial de remitos</h3>
+      <div className={`${styles.invoicesSection} ${styles.section}`}>
+        <BasicTable
+          columns={CLIENT_INVOICE_COLUMNS}
+          data={client.lista_remitos}
+        />
       </div>
     </>
   )

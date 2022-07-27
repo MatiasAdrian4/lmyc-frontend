@@ -1,10 +1,30 @@
 import { GetServerSideProps } from "next"
-import { isUserAuthenticated, ssRedirectToLoginPage } from "../../utils/utils"
+import { ProductsApi } from "../../api/lmycApi"
+import PaginatedTable from "../../components/table/PaginatedTable"
+import { PRODUCT_COLUMNS } from "../../utils/columns"
+import { ROWS_PER_PAGE } from "../../utils/constants"
+import {
+  getJWTFromCtx,
+  isUserAuthenticated,
+  ssRedirectToLoginPage
+} from "../../utils/utils"
 
-export default function ProductsList({ products }) {
+export const getProducts = async (pageNumber: number, detail: string) => {
+  const productsApi = new ProductsApi()
+  return await productsApi.getProducts(pageNumber, detail)
+}
+
+export default function ProductsList({ paginatedProducts }) {
   return (
     <>
-      <h1>{`List of products ${products}`}</h1>
+      <PaginatedTable
+        columns={PRODUCT_COLUMNS}
+        rows={paginatedProducts.results}
+        totalRows={paginatedProducts.count}
+        rowsPerPage={ROWS_PER_PAGE}
+        fetchData={getProducts}
+        searchInputPlaceholder={"Buscar por detalle"}
+      />
     </>
   )
 }
@@ -15,7 +35,11 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     return ssRedirectToLoginPage()
   }
 
+  const productsApi = new ProductsApi(getJWTFromCtx(ctx))
+  const paginatedProducts = await productsApi.getProducts()
   return {
-    props: {}
+    props: {
+      paginatedProducts: paginatedProducts
+    }
   }
 }

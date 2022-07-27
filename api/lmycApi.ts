@@ -1,12 +1,14 @@
 import { LMYC_JWT } from "../utils/constants"
 import {
   UsersApi as LMYCUsersApi,
+  ProductsApi as LMYCProductsApi,
   ClientsApi as LMYCClientsApi,
   InvoicesApi as LMYCInvoicesApi,
   InvoiceItemsApi as LMYCInvoiceItemsApi,
   FileActionsApi as LMYCFileActionsApi,
   SalesApi as LMYCSalesApi,
   User,
+  PaginatedProducts,
   PaginatedClients,
   Client,
   ExtendedClient
@@ -50,6 +52,28 @@ class UsersApi extends LMYCApi {
     try {
       return (await this.usersAPI.accountUserGet()).data
     } catch (err) {
+      return undefined
+    }
+  }
+}
+
+class ProductsApi extends LMYCApi {
+  productsAPI: LMYCProductsApi
+
+  constructor(lmyc_jwt: string = undefined) {
+    super(lmyc_jwt)
+    this.productsAPI = new LMYCProductsApi(this.config)
+  }
+
+  async getProducts(
+    pageNumber = 1,
+    detail?: string,
+    category?: string
+  ): Promise<PaginatedProducts> {
+    try {
+      return (await this.productsAPI.productosGet(pageNumber, detail, category))
+        .data
+    } catch {
       return undefined
     }
   }
@@ -136,7 +160,9 @@ class SalesApi extends LMYCApi {
 
   async getSales(pageNumber = 1, day?: string, month?: string, year?: string) {
     try {
-      return (await this.salesHistoryApi.ventasGet(pageNumber, day, month, year)).data
+      return (
+        await this.salesHistoryApi.ventasGet(pageNumber, day, month, year)
+      ).data
     } catch {
       return undefined
     }
@@ -158,6 +184,7 @@ class FileActionsApi extends LMYCApi {
 
 export {
   UsersApi,
+  ProductsApi,
   ClientsApi,
   InvoicesApi,
   InvoiceItemsApi,
