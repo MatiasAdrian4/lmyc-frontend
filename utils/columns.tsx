@@ -56,11 +56,59 @@ export const CLIENT_COLUMNS: Column[] = [
   }
 ]
 
+export const PRODUCT_COLUMNS: Column[] = [
+  {
+    Header: "Código",
+    accessor: "codigo_en_pantalla",
+    width: "10%"
+  },
+  {
+    Header: "Detalle",
+    accessor: "detalle",
+    width: "30%"
+  },
+  {
+    Header: "Stock",
+    accessor: "stock",
+    width: "10%"
+  },
+  {
+    Header: "Precio Costo",
+    accessor: "precio_costo",
+    width: "10%"
+  },
+  {
+    Header: "Precio Venta Contado",
+    accessor: "precio_venta_contado",
+    width: "10%"
+  },
+  {
+    Header: "Precio Venta Cta. Cte.",
+    accessor: "precio_venta_cta_cte",
+    width: "10%"
+  },
+  {
+    Header: "Categoría",
+    accessor: "categoria",
+    width: "10%"
+  },
+  {
+    Header: "",
+    accessor: "ir_a",
+    width: "10%",
+    Cell: ({ row }) => (
+      <Link href={`/products/${row.original.codigo}`}>
+        <a>Abrir Producto</a>
+      </Link>
+    )
+  }
+]
+
 /* TODO:
   - This is the same array as the one used in Invoice table but excluding the Client's name column.
   - Refactor in a way we avoid repeated code.
 */
-export const CLIENT_INVOICE_COLUMNS = [
+export const CLIENT_INVOICE_COLUMNS: Column[] = [
   {
     Header: "Código",
     accessor: "codigo",
@@ -112,7 +160,7 @@ export const CLIENT_INVOICE_COLUMNS = [
   }
 ]
 
-export const INVOICE_COLUMNS = [
+export const INVOICE_COLUMNS: Column[] = [
   {
     Header: "Código",
     accessor: "codigo",
@@ -169,7 +217,7 @@ export const INVOICE_COLUMNS = [
   }
 ]
 
-export const SALES_HISTORY_COLUMNS = [
+export const SALES_HISTORY_COLUMNS: Column[] = [
   {
     Header: "Producto",
     accessor: "producto.detalle",
