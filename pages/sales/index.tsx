@@ -10,11 +10,8 @@ export default function SalesList() {
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const isUserLoggedIn = await isUserAuthenticated(ctx)
-  if (!isUserLoggedIn) {
-    return ssRedirectToLoginPage()
-  }
-  
+  if (!(await isUserAuthenticated(ctx))) return ssRedirectToLoginPage()
+
   return {
     props: {}
   }

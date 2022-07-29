@@ -11,7 +11,7 @@ import {
 
 export const getProducts = async (pageNumber: number, query: string) => {
   const productsApi = new ProductsApi()
-  return await productsApi.getProducts(pageNumber, '', '', query)
+  return await productsApi.getProducts(pageNumber, "", "", query)
 }
 
 export default function ProductsList({ paginatedProducts }) {
@@ -30,10 +30,7 @@ export default function ProductsList({ paginatedProducts }) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const isUserLoggedIn = await isUserAuthenticated(ctx)
-  if (!isUserLoggedIn) {
-    return ssRedirectToLoginPage()
-  }
+  if (!(await isUserAuthenticated(ctx))) return ssRedirectToLoginPage()
 
   const productsApi = new ProductsApi(getJWTFromCtx(ctx))
   const paginatedProducts = await productsApi.getProducts()

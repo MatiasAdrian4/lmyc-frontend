@@ -30,10 +30,7 @@ export default function ClientList({ paginatedClients }) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const isUserLoggedIn = await isUserAuthenticated(ctx)
-  if (!isUserLoggedIn) {
-    return ssRedirectToLoginPage()
-  }
+  if (!(await isUserAuthenticated(ctx))) return ssRedirectToLoginPage()
 
   const clientsApi = new ClientsApi(getJWTFromCtx(ctx))
   const paginatedClients = await clientsApi.getClients()

@@ -11,10 +11,7 @@ export default function Product({ product }) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const isUserLoggedIn = await isUserAuthenticated(ctx)
-  if (!isUserLoggedIn) {
-    return ssRedirectToLoginPage()
-  }
+  if (!(await isUserAuthenticated(ctx))) return ssRedirectToLoginPage()
 
   const { params } = ctx
   const jwt = getJWTFromCtx(ctx)
