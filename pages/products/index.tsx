@@ -9,9 +9,9 @@ import {
   ssRedirectToLoginPage
 } from "../../utils/utils"
 
-export const getProducts = async (pageNumber: number, detail: string) => {
+export const getProducts = async (pageNumber: number, query: string) => {
   const productsApi = new ProductsApi()
-  return await productsApi.getProducts(pageNumber, detail)
+  return await productsApi.getProducts(pageNumber, '', '', query)
 }
 
 export default function ProductsList({ paginatedProducts }) {
@@ -23,7 +23,7 @@ export default function ProductsList({ paginatedProducts }) {
         totalRows={paginatedProducts.count}
         rowsPerPage={ROWS_PER_PAGE}
         fetchData={getProducts}
-        searchInputPlaceholder={"Buscar por detalle"}
+        searchInputPlaceholder={"Buscar por Cód., Det. o Cat."}
       />
     </>
   )

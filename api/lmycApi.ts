@@ -68,10 +68,11 @@ class ProductsApi extends LMYCApi {
   async getProducts(
     pageNumber = 1,
     detail?: string,
-    category?: string
+    category?: string,
+    query?: string
   ): Promise<PaginatedProducts> {
     try {
-      return (await this.productsAPI.productosGet(pageNumber, detail, category))
+      return (await this.productsAPI.productosGet(pageNumber, detail, category, query))
         .data
     } catch {
       return undefined
