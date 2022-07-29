@@ -69,11 +69,8 @@ export default function Client({ client }) {
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   if (!(await isUserAuthenticated(ctx))) return ssRedirectToLoginPage()
 
-  const { params } = ctx
-  const jwt = getJWTFromCtx(ctx)
-
-  const clientsApi = new ClientsApi(jwt)
-  const client = await clientsApi.getClient(+params.clientId)
+  const clientsApi = new ClientsApi(getJWTFromCtx(ctx))
+  const client = await clientsApi.getClient(+ctx.params.clientId)
 
   return {
     props: {

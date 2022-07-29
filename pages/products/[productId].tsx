@@ -13,11 +13,8 @@ export default function Product({ product }) {
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   if (!(await isUserAuthenticated(ctx))) return ssRedirectToLoginPage()
 
-  const { params } = ctx
-  const jwt = getJWTFromCtx(ctx)
-
-  const productsApi = new ProductsApi(jwt)
-  const product = await productsApi.getProduct(+params.productId)
+  const productsApi = new ProductsApi(getJWTFromCtx(ctx))
+  const product = await productsApi.getProduct(+ctx.params.productId)
 
   return {
     props: {
