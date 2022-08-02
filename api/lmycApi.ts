@@ -88,6 +88,10 @@ class ProductsApi extends LMYCApi {
       return undefined
     }
   }
+
+  async updateProduct(productId: number, data: ExtendedProduct) {
+    return await this.productsAPI.productosProductoIdPatch(productId, data)
+  }
 }
 
 class ClientsApi extends LMYCApi {

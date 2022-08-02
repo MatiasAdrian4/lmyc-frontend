@@ -1,20 +1,35 @@
 import { Fragment, useState } from "react"
 import styles from "../styles/components/CustomForm.module.css"
-import { toTitleCase } from "../utils/utils"
 
-export interface FormSection {
+export interface FormField {
   name: string
-  fields: string[]
+  displayName: string
+}
+export interface FormSection {
+  title: string
+  fields: FormField[]
 }
 
-export const CustomForm = ({ data, sections, submitFunction }) => {
+interface CustomFormProps {
+  data: any
+  dataId: any
+  sections: FormSection[]
+  submitFunction: Function
+}
+
+const CustomForm: React.FC<CustomFormProps> = ({
+  data,
+  dataId,
+  sections,
+  submitFunction
+}: CustomFormProps) => {
   const [model, setModel] = useState(data)
   const [updating, setUpdating] = useState(false)
   const [errors, setErrors] = useState({})
 
   const saveChanges = async () => {
     try {
-      await submitFunction(data.id, model)
+      await submitFunction(dataId, model)
       setErrors({})
       setUpdating(false)
     } catch (error) {
@@ -28,22 +43,22 @@ export const CustomForm = ({ data, sections, submitFunction }) => {
         {sections.map((section, i) => {
           return (
             <fieldset className={styles.formSection} key={i}>
-              <legend>{section.name}</legend>
+              <legend>{section.title}</legend>
               {section.fields.map((field, j) => {
                 return (
                   <Fragment key={j}>
-                    <label htmlFor={field}>
-                      {toTitleCase(field.replace("_", " "))}
+                    <label htmlFor={field.name}>
+                      {field.displayName}
                     </label>
                     <input
-                      id={field}
+                      id={field.name}
                       type="text"
-                      value={model[field]}
+                      value={model[field.name]}
                       onChange={(e) => {
-                        setModel({ ...model, [field]: e.target.value })
+                        setModel({ ...model, [field.name]: e.target.value })
                         setUpdating(true)
                       }}
-                      className={errors[field] ? styles.error : ""}
+                      className={errors[field.name] ? styles.error : ""}
                     />
                   </Fragment>
                 )
@@ -62,3 +77,5 @@ export const CustomForm = ({ data, sections, submitFunction }) => {
     </>
   )
 }
+
+export default CustomForm

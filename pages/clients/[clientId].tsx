@@ -1,6 +1,6 @@
 import { GetServerSideProps } from "next"
 import { ClientsApi } from "../../api/lmycApi"
-import { FormSection, CustomForm } from "../../components/CustomForm"
+import CustomForm, { FormSection } from "../../components/CustomForm"
 import {
   getJWTFromCtx,
   isUserAuthenticated,
@@ -12,7 +12,7 @@ import styles from "../../styles/Client.module.css"
 import { CLIENT_INVOICE_COLUMNS } from "../../utils/columns"
 import Link from "next/link"
 
-export const updateClient = async (clientId: number, data: ClientModel) => {
+const updateClient = async (clientId: number, data: ClientModel) => {
   const clientsApi = new ClientsApi()
   return await clientsApi.updateClient(clientId, data)
 }
@@ -20,16 +20,26 @@ export const updateClient = async (clientId: number, data: ClientModel) => {
 export default function Client({ client }) {
   const sections: FormSection[] = [
     {
-      name: "Datos Personales",
-      fields: ["nombre", "cuit"]
+      title: "Datos Personales",
+      fields: [
+        { name: "nombre", displayName: "Nombre" },
+        { name: "cuit", displayName: "Cuit" }
+      ]
     },
     {
-      name: "Dirección",
-      fields: ["direccion", "localidad", "codigo_postal"]
+      title: "Dirección",
+      fields: [
+        { name: "direccion", displayName: "Dirección" },
+        { name: "localidad", displayName: "Localidad" },
+        { name: "codigo_postal", displayName: "Código Postal" }
+      ]
     },
     {
-      name: "Datos de contacto",
-      fields: ["telefono", "email"]
+      title: "Datos de contacto",
+      fields: [
+        { name: "telefono", displayName: "Teléfono" },
+        { name: "email", displayName: "E-mail" }
+      ]
     }
   ]
 
@@ -39,6 +49,7 @@ export default function Client({ client }) {
       <div className={`${styles.clientSection} ${styles.section}`}>
         <CustomForm
           data={client}
+          dataId={client.id}
           sections={sections}
           submitFunction={updateClient}
         />
