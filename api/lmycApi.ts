@@ -9,6 +9,7 @@ import {
   SalesApi as LMYCSalesApi,
   User,
   PaginatedProducts,
+  ExtendedProduct,
   PaginatedClients,
   Client,
   ExtendedClient
@@ -72,11 +73,24 @@ class ProductsApi extends LMYCApi {
     query?: string
   ): Promise<PaginatedProducts> {
     try {
-      return (await this.productsAPI.productosGet(pageNumber, detail, category, query))
-        .data
+      return (
+        await this.productsAPI.productosGet(pageNumber, detail, category, query)
+      ).data
     } catch {
       return undefined
     }
+  }
+
+  async getProduct(productId: number): Promise<ExtendedProduct> {
+    try {
+      return (await this.productsAPI.productosProductoIdGet(productId)).data
+    } catch {
+      return undefined
+    }
+  }
+
+  async updateProduct(productId: number, data: ExtendedProduct) {
+    return await this.productsAPI.productosProductoIdPatch(productId, data)
   }
 }
 
