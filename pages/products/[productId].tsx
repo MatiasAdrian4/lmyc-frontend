@@ -8,6 +8,7 @@ import {
 } from "../../utils/utils"
 import { ExtendedProduct as ProductModel } from "../../lmyc_client/api"
 import styles from "../../styles/Product.module.css"
+import { PRODUCT_CATEGORIES } from "../../utils/constants"
 
 const updateProduct = async (productId: number, data: ProductModel) => {
   const productsApi = new ProductsApi()
@@ -19,35 +20,46 @@ export default function Product({ product }) {
     {
       title: "Descripción",
       fields: [
-        { name: "codigo_en_pantalla", displayName: "Código" },
-        { name: "detalle", displayName: "Detalle" },
-        { name: "categoria", displayName: "Categoría" }
+        { name: "codigo_en_pantalla", displayName: "Código", width: "50px" },
+        { name: "detalle", displayName: "Detalle", width: "300px" },
+        {
+          name: "categoria",
+          displayName: "Categoría",
+          selectOptions: PRODUCT_CATEGORIES,
+          width: "150px"
+        }
       ]
     },
     {
       title: "Disponibilidad",
-      fields: [{ name: "stock", displayName: "Stock" }]
+      fields: [{ name: "stock", displayName: "Stock", width: "50px" }]
     },
     {
       title: "Precio",
-      fields: [{ name: "precio_costo", displayName: "Precio de Costo" }]
+      fields: [
+        { name: "precio_costo", displayName: "Precio de Costo", width: "100px" }
+      ]
     },
     {
       title: "Descuentos (en %)",
       fields: [
-        { name: "desc1", displayName: "Desc. 1" },
-        { name: "desc2", displayName: "Desc. 2" },
-        { name: "desc3", displayName: "Desc. 3" },
-        { name: "desc4", displayName: "Desc. 4" }
+        { name: "desc1", displayName: "# 1", width: "50px" },
+        { name: "desc2", displayName: "# 2", width: "50px" },
+        { name: "desc3", displayName: "# 3", width: "50px" },
+        { name: "desc4", displayName: "# 4", width: "50px" }
       ]
     },
     {
       title: "Agregados (en %)",
       fields: [
-        { name: "flete", displayName: "Flete" },
-        { name: "ganancia", displayName: "Ganancia" },
-        { name: "iva", displayName: "Iva" },
-        { name: "agregado_cta_cte", displayName: "Agregado Cta. Cte." }
+        { name: "flete", displayName: "Flete", width: "50px" },
+        { name: "ganancia", displayName: "Ganancia", width: "50px" },
+        { name: "iva", displayName: "Iva", width: "50px" },
+        {
+          name: "agregado_cta_cte",
+          displayName: "Agregado Cta. Cte.",
+          width: "50px"
+        }
       ]
     }
   ]

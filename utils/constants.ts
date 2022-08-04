@@ -1,2 +1,26 @@
 export const LMYC_JWT = "lmyc_jwt"
 export const ROWS_PER_PAGE = 10
+
+/* TODO: Categories logic refactor in the backend */
+export const PRODUCT_CATEGORIES = [
+  "Electricidad",
+  "Accesorios",
+  "Aditivos",
+  "Pegamentos",
+  "Articulos Acoplado",
+  "Filtros",
+  "Escobillas",
+  "Termostatos",
+  "Abrazaderas",
+  "Espejos",
+  "Baterias",
+  "Instrumental",
+  "Manijas",
+  "Lubricantes",
+  "Lamparas",
+  "Tapas",
+  "Lentes",
+  "Agua Destilada",
+  "Correas",
+  "Faros"
+]

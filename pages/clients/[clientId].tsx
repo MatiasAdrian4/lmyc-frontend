@@ -22,23 +22,23 @@ export default function Client({ client }) {
     {
       title: "Datos Personales",
       fields: [
-        { name: "nombre", displayName: "Nombre" },
-        { name: "cuit", displayName: "Cuit" }
+        { name: "nombre", displayName: "Nombre", width: "150px" },
+        { name: "cuit", displayName: "Cuit", width: "150px" }
       ]
     },
     {
       title: "Dirección",
       fields: [
-        { name: "direccion", displayName: "Dirección" },
-        { name: "localidad", displayName: "Localidad" },
-        { name: "codigo_postal", displayName: "Código Postal" }
+        { name: "direccion", displayName: "Dirección", width: "150px" },
+        { name: "localidad", displayName: "Localidad", width: "150px" },
+        { name: "codigo_postal", displayName: "Código Postal", width: "50px" }
       ]
     },
     {
       title: "Datos de contacto",
       fields: [
-        { name: "telefono", displayName: "Teléfono" },
-        { name: "email", displayName: "E-mail" }
+        { name: "telefono", displayName: "Teléfono", width: "150px" },
+        { name: "email", displayName: "E-mail", width: "150px" }
       ]
     }
   ]
