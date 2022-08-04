@@ -1,9 +1,10 @@
 import { Fragment, useState } from "react"
 import styles from "../styles/components/CustomForm.module.css"
 
-export interface FormField {
+interface FormField {
   name: string
   displayName: string
+  width: string
 }
 export interface FormSection {
   title: string
@@ -47,9 +48,7 @@ const CustomForm: React.FC<CustomFormProps> = ({
               {section.fields.map((field, j) => {
                 return (
                   <Fragment key={j}>
-                    <label htmlFor={field.name}>
-                      {field.displayName}
-                    </label>
+                    <label htmlFor={field.name}>{field.displayName}</label>
                     <input
                       id={field.name}
                       type="text"
@@ -59,6 +58,7 @@ const CustomForm: React.FC<CustomFormProps> = ({
                         setUpdating(true)
                       }}
                       className={errors[field.name] ? styles.error : ""}
+                      style={{ width: field.width }}
                     />
                   </Fragment>
                 )
