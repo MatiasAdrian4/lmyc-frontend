@@ -9,7 +9,7 @@
   margin-right: 5px;
 }
 
-.formSection input {
+.formSection input, .formSection select {
   padding: 5px;
   margin: 5px;
   text-align: center;

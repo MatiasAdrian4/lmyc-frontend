@@ -8,6 +8,7 @@ import {
 } from "../../utils/utils"
 import { ExtendedProduct as ProductModel } from "../../lmyc_client/api"
 import styles from "../../styles/Product.module.css"
+import { PRODUCT_CATEGORIES } from "../../utils/constants"
 
 const updateProduct = async (productId: number, data: ProductModel) => {
   const productsApi = new ProductsApi()
@@ -21,7 +22,12 @@ export default function Product({ product }) {
       fields: [
         { name: "codigo_en_pantalla", displayName: "Código", width: "50px" },
         { name: "detalle", displayName: "Detalle", width: "300px" },
-        { name: "categoria", displayName: "Categoría", width: "150px" }
+        {
+          name: "categoria",
+          displayName: "Categoría",
+          selectOptions: PRODUCT_CATEGORIES,
+          width: "150px"
+        }
       ]
     },
     {
@@ -30,7 +36,9 @@ export default function Product({ product }) {
     },
     {
       title: "Precio",
-      fields: [{ name: "precio_costo", displayName: "Precio de Costo", width: "100px" }]
+      fields: [
+        { name: "precio_costo", displayName: "Precio de Costo", width: "100px" }
+      ]
     },
     {
       title: "Descuentos (en %)",
@@ -47,7 +55,11 @@ export default function Product({ product }) {
         { name: "flete", displayName: "Flete", width: "50px" },
         { name: "ganancia", displayName: "Ganancia", width: "50px" },
         { name: "iva", displayName: "Iva", width: "50px" },
-        { name: "agregado_cta_cte", displayName: "Agregado Cta. Cte.", width: "50px" }
+        {
+          name: "agregado_cta_cte",
+          displayName: "Agregado Cta. Cte.",
+          width: "50px"
+        }
       ]
     }
   ]

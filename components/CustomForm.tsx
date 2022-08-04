@@ -4,6 +4,7 @@ import styles from "../styles/components/CustomForm.module.css"
 interface FormField {
   name: string
   displayName: string
+  selectOptions?: string[]
   width: string
 }
 export interface FormSection {
@@ -49,17 +50,36 @@ const CustomForm: React.FC<CustomFormProps> = ({
                 return (
                   <Fragment key={j}>
                     <label htmlFor={field.name}>{field.displayName}</label>
-                    <input
-                      id={field.name}
-                      type="text"
-                      value={model[field.name]}
-                      onChange={(e) => {
-                        setModel({ ...model, [field.name]: e.target.value })
-                        setUpdating(true)
-                      }}
-                      className={errors[field.name] ? styles.error : ""}
-                      style={{ width: field.width }}
-                    />
+                    {!field.selectOptions && (
+                      <input
+                        id={field.name}
+                        type="text"
+                        value={model[field.name]}
+                        onChange={(e) => {
+                          setModel({ ...model, [field.name]: e.target.value })
+                          setUpdating(true)
+                        }}
+                        className={errors[field.name] ? styles.error : ""}
+                        style={{ width: field.width }}
+                      />
+                    )}
+                    {field.selectOptions && (
+                      <select
+                        value={model[field.name]}
+                        onChange={(e) => {
+                          setModel({ ...model, [field.name]: e.target.value })
+                          setUpdating(true)
+                        }}
+                      >
+                        {field.selectOptions.map((value) => {
+                          return (
+                            <option key={value} value={value}>
+                              {value}
+                            </option>
+                          )
+                        })}
+                      </select>
+                    )}
                   </Fragment>
                 )
               })}
