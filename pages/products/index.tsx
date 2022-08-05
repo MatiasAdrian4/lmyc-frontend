@@ -9,7 +9,7 @@ import {
   ssRedirectToLoginPage
 } from "../../utils/utils"
 
-export const getProducts = async (pageNumber: number, query: string) => {
+const getProducts = async (pageNumber: number, query: string) => {
   const productsApi = new ProductsApi()
   return await productsApi.getProducts(pageNumber, "", "", query)
 }
