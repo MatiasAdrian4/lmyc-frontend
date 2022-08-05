@@ -7,7 +7,7 @@ import {
   ssRedirectToLoginPage
 } from "../../utils/utils"
 import { ExtendedProduct as ProductModel } from "../../lmyc_client/api"
-import styles from "../../styles/Product.module.css"
+import styles from "../../styles/products/Product.module.css"
 import { PRODUCT_CATEGORIES } from "../../utils/constants"
 
 const updateProduct = async (productId: number, data: ProductModel) => {

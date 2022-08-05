@@ -8,7 +8,7 @@ import {
 } from "../../utils/utils"
 import { Client as ClientModel } from "../../lmyc_client/api"
 import { BasicTable } from "../../components/table/BasicTable"
-import styles from "../../styles/Client.module.css"
+import styles from "../../styles/clients/Client.module.css"
 import { CLIENT_INVOICE_COLUMNS } from "../../utils/columns"
 import Link from "next/link"
 
