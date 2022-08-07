@@ -24,3 +24,7 @@ export const PRODUCT_CATEGORIES = [
   "Correas",
   "Faros"
 ]
+
+export const PRODUCT_CATEGORIES_WITH_EMPTY_OPTION = [""].concat(
+  PRODUCT_CATEGORIES
+)

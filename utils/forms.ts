@@ -1,5 +1,5 @@
 import { FormSection } from "../components/CustomForm"
-import { PRODUCT_CATEGORIES } from "./constants"
+import { PRODUCT_CATEGORIES_WITH_EMPTY_OPTION } from "./constants"
 
 export const CLIENT_SECTIONS: FormSection[] = [
   {
@@ -35,7 +35,7 @@ export const PRODUCT_SECTIONS: FormSection[] = [
       {
         name: "categoria",
         displayName: "Categoría",
-        selectOptions: PRODUCT_CATEGORIES,
+        selectOptions: PRODUCT_CATEGORIES_WITH_EMPTY_OPTION,
         width: "150px"
       }
     ]
