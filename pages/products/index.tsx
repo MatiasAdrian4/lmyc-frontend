@@ -1,17 +1,26 @@
 import { GetServerSideProps } from "next"
 import { ProductsApi } from "../../api/lmycApi"
+import CustomForm from "../../components/CustomForm"
 import PaginatedTable from "../../components/table/PaginatedTable"
 import { PRODUCT_COLUMNS } from "../../utils/columns"
 import { ROWS_PER_PAGE } from "../../utils/constants"
+import { PRODUCT_SECTIONS } from "../../utils/forms"
 import {
   getJWTFromCtx,
   isUserAuthenticated,
   ssRedirectToLoginPage
 } from "../../utils/utils"
+import styles from "../../styles/products/Products.module.css"
+import { Product as ProductModel } from "../../lmyc_client/api"
 
 const getProducts = async (pageNumber: number, query: string) => {
   const productsApi = new ProductsApi()
   return await productsApi.getProducts(pageNumber, "", "", query)
+}
+
+const newProduct = async (data: ProductModel) => {
+  const productsApi = new ProductsApi()
+  return await productsApi.newProduct(data)
 }
 
 export default function ProductsList({ paginatedProducts }) {
@@ -25,6 +34,16 @@ export default function ProductsList({ paginatedProducts }) {
         fetchData={getProducts}
         searchInputPlaceholder={"Buscar por Cód., Det. o Cat."}
       />
+      <div className={styles.newProductSection}>
+        <h3>Agregar Nuevo Producto</h3>
+        <CustomForm
+          modelName={"Producto"}
+          data={null}
+          dataId={null}
+          sections={PRODUCT_SECTIONS}
+          submitFunction={newProduct}
+        />
+      </div>
     </>
   )
 }

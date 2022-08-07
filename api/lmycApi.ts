@@ -9,6 +9,7 @@ import {
   SalesApi as LMYCSalesApi,
   User,
   PaginatedProducts,
+  Product,
   ExtendedProduct,
   PaginatedClients,
   Client,
@@ -79,6 +80,10 @@ class ProductsApi extends LMYCApi {
     } catch {
       return undefined
     }
+  }
+
+  async newProduct(data: Product) {
+    return await this.productsAPI.productosPost(data)
   }
 
   async getProduct(productId: number): Promise<ExtendedProduct> {

@@ -1,5 +1,6 @@
 import { Fragment, useState } from "react"
 import styles from "../styles/components/CustomForm.module.css"
+import { toTitleCase } from "../utils/utils"
 
 interface FormField {
   name: string
@@ -27,10 +28,10 @@ const CustomForm: React.FC<CustomFormProps> = ({
   sections,
   submitFunction
 }: CustomFormProps) => {
-  const [model, setModel] = useState(data ? data : {})
+  const [model, setModel] = useState(data)
   const [updating, setUpdating] = useState(false)
-  const [errors, setErrors] = useState({})
-  const [successMessage, setSuccessMessage] = useState("")
+  const [errors, setErrors] = useState(null)
+  const [successMessage, setSuccessMessage] = useState(null)
 
   const saveChanges = async () => {
     try {
@@ -65,19 +66,21 @@ const CustomForm: React.FC<CustomFormProps> = ({
                       <input
                         id={field.name}
                         type="text"
-                        value={model[field.name]}
+                        value={model ? model[field.name] : null}
                         onChange={(e) => {
                           setModel({ ...model, [field.name]: e.target.value })
                           setSuccessMessage("")
                           setUpdating(true)
                         }}
-                        className={errors[field.name] ? styles.error : ""}
+                        className={
+                          errors && errors[field.name] ? styles.error : ""
+                        }
                         style={{ width: field.width }}
                       />
                     )}
                     {field.selectOptions && (
                       <select
-                        value={model[field.name]}
+                        value={model ? model[field.name] : null}
                         onChange={(e) => {
                           setModel({ ...model, [field.name]: e.target.value })
                           setSuccessMessage("")
@@ -103,18 +106,18 @@ const CustomForm: React.FC<CustomFormProps> = ({
           <button onClick={saveChanges} disabled={!updating}>
             Guardar Cambios
           </button>
-          {Object.keys(errors).length > 0 && (
+          {errors && (
             <ul>
               {Object.keys(errors).map((key) => {
                 return (
                   <li key={key} style={{ color: "red" }}>
-                    {key}: {errors[key]}
+                    {toTitleCase(key.replaceAll("_", " "))}: {errors[key]}
                   </li>
                 )
               })}
             </ul>
           )}
-          {Object.keys(errors).length === 0 && successMessage && (
+          {successMessage && (
             <ul>
               <li style={{ color: "green" }}>{successMessage}</li>
             </ul>

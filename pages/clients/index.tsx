@@ -35,7 +35,7 @@ export default function ClientList({ paginatedClients }) {
         searchInputPlaceholder={"Buscar por nombre"}
       />
       <div className={styles.newClientSection}>
-        <h2>Agregar Nuevo Cliente</h2>
+        <h3>Agregar Nuevo Cliente</h3>
         <CustomForm
           modelName={"Cliente"}
           data={null}
