@@ -13,6 +13,7 @@ export interface FormSection {
 }
 
 interface CustomFormProps {
+  modelName: string
   data: any
   dataId: any
   sections: FormSection[]
@@ -20,21 +21,31 @@ interface CustomFormProps {
 }
 
 const CustomForm: React.FC<CustomFormProps> = ({
+  modelName,
   data,
   dataId,
   sections,
   submitFunction
 }: CustomFormProps) => {
-  const [model, setModel] = useState(data)
+  const [model, setModel] = useState(data ? data : {})
   const [updating, setUpdating] = useState(false)
   const [errors, setErrors] = useState({})
+  const [successMessage, setSuccessMessage] = useState("")
 
   const saveChanges = async () => {
     try {
-      await submitFunction(dataId, model)
+      if (data) {
+        await submitFunction(dataId, model)
+        setSuccessMessage(`${modelName} actualizado satisfactoriamente.`)
+      } else {
+        /* if data is empty it means I'm creating a new instance */
+        await submitFunction(model)
+        setSuccessMessage(`${modelName} creado satisfactoriamente.`)
+      }
       setErrors({})
       setUpdating(false)
     } catch (error) {
+      setSuccessMessage("")
       setErrors(error.response.data)
     }
   }
@@ -57,6 +68,7 @@ const CustomForm: React.FC<CustomFormProps> = ({
                         value={model[field.name]}
                         onChange={(e) => {
                           setModel({ ...model, [field.name]: e.target.value })
+                          setSuccessMessage("")
                           setUpdating(true)
                         }}
                         className={errors[field.name] ? styles.error : ""}
@@ -68,6 +80,7 @@ const CustomForm: React.FC<CustomFormProps> = ({
                         value={model[field.name]}
                         onChange={(e) => {
                           setModel({ ...model, [field.name]: e.target.value })
+                          setSuccessMessage("")
                           setUpdating(true)
                         }}
                       >
@@ -86,13 +99,27 @@ const CustomForm: React.FC<CustomFormProps> = ({
             </fieldset>
           )
         })}
-        <button
-          className={styles.submitButton}
-          onClick={saveChanges}
-          disabled={!updating}
-        >
-          Guardar Cambios
-        </button>
+        <div className={styles.submitSection}>
+          <button onClick={saveChanges} disabled={!updating}>
+            Guardar Cambios
+          </button>
+          {Object.keys(errors).length > 0 && (
+            <ul>
+              {Object.keys(errors).map((key) => {
+                return (
+                  <li key={key} style={{ color: "red" }}>
+                    {key}: {errors[key]}
+                  </li>
+                )
+              })}
+            </ul>
+          )}
+          {Object.keys(errors).length === 0 && successMessage && (
+            <ul>
+              <li style={{ color: "green" }}>{successMessage}</li>
+            </ul>
+          )}
+        </div>
       </div>
     </>
   )

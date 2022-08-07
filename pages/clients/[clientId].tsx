@@ -24,6 +24,7 @@ export default function Client({ client }) {
       <h3 className={styles.sectionTitle}>Información del cliente</h3>
       <div className={`${styles.clientSection} ${styles.section}`}>
         <CustomForm
+          modelName={"Cliente"}
           data={client}
           dataId={client.id}
           sections={CLIENT_SECTIONS}

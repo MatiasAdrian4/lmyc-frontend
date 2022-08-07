@@ -21,6 +21,7 @@ export default function Product({ product }) {
       <h3 className={styles.sectionTitle}>Información del producto</h3>
       <div className={styles.section}>
         <CustomForm
+          modelName={"Producto"}
           data={product}
           dataId={product.codigo}
           sections={PRODUCT_SECTIONS}
