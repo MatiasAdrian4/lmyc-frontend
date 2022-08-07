@@ -3,7 +3,7 @@ import { SALES_HISTORY_COLUMNS } from "../../utils/columns"
 import { ROWS_PER_PAGE } from "../../utils/constants"
 import { SalesApi } from "../../api/lmycApi"
 
-export const getSales = async (pageNumber: number, date: string) => {
+const getSales = async (pageNumber: number, date: string) => {
   if (!date) {
     return { count: 0, next: null, previous: null, results: [] }
   }

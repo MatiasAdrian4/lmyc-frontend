@@ -8,10 +8,19 @@ import {
   isUserAuthenticated,
   ssRedirectToLoginPage
 } from "../../utils/utils"
+import styles from "../../styles/clients/Clients.module.css"
+import CustomForm from "../../components/CustomForm"
+import { CLIENT_SECTIONS } from "../../utils/forms"
+import { Client as ClientModel } from "../../lmyc_client/api"
 
-export const getClients = async (pageNumber: number, name: string) => {
+const getClients = async (pageNumber: number, name: string) => {
   const clientsApi = new ClientsApi()
   return await clientsApi.getClients(pageNumber, name)
+}
+
+const newClient = async (data: ClientModel) => {
+  const clientsApi = new ClientsApi()
+  return await clientsApi.newClient(data)
 }
 
 export default function ClientList({ paginatedClients }) {
@@ -25,6 +34,16 @@ export default function ClientList({ paginatedClients }) {
         fetchData={getClients}
         searchInputPlaceholder={"Buscar por nombre"}
       />
+      <div className={styles.newClientSection}>
+        <h2>Agregar Nuevo Cliente</h2>
+        <CustomForm
+          modelName={"Cliente"}
+          data={null}
+          dataId={null}
+          sections={CLIENT_SECTIONS}
+          submitFunction={newClient}
+        />
+      </div>
     </>
   )
 }

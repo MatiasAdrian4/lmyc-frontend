@@ -113,6 +113,10 @@ class ClientsApi extends LMYCApi {
     }
   }
 
+  async newClient(data: Client) {
+    return await this.clientsAPI.clientesPost(data)
+  }
+
   async getClient(clientId: number): Promise<ExtendedClient> {
     try {
       return (await this.clientsAPI.clientesClienteIdGet(clientId)).data

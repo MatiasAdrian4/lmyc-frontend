@@ -1,6 +1,6 @@
 import { GetServerSideProps } from "next"
 import { ClientsApi } from "../../api/lmycApi"
-import CustomForm, { FormSection } from "../../components/CustomForm"
+import CustomForm from "../../components/CustomForm"
 import {
   getJWTFromCtx,
   isUserAuthenticated,
@@ -8,9 +8,10 @@ import {
 } from "../../utils/utils"
 import { Client as ClientModel } from "../../lmyc_client/api"
 import { BasicTable } from "../../components/table/BasicTable"
-import styles from "../../styles/Client.module.css"
+import styles from "../../styles/clients/Client.module.css"
 import { CLIENT_INVOICE_COLUMNS } from "../../utils/columns"
 import Link from "next/link"
+import { CLIENT_SECTIONS } from "../../utils/forms"
 
 const updateClient = async (clientId: number, data: ClientModel) => {
   const clientsApi = new ClientsApi()
@@ -18,39 +19,15 @@ const updateClient = async (clientId: number, data: ClientModel) => {
 }
 
 export default function Client({ client }) {
-  const sections: FormSection[] = [
-    {
-      title: "Datos Personales",
-      fields: [
-        { name: "nombre", displayName: "Nombre", width: "150px" },
-        { name: "cuit", displayName: "Cuit", width: "150px" }
-      ]
-    },
-    {
-      title: "Dirección",
-      fields: [
-        { name: "direccion", displayName: "Dirección", width: "150px" },
-        { name: "localidad", displayName: "Localidad", width: "150px" },
-        { name: "codigo_postal", displayName: "Código Postal", width: "50px" }
-      ]
-    },
-    {
-      title: "Datos de contacto",
-      fields: [
-        { name: "telefono", displayName: "Teléfono", width: "150px" },
-        { name: "email", displayName: "E-mail", width: "150px" }
-      ]
-    }
-  ]
-
   return (
     <>
       <h3 className={styles.sectionTitle}>Información del cliente</h3>
       <div className={`${styles.clientSection} ${styles.section}`}>
         <CustomForm
+          modelName={"Cliente"}
           data={client}
           dataId={client.id}
-          sections={sections}
+          sections={CLIENT_SECTIONS}
           submitFunction={updateClient}
         />
       </div>

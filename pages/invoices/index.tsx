@@ -9,7 +9,7 @@ import {
   ssRedirectToLoginPage
 } from "../../utils/utils"
 
-export const getInvoices = async (pageNumber: number, nombre: string) => {
+const getInvoices = async (pageNumber: number, nombre: string) => {
   const invoicesApi = new InvoicesApi()
   return await invoicesApi.getInvoices(pageNumber, nombre)
 }

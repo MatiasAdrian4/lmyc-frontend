@@ -9,17 +9,31 @@
   margin-right: 5px;
 }
 
-.formSection input, .formSection select {
+.formSection input,
+.formSection select {
   padding: 5px;
   margin: 5px;
   text-align: center;
 }
 
-.submitButton {
+.error {
+  border: 1.5px solid red;
+}
+
+.submitSection {
+  display: flex;
   margin-top: 10px;
   margin-left: 20px;
 }
 
-.error {
-  border: 1.5px solid red;
+.submitSection button {
+  height: 50px;
+}
+
+.submitSection ul {
+  list-style-type: none;
+}
+
+.submitSection ul li {
+  font-size: 13px;
 }
