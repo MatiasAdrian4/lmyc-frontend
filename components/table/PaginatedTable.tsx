@@ -34,7 +34,7 @@ const PaginatedTable: React.FC<PaginatedTableProps> = ({
   const [loaded, setLoaded] = useState(false)
 
   const fetchDataAndUpdateTable = () => {
-    fetchData(currentPage, text).then((data) => {
+    fetchData(currentPage, rowsPerPage, text).then((data) => {
       const { count, results } = data
       setPageData({
         rows: results,

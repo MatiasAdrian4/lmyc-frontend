@@ -13,9 +13,9 @@ import CustomForm from "../../components/CustomForm"
 import { CLIENT_SECTIONS } from "../../utils/forms"
 import { Client as ClientModel } from "../../lmyc_client/api"
 
-const getClients = async (pageNumber: number, name: string) => {
+const getClients = async (pageNumber: number, pageSize: number, name: string) => {
   const clientsApi = new ClientsApi()
-  return await clientsApi.getClients(pageNumber, name)
+  return await clientsApi.getClients(pageNumber, pageSize, name)
 }
 
 const newClient = async (data: ClientModel) => {
