@@ -11,17 +11,7 @@ import {
   ssRedirectToLoginPage
 } from "../../utils/utils"
 import styles from "../../styles/products/Products.module.css"
-import { Product as ProductModel } from "../../lmyc_client/api"
-
-const getProducts = async (pageNumber: number, pageSize: number, query: string) => {
-  const productsApi = new ProductsApi()
-  return await productsApi.getProducts(pageNumber, pageSize, "", "", query)
-}
-
-const newProduct = async (data: ProductModel) => {
-  const productsApi = new ProductsApi()
-  return await productsApi.newProduct(data)
-}
+import { getProducts, newProduct } from "../../api/fetch"
 
 export default function ProductsList({ paginatedProducts }) {
   return (

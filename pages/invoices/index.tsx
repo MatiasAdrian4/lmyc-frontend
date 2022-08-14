@@ -8,11 +8,7 @@ import {
   isUserAuthenticated,
   ssRedirectToLoginPage
 } from "../../utils/utils"
-
-const getInvoices = async (pageNumber: number, pageSize: number, nombre: string) => {
-  const invoicesApi = new InvoicesApi()
-  return await invoicesApi.getInvoices(pageNumber, pageSize, nombre)
-}
+import { getInvoices } from "../../api/fetch"
 
 export default function InvoicesList({ paginatedInvoices }) {
   return (
