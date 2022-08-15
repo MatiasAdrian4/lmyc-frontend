@@ -19,7 +19,7 @@ interface SearchPaginationProps {
   useDatePicker?: boolean
   /** Action to be called when the date change */
   dateChangeHandler: Function
-  /** Set state action use for reload purposes */
+  /** Set state action used for reload purposes */
   reloadHandler: Function
 }
 

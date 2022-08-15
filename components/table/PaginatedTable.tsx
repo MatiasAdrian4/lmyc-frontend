@@ -4,7 +4,7 @@ import { BasicTable } from "./BasicTable"
 import SearchPagination from "./SearchPagination"
 
 interface PaginatedTableProps {
-  /** Table structure */
+  /** Table's structure */
   columns: Column[]
   /** Data to render in the table */
   rows: any[]

@@ -4,7 +4,7 @@ import styles from "../../styles/components/BasicTable.module.css"
 import { Column } from "../../utils/columns"
 
 interface BasicTableProps {
-  /** Table structure */
+  /** Table's structure */
   columns: Column[]
   /** Data to render in the table */
   data: any[]
