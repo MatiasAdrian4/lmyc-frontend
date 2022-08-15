@@ -4,12 +4,19 @@ import { BasicTable } from "./BasicTable"
 import SearchPagination from "./SearchPagination"
 
 interface PaginatedTableProps {
+  /** Table structure */
   columns: Column[]
+  /** Data to render in the table */
   rows: any[]
+  /** Number of pages */
   totalRows: number
+  /** Number of elements per page */
   rowsPerPage: number
+  /** Function used to fetch new data when input change */
   fetchData: Function
+  /** Placeholder for the text input */
   searchInputPlaceholder?: string
+  /** Use a datepicker instead a text input */
   useDatePicker?: boolean
 }
 

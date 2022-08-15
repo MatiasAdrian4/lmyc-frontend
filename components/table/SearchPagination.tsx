@@ -5,13 +5,21 @@ import "react-datepicker/dist/react-datepicker.css"
 import es from "date-fns/locale/es"
 
 interface SearchPaginationProps {
+  /** Number of pages */
   totalRows: number
+  /** Number of elements per page */
   rowsPerPage: number
+  /** Action to be called when the page change */
   pageChangeHandler: Function
+  /** Action to be called when the input text change */
   textChangeHandler: Function
+  /** Placeholder for the text input */
   searchInputPlaceholder?: string
+  /** Use a datepicker instead a text input */
   useDatePicker?: boolean
+  /** Action to be called when the date change */
   dateChangeHandler: Function
+  /** Set state action use for reload purposes */
   reloadHandler: Function
 }
 

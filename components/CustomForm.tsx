@@ -3,21 +3,32 @@ import styles from "../styles/components/CustomForm.module.css"
 import { toTitleCase } from "../utils/utils"
 
 interface FormField {
+  /** Field's name */
   name: string
+  /** Name used to show in the screen */
   displayName: string
+  /** In case of a select, a list with all the possible values */
   selectOptions?: string[]
+  /** Field's width (in %) */
   width: string
 }
 export interface FormSection {
+  /** Section's title */
   title: string
+  /** List of fields */
   fields: FormField[]
 }
 
 interface CustomFormProps {
+  /** Model's name */
   modelName: string
+  /** Initial data (if any) */
   data: any
+  /** Field used to reference the model */
   dataId: any
+  /** List containing all the sections */
   sections: FormSection[]
+  /** Action to be called when the submit button is pressed */
   submitFunction: Function
 }
 
