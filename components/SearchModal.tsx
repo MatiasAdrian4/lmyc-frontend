@@ -55,7 +55,6 @@ const SearchModal: React.FC<SearchModalProps> = ({
         isOpen={isOpen}
         onRequestClose={closeModal}
         style={customStyles}
-        contentLabel="Example Modal"
       >
         <h2>Buscador de {modelName}s</h2>
         <PaginatedTable
