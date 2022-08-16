@@ -2,7 +2,7 @@ import { GetServerSideProps } from "next"
 import { ProductsApi } from "../../api/lmycApi"
 import CustomForm from "../../components/CustomForm"
 import PaginatedTable from "../../components/table/PaginatedTable"
-import { PRODUCT_COLUMNS } from "../../utils/columns"
+import { PRODUCT_COLUMNS } from "../../components/table/columns"
 import { ROWS_PER_PAGE } from "../../utils/constants"
 import { PRODUCT_SECTIONS } from "../../utils/forms"
 import {

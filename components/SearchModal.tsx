@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import Modal from "react-modal"
-import { Column } from "../utils/columns"
+import { Column } from "./table/columns"
 import PaginatedTable from "./table/PaginatedTable"
 
 interface SearchModalProps {

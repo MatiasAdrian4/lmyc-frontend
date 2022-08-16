@@ -1,10 +1,10 @@
 import Link from "next/link"
-import { downloadInvoicePDF, formatDate } from "./utils"
+import { downloadInvoicePDF, formatDate } from "../../utils/utils"
 
 export interface Column {
   /** Column's header */
   Header: string
-  /** Field where the data is read from */
+  /** Model's field where the data is read from */
   accessor: string
   /** Field's width (in %) */
   width: string

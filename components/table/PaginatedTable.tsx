@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Column } from "../../utils/columns"
+import { Column } from "./columns"
 import { BasicTable } from "./BasicTable"
 import SearchPagination from "./SearchPagination"
 

@@ -8,7 +8,7 @@ import {
 } from "../../utils/utils"
 import { BasicTable } from "../../components/table/BasicTable"
 import styles from "../../styles/clients/Client.module.css"
-import { CLIENT_INVOICE_COLUMNS } from "../../utils/columns"
+import { CLIENT_INVOICE_COLUMNS } from "../../components/table/columns"
 import Link from "next/link"
 import { CLIENT_SECTIONS } from "../../utils/forms"
 import { updateClient } from "../../api/fetch"
