@@ -2,9 +2,13 @@ import Link from "next/link"
 import { downloadInvoicePDF, formatDate } from "./utils"
 
 export interface Column {
+  /** Column's header */
   Header: string
+  /** Field where the data is read from */
   accessor: string
+  /** Field's width (in %) */
   width: string
+  /* Cell's format */
   Cell?: Function
 }
 

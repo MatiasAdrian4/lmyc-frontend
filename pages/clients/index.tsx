@@ -11,17 +11,7 @@ import {
 import styles from "../../styles/clients/Clients.module.css"
 import CustomForm from "../../components/CustomForm"
 import { CLIENT_SECTIONS } from "../../utils/forms"
-import { Client as ClientModel } from "../../lmyc_client/api"
-
-const getClients = async (pageNumber: number, name: string) => {
-  const clientsApi = new ClientsApi()
-  return await clientsApi.getClients(pageNumber, name)
-}
-
-const newClient = async (data: ClientModel) => {
-  const clientsApi = new ClientsApi()
-  return await clientsApi.newClient(data)
-}
+import { getClients, newClient } from "../../api/fetch"
 
 export default function ClientList({ paginatedClients }) {
   return (

@@ -6,14 +6,9 @@ import {
   isUserAuthenticated,
   ssRedirectToLoginPage
 } from "../../utils/utils"
-import { ExtendedProduct as ProductModel } from "../../lmyc_client/api"
 import styles from "../../styles/products/Product.module.css"
 import { PRODUCT_SECTIONS } from "../../utils/forms"
-
-const updateProduct = async (productId: number, data: ProductModel) => {
-  const productsApi = new ProductsApi()
-  return await productsApi.updateProduct(productId, data)
-}
+import { updateProduct } from "../../api/fetch"
 
 export default function Product({ product }) {
   return (

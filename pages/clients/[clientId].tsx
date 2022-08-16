@@ -6,17 +6,12 @@ import {
   isUserAuthenticated,
   ssRedirectToLoginPage
 } from "../../utils/utils"
-import { Client as ClientModel } from "../../lmyc_client/api"
 import { BasicTable } from "../../components/table/BasicTable"
 import styles from "../../styles/clients/Client.module.css"
 import { CLIENT_INVOICE_COLUMNS } from "../../utils/columns"
 import Link from "next/link"
 import { CLIENT_SECTIONS } from "../../utils/forms"
-
-const updateClient = async (clientId: number, data: ClientModel) => {
-  const clientsApi = new ClientsApi()
-  return await clientsApi.updateClient(clientId, data)
-}
+import { updateClient } from "../../api/fetch"
 
 export default function Client({ client }) {
   return (

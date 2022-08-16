@@ -1,4 +1,4 @@
-import { LMYC_JWT } from "../utils/constants"
+import { LMYC_JWT, ROWS_PER_PAGE } from "../utils/constants"
 import {
   UsersApi as LMYCUsersApi,
   ProductsApi as LMYCProductsApi,
@@ -69,13 +69,20 @@ class ProductsApi extends LMYCApi {
 
   async getProducts(
     pageNumber = 1,
+    pageSize = ROWS_PER_PAGE,
     detail?: string,
     category?: string,
     query?: string
   ): Promise<PaginatedProducts> {
     try {
       return (
-        await this.productsAPI.productosGet(pageNumber, detail, category, query)
+        await this.productsAPI.productosGet(
+          pageNumber,
+          pageSize,
+          detail,
+          category,
+          query
+        )
       ).data
     } catch {
       return undefined
@@ -109,10 +116,12 @@ class ClientsApi extends LMYCApi {
 
   async getClients(
     pageNumber = 1,
+    pageSize = ROWS_PER_PAGE,
     name: string = undefined
   ): Promise<PaginatedClients> {
     try {
-      return (await this.clientsAPI.clientesGet(pageNumber, name)).data
+      return (await this.clientsAPI.clientesGet(pageNumber, pageSize, name))
+        .data
     } catch {
       return undefined
     }
@@ -143,9 +152,14 @@ class InvoicesApi extends LMYCApi {
     this.invoicesAPI = new LMYCInvoicesApi(this.config)
   }
 
-  async getInvoices(pageNumber = 1, name: string = undefined) {
+  async getInvoices(
+    pageNumber = 1,
+    pageSize = ROWS_PER_PAGE,
+    name: string = undefined
+  ) {
     try {
-      return (await this.invoicesAPI.remitosGet(pageNumber, name)).data
+      return (await this.invoicesAPI.remitosGet(pageNumber, pageSize, name))
+        .data
     } catch {
       return undefined
     }
@@ -182,10 +196,22 @@ class SalesApi extends LMYCApi {
     this.salesHistoryApi = new LMYCSalesApi(this.config)
   }
 
-  async getSales(pageNumber = 1, day?: string, month?: string, year?: string) {
+  async getSales(
+    pageNumber = 1,
+    pageSize = ROWS_PER_PAGE,
+    day?: string,
+    month?: string,
+    year?: string
+  ) {
     try {
       return (
-        await this.salesHistoryApi.ventasGet(pageNumber, day, month, year)
+        await this.salesHistoryApi.ventasGet(
+          pageNumber,
+          pageSize,
+          day,
+          month,
+          year
+        )
       ).data
     } catch {
       return undefined
