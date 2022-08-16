@@ -1,5 +1,5 @@
-import { FormSection } from "../components/CustomForm"
-import { PRODUCT_CATEGORIES_WITH_EMPTY_OPTION } from "./constants"
+import { FormSection } from "./CustomForm"
+import { PRODUCT_CATEGORIES_WITH_EMPTY_OPTION } from "../../utils/constants"
 
 export const CLIENT_SECTIONS: FormSection[] = [
   {

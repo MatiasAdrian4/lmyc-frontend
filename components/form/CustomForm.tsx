@@ -1,6 +1,6 @@
 import { Fragment, useState } from "react"
 import styles from "../styles/components/CustomForm.module.css"
-import { toTitleCase } from "../utils/utils"
+import { toTitleCase } from "../../utils/utils"
 
 interface FormField {
   /** Field's name */

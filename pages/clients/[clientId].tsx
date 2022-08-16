@@ -1,6 +1,6 @@
 import { GetServerSideProps } from "next"
 import { ClientsApi } from "../../api/lmycApi"
-import CustomForm from "../../components/CustomForm"
+import CustomForm from "../../components/form/CustomForm"
 import {
   getJWTFromCtx,
   isUserAuthenticated,
@@ -10,7 +10,7 @@ import { BasicTable } from "../../components/table/BasicTable"
 import styles from "../../styles/clients/Client.module.css"
 import { CLIENT_INVOICE_COLUMNS } from "../../components/table/columns"
 import Link from "next/link"
-import { CLIENT_SECTIONS } from "../../utils/forms"
+import { CLIENT_SECTIONS } from "../../components/form/forms"
 import { updateClient } from "../../api/fetch"
 
 export default function Client({ client }) {

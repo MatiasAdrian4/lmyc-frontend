@@ -1,10 +1,10 @@
 import { GetServerSideProps } from "next"
 import { ProductsApi } from "../../api/lmycApi"
-import CustomForm from "../../components/CustomForm"
+import CustomForm from "../../components/form/CustomForm"
 import PaginatedTable from "../../components/table/PaginatedTable"
 import { PRODUCT_COLUMNS } from "../../components/table/columns"
 import { ROWS_PER_PAGE } from "../../utils/constants"
-import { PRODUCT_SECTIONS } from "../../utils/forms"
+import { PRODUCT_SECTIONS } from "../../components/form/forms"
 import {
   getJWTFromCtx,
   isUserAuthenticated,

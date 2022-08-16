@@ -9,8 +9,8 @@ import {
   ssRedirectToLoginPage
 } from "../../utils/utils"
 import styles from "../../styles/clients/Clients.module.css"
-import CustomForm from "../../components/CustomForm"
-import { CLIENT_SECTIONS } from "../../utils/forms"
+import CustomForm from "../../components/form/CustomForm"
+import { CLIENT_SECTIONS } from "../../components/form/forms"
 import { getClients, newClient } from "../../api/fetch"
 
 export default function ClientList({ paginatedClients }) {
