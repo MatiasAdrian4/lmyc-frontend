@@ -1,6 +1,6 @@
 import { GetServerSideProps } from "next"
 import { ProductsApi } from "../../api/lmycApi"
-import CustomForm from "../../components/form/CustomForm"
+import { CustomForm } from "../../components/form/CustomForm"
 import {
   getJWTFromCtx,
   isUserAuthenticated,

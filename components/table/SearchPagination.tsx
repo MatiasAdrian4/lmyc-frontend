@@ -29,7 +29,7 @@ enum DatepickerType {
   Year = 3
 }
 
-const SearchPagination: React.FC<SearchPaginationProps> = ({
+export const SearchPagination: React.FC<SearchPaginationProps> = ({
   totalRows,
   rowsPerPage,
   pageChangeHandler,
@@ -201,5 +201,3 @@ const SearchPagination: React.FC<SearchPaginationProps> = ({
     </>
   )
 }
-
-export default SearchPagination

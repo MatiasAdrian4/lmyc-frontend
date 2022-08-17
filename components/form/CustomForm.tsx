@@ -32,7 +32,7 @@ interface CustomFormProps {
   submitFunction: Function
 }
 
-const CustomForm: React.FC<CustomFormProps> = ({
+export const CustomForm: React.FC<CustomFormProps> = ({
   modelName,
   data,
   dataId,
@@ -138,5 +138,3 @@ const CustomForm: React.FC<CustomFormProps> = ({
     </>
   )
 }
-
-export default CustomForm

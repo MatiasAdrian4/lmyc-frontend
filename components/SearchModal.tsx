@@ -1,7 +1,7 @@
 import { forwardRef, useImperativeHandle, useState } from "react"
 import Modal from "react-modal"
 import { Column } from "./table/columns"
-import PaginatedTable from "./table/PaginatedTable"
+import { PaginatedTable } from "./table/PaginatedTable"
 
 interface SearchModalProps {
   /** Model's name */
@@ -34,9 +34,6 @@ export const SearchModal = forwardRef(
   ) => {
     const [isOpen, setIsOpen] = useState(false)
 
-    const openModal = () => setIsOpen(true)
-    const closeModal = () => setIsOpen(false)
-
     useImperativeHandle(ref, () => ({
       closeModal() {
         setIsOpen(false)
@@ -45,13 +42,8 @@ export const SearchModal = forwardRef(
 
     return (
       <>
-        <button onClick={openModal}>Open Modal</button>
-        <Modal
-          ariaHideApp={false}
-          isOpen={isOpen}
-          onRequestClose={closeModal}
-          style={customStyles}
-        >
+        <button onClick={() => setIsOpen(true)}>Open Modal</button>
+        <Modal ariaHideApp={false} isOpen={isOpen} style={customStyles}>
           <h2>Buscador de {modelName}s</h2>
           <PaginatedTable
             columns={columns}

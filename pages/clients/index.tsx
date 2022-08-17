@@ -1,7 +1,7 @@
 import { GetServerSideProps } from "next"
 import { ClientsApi } from "../../api/lmycApi"
 import { CLIENT_COLUMNS } from "../../components/table/columns"
-import PaginatedTable from "../../components/table/PaginatedTable"
+import { PaginatedTable } from "../../components/table/PaginatedTable"
 import { ROWS_PER_PAGE } from "../../utils/constants"
 import {
   getJWTFromCtx,
@@ -9,7 +9,7 @@ import {
   ssRedirectToLoginPage
 } from "../../utils/utils"
 import styles from "../../styles/clients/Clients.module.css"
-import CustomForm from "../../components/form/CustomForm"
+import { CustomForm } from "../../components/form/CustomForm"
 import { CLIENT_SECTIONS } from "../../components/form/forms"
 import { getClients, newClient } from "../../api/fetch"
 

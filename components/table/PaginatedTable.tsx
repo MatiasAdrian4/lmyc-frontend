@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Column } from "./columns"
 import { BasicTable } from "./BasicTable"
-import SearchPagination from "./SearchPagination"
+import { SearchPagination } from "./SearchPagination"
 
 interface PaginatedTableProps {
   /** Table's structure */
@@ -20,7 +20,7 @@ interface PaginatedTableProps {
   useDatePicker?: boolean
 }
 
-const PaginatedTable: React.FC<PaginatedTableProps> = ({
+export const PaginatedTable: React.FC<PaginatedTableProps> = ({
   columns,
   rows,
   totalRows,
@@ -77,5 +77,3 @@ const PaginatedTable: React.FC<PaginatedTableProps> = ({
     </>
   )
 }
-
-export default PaginatedTable
