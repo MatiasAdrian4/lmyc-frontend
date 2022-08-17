@@ -58,3 +58,5 @@ export const SearchModal = forwardRef(
     )
   }
 )
+
+SearchModal.displayName = "SearchModal"
