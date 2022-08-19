@@ -35,6 +35,10 @@ export const SearchModal = forwardRef(
     const [isOpen, setIsOpen] = useState(false)
 
     useImperativeHandle(ref, () => ({
+      openModal() {
+        setIsOpen(true)
+      },
+
       closeModal() {
         setIsOpen(false)
       }
@@ -42,8 +46,12 @@ export const SearchModal = forwardRef(
 
     return (
       <>
-        <button onClick={() => setIsOpen(true)}>Open Modal</button>
-        <Modal ariaHideApp={false} isOpen={isOpen} style={customStyles}>
+        <Modal
+          ariaHideApp={false}
+          isOpen={isOpen}
+          style={customStyles}
+          onRequestClose={() => setIsOpen(false)}
+        >
           <h2>Buscador de {modelName}s</h2>
           <PaginatedTable
             columns={columns}
