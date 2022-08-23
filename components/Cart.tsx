@@ -86,3 +86,5 @@ export const Cart = forwardRef(({}, ref) => {
     </>
   )
 })
+
+Cart.displayName = "Cart"
