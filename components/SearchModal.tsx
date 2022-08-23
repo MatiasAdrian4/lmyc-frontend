@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react"
+import { forwardRef, useImperativeHandle, useState } from "react"
 import Modal from "react-modal"
-import { Column } from "../utils/columns"
-import PaginatedTable from "./table/PaginatedTable"
+import { Column } from "./table/columns"
+import { PaginatedTable } from "./table/PaginatedTable"
 
 interface SearchModalProps {
   /** Model's name */
@@ -12,8 +12,6 @@ interface SearchModalProps {
   fetchData: Function
   /** Placeholder for the text input */
   searchInputPlaceholder: string
-  /** Variable used to close the modal */
-  forceCloseModal?: boolean
 }
 
 const customStyles = {
@@ -29,45 +27,44 @@ const customStyles = {
   }
 }
 
-const SearchModal: React.FC<SearchModalProps> = ({
-  modelName,
-  columns,
-  fetchData,
-  searchInputPlaceholder,
-  forceCloseModal
-}: SearchModalProps) => {
-  const [isOpen, setIsOpen] = useState(false)
+export const SearchModal = forwardRef(
+  (
+    { modelName, columns, fetchData, searchInputPlaceholder }: SearchModalProps,
+    ref
+  ) => {
+    const [isOpen, setIsOpen] = useState(false)
 
-  const openModal = () => setIsOpen(true)
-  const closeModal = () => setIsOpen(false)
+    useImperativeHandle(ref, () => ({
+      openModal() {
+        setIsOpen(true)
+      },
 
-  useEffect(() => {
-    if (forceCloseModal && isOpen) {
-      closeModal()
-    }
-  }, [forceCloseModal])
+      closeModal() {
+        setIsOpen(false)
+      }
+    }))
 
-  return (
-    <>
-      <button onClick={openModal}>Open Modal</button>
-      <Modal
-        ariaHideApp={false}
-        isOpen={isOpen}
-        onRequestClose={closeModal}
-        style={customStyles}
-      >
-        <h2>Buscador de {modelName}s</h2>
-        <PaginatedTable
-          columns={columns}
-          rows={[]}
-          totalRows={0}
-          rowsPerPage={7}
-          fetchData={fetchData}
-          searchInputPlaceholder={searchInputPlaceholder}
-        />
-      </Modal>
-    </>
-  )
-}
+    return (
+      <>
+        <Modal
+          ariaHideApp={false}
+          isOpen={isOpen}
+          style={customStyles}
+          onRequestClose={() => setIsOpen(false)}
+        >
+          <h2>Buscador de {modelName}s</h2>
+          <PaginatedTable
+            columns={columns}
+            rows={[]}
+            totalRows={0}
+            rowsPerPage={7}
+            fetchData={fetchData}
+            searchInputPlaceholder={searchInputPlaceholder}
+          />
+        </Modal>
+      </>
+    )
+  }
+)
 
-export default SearchModal
+SearchModal.displayName = "SearchModal"

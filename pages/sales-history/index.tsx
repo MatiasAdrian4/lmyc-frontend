@@ -1,5 +1,5 @@
-import PaginatedTable from "../../components/table/PaginatedTable"
-import { SALES_HISTORY_COLUMNS } from "../../utils/columns"
+import { PaginatedTable } from "../../components/table/PaginatedTable"
+import { SALES_HISTORY_COLUMNS } from "../../components/table/columns"
 import { ROWS_PER_PAGE } from "../../utils/constants"
 import { getSales } from "../../api/fetch"
 
