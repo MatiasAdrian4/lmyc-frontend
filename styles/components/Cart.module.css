@@ -1,0 +1,23 @@
+.cartTable {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cartTable td,
+.cartTable th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.cartTable input {
+  padding: 5px;
+  text-align: center;
+}
+
+.cartTable input::-webkit-outer-spin-button,
+.cartTable input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
