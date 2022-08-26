@@ -34,10 +34,10 @@ export const updateProduct = async (
 export const getClients = async (
   pageNumber: number,
   pageSize: number,
-  name: string
+  query: string
 ) => {
   const clientsApi = new ClientsApi()
-  return await clientsApi.getClients(pageNumber, pageSize, name)
+  return await clientsApi.getClients(pageNumber, pageSize, "", query)
 }
 
 export const newClient = async (data: Client) => {

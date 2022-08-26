@@ -117,10 +117,11 @@ class ClientsApi extends LMYCApi {
   async getClients(
     pageNumber = 1,
     pageSize = ROWS_PER_PAGE,
-    name: string = undefined
+    name?: string,
+    query?: string
   ): Promise<PaginatedClients> {
     try {
-      return (await this.clientsAPI.clientesGet(pageNumber, pageSize, name))
+      return (await this.clientsAPI.clientesGet(pageNumber, pageSize, name, query))
         .data
     } catch {
       return undefined
