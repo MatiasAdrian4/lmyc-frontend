@@ -13,7 +13,12 @@ import {
   ExtendedProduct,
   PaginatedClients,
   Client,
-  ExtendedClient
+  ExtendedClient,
+  InvoiceWithInvoiceItems,
+  PaginatedInvoices,
+  InvoiceItemWithProductData,
+  BasicSale,
+  PaginatedSales
 } from "../lmyc_client/api"
 import { Configuration } from "../lmyc_client/configuration"
 
@@ -121,8 +126,9 @@ class ClientsApi extends LMYCApi {
     query?: string
   ): Promise<PaginatedClients> {
     try {
-      return (await this.clientsAPI.clientesGet(pageNumber, pageSize, name, query))
-        .data
+      return (
+        await this.clientsAPI.clientesGet(pageNumber, pageSize, name, query)
+      ).data
     } catch {
       return undefined
     }
@@ -153,11 +159,15 @@ class InvoicesApi extends LMYCApi {
     this.invoicesAPI = new LMYCInvoicesApi(this.config)
   }
 
+  async newInvoice(data: InvoiceWithInvoiceItems) {
+    return await this.invoicesAPI.remitosPost(data)
+  }
+
   async getInvoices(
     pageNumber = 1,
     pageSize = ROWS_PER_PAGE,
     name: string = undefined
-  ) {
+  ): Promise<PaginatedInvoices> {
     try {
       return (await this.invoicesAPI.remitosGet(pageNumber, pageSize, name))
         .data
@@ -178,7 +188,7 @@ class InvoiceItemsApi extends LMYCApi {
   async getInvoiceItems(
     codigoCliente: number = undefined,
     pago: boolean = undefined
-  ) {
+  ): Promise<InvoiceItemWithProductData[]> {
     try {
       return (
         await this.invoiceItemsApi.elementosRemitoGet(codigoCliente, pago)
@@ -197,13 +207,17 @@ class SalesApi extends LMYCApi {
     this.salesHistoryApi = new LMYCSalesApi(this.config)
   }
 
+  async newSale(data: BasicSale, updateStock: string) {
+    return await this.salesHistoryApi.ventasPost(data, updateStock)
+  }
+
   async getSales(
     pageNumber = 1,
     pageSize = ROWS_PER_PAGE,
     day?: string,
     month?: string,
     year?: string
-  ) {
+  ): Promise<PaginatedSales> {
     try {
       return (
         await this.salesHistoryApi.ventasGet(
