@@ -31,7 +31,7 @@ export const CLIENT_COLUMNS: Column[] = [
   {
     Header: "Código Postal",
     accessor: "codigo_postal",
-    width: "5%"
+    width: "10%"
   },
   {
     Header: "Telefono",
@@ -41,7 +41,7 @@ export const CLIENT_COLUMNS: Column[] = [
   {
     Header: "Cuit",
     accessor: "cuit",
-    width: "15%"
+    width: "10%"
   },
   {
     Header: "Email",
@@ -64,7 +64,7 @@ export const PRODUCT_COLUMNS: Column[] = [
   {
     Header: "Código",
     accessor: "codigo_en_pantalla",
-    width: "10%"
+    width: "5%"
   },
   {
     Header: "Detalle",
@@ -74,7 +74,7 @@ export const PRODUCT_COLUMNS: Column[] = [
   {
     Header: "Stock",
     accessor: "stock",
-    width: "10%"
+    width: "5%"
   },
   {
     Header: "Precio Costo",
@@ -84,12 +84,12 @@ export const PRODUCT_COLUMNS: Column[] = [
   {
     Header: "Precio Venta Contado",
     accessor: "precio_venta_contado",
-    width: "10%"
+    width: "15%"
   },
   {
     Header: "Precio Venta Cta. Cte.",
     accessor: "precio_venta_cta_cte",
-    width: "10%"
+    width: "15%"
   },
   {
     Header: "Categoría",
@@ -244,5 +244,47 @@ export const SALES_HISTORY_COLUMNS: Column[] = [
     Cell: ({ value }) => {
       return formatDate(value)
     }
+  }
+]
+
+export const SEARCH_PRODUCTS_COLUMNS = (selectFunction: Function): Column[] => [
+  {
+    Header: "Código",
+    accessor: "codigo",
+    width: "20%"
+  },
+  {
+    Header: "Detalle",
+    accessor: "detalle",
+    width: "60%"
+  },
+  {
+    Header: "Seleccionar",
+    accessor: "seleccionar",
+    width: "20%",
+    Cell: ({ row }) => (
+      <button onClick={() => selectFunction(row.original)}>Seleccionar</button>
+    )
+  }
+]
+
+export const SEARCH_CLIENT_COLUMNS = (selectFunction: Function): Column[] => [
+  {
+    Header: "Id",
+    accessor: "id",
+    width: "20%"
+  },
+  {
+    Header: "Nombre",
+    accessor: "nombre",
+    width: "60%"
+  },
+  {
+    Header: "Seleccionar",
+    accessor: "seleccionar",
+    width: "20%",
+    Cell: ({ row }) => (
+      <button onClick={() => selectFunction(row.original)}>Seleccionar</button>
+    )
   }
 ]

@@ -1,4 +1,14 @@
-import { Client, ExtendedProduct, Product } from "../lmyc_client"
+import {
+  Product,
+  ExtendedProduct,
+  PaginatedProducts,
+  Client,
+  PaginatedClients,
+  InvoiceWithInvoiceItems,
+  PaginatedInvoices,
+  SalesList,
+  PaginatedSales
+} from "../lmyc_client"
 import { ClientsApi, InvoicesApi, ProductsApi, SalesApi } from "./lmycApi"
 
 /*********************************************************************/
@@ -9,7 +19,7 @@ export const getProducts = async (
   pageNumber: number,
   pageSize: number,
   query: string
-) => {
+): Promise<PaginatedProducts> => {
   const productsApi = new ProductsApi()
   return await productsApi.getProducts(pageNumber, pageSize, "", "", query)
 }
@@ -34,10 +44,10 @@ export const updateProduct = async (
 export const getClients = async (
   pageNumber: number,
   pageSize: number,
-  name: string
-) => {
+  query: string
+): Promise<PaginatedClients> => {
   const clientsApi = new ClientsApi()
-  return await clientsApi.getClients(pageNumber, pageSize, name)
+  return await clientsApi.getClients(pageNumber, pageSize, "", query)
 }
 
 export const newClient = async (data: Client) => {
@@ -58,9 +68,14 @@ export const getInvoices = async (
   pageNumber: number,
   pageSize: number,
   nombre: string
-) => {
+): Promise<PaginatedInvoices> => {
   const invoicesApi = new InvoicesApi()
   return await invoicesApi.getInvoices(pageNumber, pageSize, nombre)
+}
+
+export const newInvoice = async (data: InvoiceWithInvoiceItems) => {
+  const invoicesApi = new InvoicesApi()
+  return await invoicesApi.newInvoice(data)
 }
 
 /*********************************************************************/
@@ -71,7 +86,7 @@ export const getSales = async (
   pageNumber: number,
   pageSize: number,
   date: string
-) => {
+): Promise<PaginatedSales> => {
   if (!date) {
     return { count: 0, next: null, previous: null, results: [] }
   }
@@ -104,4 +119,9 @@ export const getSales = async (
       return { count: 0, next: null, previous: null, results: [] }
     }
   }
+}
+
+export const newSalesUpdatingStock = async (data: SalesList) => {
+  const salesApi = new SalesApi()
+  return await salesApi.bulkSales(data, "true")
 }

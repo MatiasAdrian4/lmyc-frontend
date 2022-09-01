@@ -30,7 +30,10 @@ export default function Client({ client }) {
       <div className={`${styles.debtSection} ${styles.section}`}>
         {client.deuda_actual > 0 && (
           <>
-            <p>La deuda al dia de la fecha es de ${client.deuda_actual}.</p>
+            <p>
+              La deuda al dia de la fecha es de $
+              {client.deuda_actual.toFixed(2)}.
+            </p>
             <Link href={`/billing/${client.id}`}>
               <button type="button">Ir a pantalla de cobros</button>
             </Link>

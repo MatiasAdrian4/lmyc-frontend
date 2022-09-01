@@ -13,7 +13,12 @@ import {
   ExtendedProduct,
   PaginatedClients,
   Client,
-  ExtendedClient
+  ExtendedClient,
+  InvoiceWithInvoiceItems,
+  PaginatedInvoices,
+  InvoiceItemWithProductData,
+  SalesList,
+  PaginatedSales
 } from "../lmyc_client/api"
 import { Configuration } from "../lmyc_client/configuration"
 
@@ -117,11 +122,13 @@ class ClientsApi extends LMYCApi {
   async getClients(
     pageNumber = 1,
     pageSize = ROWS_PER_PAGE,
-    name: string = undefined
+    name?: string,
+    query?: string
   ): Promise<PaginatedClients> {
     try {
-      return (await this.clientsAPI.clientesGet(pageNumber, pageSize, name))
-        .data
+      return (
+        await this.clientsAPI.clientesGet(pageNumber, pageSize, name, query)
+      ).data
     } catch {
       return undefined
     }
@@ -152,11 +159,15 @@ class InvoicesApi extends LMYCApi {
     this.invoicesAPI = new LMYCInvoicesApi(this.config)
   }
 
+  async newInvoice(data: InvoiceWithInvoiceItems) {
+    return await this.invoicesAPI.remitosPost(data)
+  }
+
   async getInvoices(
     pageNumber = 1,
     pageSize = ROWS_PER_PAGE,
     name: string = undefined
-  ) {
+  ): Promise<PaginatedInvoices> {
     try {
       return (await this.invoicesAPI.remitosGet(pageNumber, pageSize, name))
         .data
@@ -177,7 +188,7 @@ class InvoiceItemsApi extends LMYCApi {
   async getInvoiceItems(
     codigoCliente: number = undefined,
     pago: boolean = undefined
-  ) {
+  ): Promise<InvoiceItemWithProductData[]> {
     try {
       return (
         await this.invoiceItemsApi.elementosRemitoGet(codigoCliente, pago)
@@ -196,13 +207,17 @@ class SalesApi extends LMYCApi {
     this.salesHistoryApi = new LMYCSalesApi(this.config)
   }
 
+  async bulkSales(data: SalesList, updateStock: string) {
+    return await this.salesHistoryApi.ventasBulkPost(data, updateStock)
+  }
+
   async getSales(
     pageNumber = 1,
     pageSize = ROWS_PER_PAGE,
     day?: string,
     month?: string,
     year?: string
-  ) {
+  ): Promise<PaginatedSales> {
     try {
       return (
         await this.salesHistoryApi.ventasGet(
