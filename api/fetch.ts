@@ -6,7 +6,7 @@ import {
   PaginatedClients,
   InvoiceWithInvoiceItems,
   PaginatedInvoices,
-  BasicSale,
+  SalesList,
   PaginatedSales
 } from "../lmyc_client"
 import { ClientsApi, InvoicesApi, ProductsApi, SalesApi } from "./lmycApi"
@@ -121,7 +121,7 @@ export const getSales = async (
   }
 }
 
-export const newSaleUpdatingStock = async (data: BasicSale) => {
+export const newSalesUpdatingStock = async (data: SalesList) => {
   const salesApi = new SalesApi()
-  return await salesApi.newSale(data, "true")
+  return await salesApi.bulkSales(data, "true")
 }

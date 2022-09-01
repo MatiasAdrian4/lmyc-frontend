@@ -17,7 +17,7 @@ import {
   InvoiceWithInvoiceItems,
   PaginatedInvoices,
   InvoiceItemWithProductData,
-  BasicSale,
+  SalesList,
   PaginatedSales
 } from "../lmyc_client/api"
 import { Configuration } from "../lmyc_client/configuration"
@@ -207,8 +207,8 @@ class SalesApi extends LMYCApi {
     this.salesHistoryApi = new LMYCSalesApi(this.config)
   }
 
-  async newSale(data: BasicSale, updateStock: string) {
-    return await this.salesHistoryApi.ventasPost(data, updateStock)
+  async bulkSales(data: SalesList, updateStock: string) {
+    return await this.salesHistoryApi.ventasBulkPost(data, updateStock)
   }
 
   async getSales(

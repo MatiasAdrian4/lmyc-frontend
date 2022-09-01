@@ -73,6 +73,7 @@ export const PaginatedTable: React.FC<PaginatedTableProps> = ({
         dateChangeHandler={setText}
         reloadHandler={setReload}
       />
+      <br></br>
       <BasicTable columns={columns} data={pageData.rows} />
     </>
   )

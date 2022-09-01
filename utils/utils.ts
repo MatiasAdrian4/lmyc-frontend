@@ -43,6 +43,10 @@ export const formatDate = (value) => {
   return format(new Date(value), "dd/MM/yyyy")
 }
 
+export const toFixed2 = (value: number) => {
+  return Math.round(value * 1e2) / 1e2
+}
+
 export const downloadInvoicePDF = async (code: number) => {
   const fileActionsApi = new FileActionsApi()
   const pdf = await fileActionsApi.getInvoicePDF(code)

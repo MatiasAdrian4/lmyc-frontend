@@ -1,0 +1,51 @@
+.cartTable {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cartTable td,
+.cartTable th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.cartTable input {
+  padding: 5px;
+  text-align: center;
+}
+
+.cartTable input::-webkit-outer-spin-button,
+.cartTable input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.addProductSection,
+.salesActions {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.salesActions input[type="text"] {
+  margin: 15px;
+  padding: 10px;
+  text-align: center;
+  min-width: 180px;
+}
+
+.salesActions input[type="radio"] {
+  accent-color: black;
+}
+
+.searchClientButton {
+  margin-left: 20px;
+}
+
+.submitButton {
+  min-width: 120px;
+}
