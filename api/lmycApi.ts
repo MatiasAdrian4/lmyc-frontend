@@ -62,6 +62,10 @@ class UsersApi extends LMYCApi {
       return undefined
     }
   }
+
+  async logout() {
+    await this.usersAPI.accountLogoutPost()
+  }
 }
 
 class ProductsApi extends LMYCApi {
