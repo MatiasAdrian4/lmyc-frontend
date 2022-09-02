@@ -9,6 +9,11 @@ export default function NavBar() {
     <>
       {asPath !== "/" && (
         <nav className={styles.header}>
+          <div className={styles.logo}>
+            <span>Lubricentro</span>
+            <br></br>
+            <span>M&C</span>
+          </div>
           <ul>
             <li>
               <Link href="/sales">
@@ -22,7 +27,9 @@ export default function NavBar() {
             <li>
               <Link href="/products">
                 <a
-                  className={`${asPath == "/products" ? styles.selectedTab : ""}`}
+                  className={`${
+                    asPath == "/products" ? styles.selectedTab : ""
+                  }`}
                 >
                   Productos
                 </a>
@@ -31,7 +38,9 @@ export default function NavBar() {
             <li>
               <Link href="/clients">
                 <a
-                  className={`${asPath == "/clients" ? styles.selectedTab : ""}`}
+                  className={`${
+                    asPath == "/clients" ? styles.selectedTab : ""
+                  }`}
                 >
                   Clientes
                 </a>
@@ -40,7 +49,9 @@ export default function NavBar() {
             <li>
               <Link href="/invoices">
                 <a
-                  className={`${asPath == "/invoices" ? styles.selectedTab : ""}`}
+                  className={`${
+                    asPath == "/invoices" ? styles.selectedTab : ""
+                  }`}
                 >
                   Remitos
                 </a>
@@ -49,7 +60,9 @@ export default function NavBar() {
             <li>
               <Link href="/sales-history">
                 <a
-                  className={`${asPath == "/sales-history" ? styles.selectedTab : ""}`}
+                  className={`${
+                    asPath == "/sales-history" ? styles.selectedTab : ""
+                  }`}
                 >
                   Historial de Ventas
                 </a>

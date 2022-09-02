@@ -1,5 +1,5 @@
 .header {
-  background-color: white;
+  background-color: #a7c13c;
   position: absolute; /* or fixed */
   top: 0;
   left: 0;
@@ -15,11 +15,32 @@
 
 .header a {
   text-decoration: none;
-  color: #4b7cb1;
+  color: white;
   text-transform: uppercase;
   padding: 10px 15px;
 }
 
+.logo {
+  float: left;
+  margin-top: 15px;
+  margin-left: 20px;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.logo span:nth-child(1){
+  font-size: 12px;
+  font-family: sans-serif;
+  text-transform: uppercase;
+}
+
+.logo span:nth-child(3) {
+  font-size: 30px;
+  font-weight: bold;
+  -webkit-text-stroke: 1px white;
+  font-family: sans-serif;
+}
+
 .selectedTab {
-  text-decoration: underline!important;
+  text-decoration: underline !important;
 }

@@ -21,12 +21,12 @@
 .basicTable th {
   padding-top: 12px;
   padding-bottom: 12px;
-  background-color: #4b7cb1;
-  color: white;
+  background-color: #fbfcfc;
+  color: black;
 }
 
 .basicTable a {
-  color: #4b7cb1;
+  color: #a7c13c;
   text-decoration: none;
   cursor: pointer;
 }
@@ -34,5 +34,5 @@
 .basicTable li {
   list-style: none;
   text-align: left;
-  color: #6D6F71;
+  color: #6d6f71;
 }

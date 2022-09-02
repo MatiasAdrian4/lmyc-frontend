@@ -119,15 +119,15 @@ export default function SalesList() {
         title: "Venta registrada correctamente.",
         icon: "success",
         confirmButtonText: "Salir",
-        confirmButtonColor: "white"
+        confirmButtonColor: "#a7c13c"
       })
-      setProducts([])
+      setProducts([{ total: 0.0 }])
     } catch (e) {
       Swal.fire({
         title: "Ha ocurrido un error al intentar registrar la venta.",
         icon: "error",
         confirmButtonText: "Salir",
-        confirmButtonColor: "white"
+        confirmButtonColor: "#a7c13c"
       })
     }
   }
@@ -150,16 +150,16 @@ export default function SalesList() {
         title: "El recibo fue generado correctamente.",
         icon: "success",
         confirmButtonText: "Descargar",
-        confirmButtonColor: "white",
+        confirmButtonColor: "#a7c13c",
         showCancelButton: true,
         cancelButtonText: "Salir",
-        cancelButtonColor: "white"
+        cancelButtonColor: "#a7c13c"
       }).then((result) => {
         if (result.value) {
           downloadInvoicePDF(response.data["codigo"])
         }
       })
-      setProducts([])
+      setProducts([{ total: 0.0 }])
     } catch (e) {
       Swal.fire({
         title: "Ha ocurrido un error al intentar generar el remito.",
