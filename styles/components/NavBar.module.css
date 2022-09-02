@@ -28,8 +28,8 @@
   text-align: center;
 }
 
-.logo span:nth-child(1){
-  font-size: 12px;
+.logo span:nth-child(1) {
+  font-size: 14px;
   font-family: sans-serif;
   text-transform: uppercase;
 }
