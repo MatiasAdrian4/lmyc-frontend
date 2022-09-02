@@ -5,6 +5,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <NavBar />
+      <div className={"watermark"}></div>
       <Component {...pageProps} />
     </>
   )

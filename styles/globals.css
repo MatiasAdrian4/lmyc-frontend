@@ -4,7 +4,7 @@
 
 html,
 body {
-  background-color: #CAE4FF;
+  background-color: #f4f6f6;
   padding-top: 50px; /* to avoid conflicts with the navbar */
   height: 100%;
   /*overflow: hidden;*/ /* check if it is a good approach or not */
@@ -17,9 +17,9 @@ input {
 }
 
 button {
-  background-color: #83befd;
+  background-color: #a7c13c;
   cursor: pointer;
-  color: #212529db;
+  color: white;
   padding: 10px;
 }
 
@@ -28,9 +28,22 @@ button:disabled {
   cursor: default;
 }
 
+.watermark{
+  position: absolute;
+  margin-left: 400px;
+  user-select: none;
+  opacity: 0.04;
+  background: gray;
+  width: 800px;
+  height: 800px;
+  border-radius: 50%;
+  right:-300px;
+}
+
 /* React-Datepicker custom styles */
 
-.react-datepicker__current-month, .react-datepicker__month-text {
+.react-datepicker__current-month,
+.react-datepicker__month-text {
   text-transform: capitalize;
 }
 
@@ -39,5 +52,5 @@ button:disabled {
 }
 
 .react-datepicker__year-wrapper {
-  display: block!important;
+  display: block !important;
 }
