@@ -9,7 +9,22 @@ import {
   SalesList,
   PaginatedSales
 } from "../lmyc_client"
-import { ClientsApi, InvoicesApi, ProductsApi, SalesApi } from "./lmycApi"
+import {
+  ClientsApi,
+  InvoicesApi,
+  ProductsApi,
+  SalesApi,
+  UsersApi
+} from "./lmycApi"
+
+/*********************************************************************/
+/********** User *****************************************************/
+/*********************************************************************/
+
+export const logout = async () => {
+  const usersApi = new UsersApi()
+  return await usersApi.logout()
+}
 
 /*********************************************************************/
 /********** Product **************************************************/

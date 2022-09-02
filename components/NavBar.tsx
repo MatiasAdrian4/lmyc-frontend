@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { useRouter } from "next/router"
+import { logout } from "../api/fetch"
 import styles from "../styles/components/NavBar.module.css"
 
 export default function NavBar() {
@@ -70,7 +71,7 @@ export default function NavBar() {
             </li>
             <li>
               <Link href="/">
-                <a>Cerrar Sesión</a>
+                <a onClick={logout}>Cerrar Sesión</a>
               </Link>
             </li>
           </ul>
