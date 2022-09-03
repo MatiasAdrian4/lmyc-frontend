@@ -22,6 +22,14 @@
   margin: 0;
 }
 
+.deleteButton {
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 7px;
+  padding-right: 7px;
+  background-color: #ff4949;
+}
+
 .addProductSection,
 .salesActions {
   margin-top: 30px;
