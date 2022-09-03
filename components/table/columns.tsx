@@ -173,7 +173,7 @@ export const INVOICE_COLUMNS: Column[] = [
   {
     Header: "Cliente",
     accessor: "cliente",
-    width: "25%"
+    width: "20%"
   },
   {
     Header: "Fecha",
@@ -186,7 +186,7 @@ export const INVOICE_COLUMNS: Column[] = [
   {
     Header: "Resumen",
     accessor: "resumen_elementos",
-    width: "45%",
+    width: "40%",
     Cell: ({ value }) => (
       <ul>
         {value.split(";").map((v, i) => (
@@ -212,6 +212,16 @@ export const INVOICE_COLUMNS: Column[] = [
   {
     Header: "",
     accessor: "ir_a",
+    width: "10%",
+    Cell: ({ row }) => (
+      <Link href={`/invoices/${row.original.codigo}`}>
+        <a>Abrir Remito</a>
+      </Link>
+    )
+  },
+  {
+    Header: "",
+    accessor: "download",
     width: "10%",
     Cell: ({ row }) => (
       <a onClick={() => downloadInvoicePDF(row.original.codigo)}>

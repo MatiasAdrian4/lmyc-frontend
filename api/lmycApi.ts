@@ -17,6 +17,7 @@ import {
   InvoiceWithInvoiceItems,
   PaginatedInvoices,
   InvoiceItemWithProductData,
+  ExtendedInvoice,
   SalesList,
   PaginatedSales
 } from "../lmyc_client/api"
@@ -175,6 +176,14 @@ class InvoicesApi extends LMYCApi {
     try {
       return (await this.invoicesAPI.remitosGet(pageNumber, pageSize, name))
         .data
+    } catch {
+      return undefined
+    }
+  }
+
+  async getInvoice(invoiceId: number): Promise<ExtendedInvoice> {
+    try {
+      return (await this.invoicesAPI.remitosRemitoIdGet(invoiceId)).data
     } catch {
       return undefined
     }
