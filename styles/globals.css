@@ -28,16 +28,16 @@ button:disabled {
   cursor: default;
 }
 
-.watermark{
+.watermark {
   position: absolute;
   margin-left: 400px;
-  user-select: none;
   opacity: 0.04;
   background: gray;
   width: 800px;
   height: 800px;
   border-radius: 50%;
-  right:-300px;
+  right: -300px;
+  pointer-events: none;
 }
 
 /* React-Datepicker custom styles */

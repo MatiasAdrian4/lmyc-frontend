@@ -68,7 +68,7 @@ export const SearchPagination: React.FC<SearchPaginationProps> = ({
   }, [currentPage])
 
   useEffect(() => {
-    if (text != null) {
+    if (text !== null) {
       textChangeHandler(text)
       currentPage == 1 ? reloadHandler(true) : setCurrentPage(1)
     }
