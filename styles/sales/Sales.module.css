@@ -23,10 +23,7 @@
 }
 
 .deleteButton {
-  padding-top: 3px;
-  padding-bottom: 3px;
-  padding-left: 7px;
-  padding-right: 7px;
+  padding: 3px 7px 3px 7px;
   background-color: #ff4949;
 }
 

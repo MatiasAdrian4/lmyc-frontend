@@ -100,7 +100,7 @@ export default function SalesList() {
 
   const deleteProduct = (productId) => {
     const filterProducts = products.filter(
-      (product) => product.codigo != productId
+      (product) => product.codigo !== productId
     )
     filterProducts[filterProducts.length - 1].total =
       currentTotal(filterProducts)
@@ -115,7 +115,7 @@ export default function SalesList() {
   }
 
   const getProductsReadyForSale = () => {
-    return products.filter((product) => product.codigo && product.total != 0)
+    return products.filter((product) => product.codigo && product.total !== 0)
   }
 
   const makeSale = async () => {
