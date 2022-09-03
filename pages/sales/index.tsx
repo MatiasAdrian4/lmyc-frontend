@@ -29,6 +29,7 @@ import Swal from "sweetalert2"
 type CartProduct = ExtendedProduct & {
   cantidad?: number
   total?: number
+  borrar?: boolean
 }
 
 enum SaleType {
@@ -53,6 +54,7 @@ export default function SalesList() {
       /* Insert product as penultimate element of the list (total is always the last one) */
       product.cantidad = 0
       product.total = 0
+      product.borrar = true
       const totalProduct = products.pop()
       setProducts(products.concat(product).concat(totalProduct))
     }
@@ -61,6 +63,14 @@ export default function SalesList() {
   const selectProduct = (product: ExtendedProduct) => {
     addProduct(product)
     productModalRef.current.closeModal()
+  }
+
+  const currentTotal = (products) => {
+    return toFixed2(
+      products
+        .slice(0, products.length - 1)
+        .reduce((partialSum, product) => partialSum + product.total, 0)
+    )
   }
 
   const onChangeQuantity = (productId, quantity) => {
@@ -74,11 +84,7 @@ export default function SalesList() {
     )
 
     /* Update total */
-    products[products.length - 1].total = toFixed2(
-      products
-        .slice(0, products.length - 1)
-        .reduce((partialSum, product) => partialSum + product.total, 0)
-    )
+    products[products.length - 1].total = currentTotal(products)
     setProducts([...products])
   }
 
@@ -92,6 +98,15 @@ export default function SalesList() {
     setClientSelected(null)
   }
 
+  const deleteProduct = (productId) => {
+    const filterProducts = products.filter(
+      (product) => product.codigo !== productId
+    )
+    filterProducts[filterProducts.length - 1].total =
+      currentTotal(filterProducts)
+    setProducts([...filterProducts])
+  }
+
   const cartIsEmpty = (): boolean => {
     const totalProduct: CartProduct = products.filter(
       (product) => !product.codigo
@@ -100,7 +115,7 @@ export default function SalesList() {
   }
 
   const getProductsReadyForSale = () => {
-    return products.filter((product) => product.codigo && product.total != 0)
+    return products.filter((product) => product.codigo && product.total !== 0)
   }
 
   const makeSale = async () => {
@@ -186,6 +201,7 @@ export default function SalesList() {
               <th>Precio Contado</th>
               <th>Cantidad</th>
               <th>Total</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -217,6 +233,16 @@ export default function SalesList() {
                     readOnly={true}
                     value={parseFloat(product.total)}
                   />
+                </td>
+                <td>
+                  {product.borrar && (
+                    <button
+                      className={styles.deleteButton}
+                      onClick={() => deleteProduct(product.codigo)}
+                    >
+                      X
+                    </button>
+                  )}
                 </td>
               </tr>
             ))}
