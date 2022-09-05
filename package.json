@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "generate-backend-client": "openapi-generator-cli generate -i https://raw.githubusercontent.com/MatiasAdrian4/lubricentro_myc/develop/docs/swagger.yaml -o lmyc_client -g typescript-axios --additional-properties=supportsES6=true,npmVersion=6.9.0,typescriptThreePlus=true"
+    "generate-backend-client": "openapi-generator-cli generate -i https://raw.githubusercontent.com/MatiasAdrian4/lubricentro_myc/develop/docs/swagger.yaml -o lmyc_client -g typescript-axios --additional-properties=supportsES6=true,npmVersion=6.9.0,typescriptThreePlus=true",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run --browser chrome"
   },
   "dependencies": {
     "axios": "^0.27.2",
@@ -23,6 +25,7 @@
   "devDependencies": {
     "@types/node": "^17.0.35",
     "@types/react": "^18.0.9",
+    "cypress": "^10.7.0",
     "eslint": "8.16.0",
     "eslint-config-next": "12.1.6",
     "typescript": "4.6.4"

@@ -31,6 +31,7 @@ export default function Home() {
     <div className={styles.signin}>
       <p>{"Lubricentro M&C"}</p>
       <input
+        data-cy="username"
         type="text"
         id="username"
         placeholder="Usuario"
@@ -39,6 +40,7 @@ export default function Home() {
       />
       <br></br>
       <input
+        data-cy="password"
         type="password"
         id="password"
         placeholder="Contraseña"
@@ -46,10 +48,12 @@ export default function Home() {
         onChange={(event) => setPassword(event.target.value)}
       />
       <br></br>
-      <button type="button" onClick={login}>
+      <button data-cy="login-button" type="button" onClick={login}>
         Iniciar Sesión
       </button>
-      <p className={styles.error}>{errorMsg}</p>
+      <p data-cy="errorMessage" className={styles.error}>
+        {errorMsg}
+      </p>
     </div>
   )
 }
