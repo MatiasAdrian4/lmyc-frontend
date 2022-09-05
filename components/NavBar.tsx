@@ -15,7 +15,7 @@ export default function NavBar() {
             <br></br>
             <span>M&C</span>
           </div>
-          <ul>
+          <ul data-cy="navigation-bar">
             <li>
               <Link href="/sales">
                 <a
