@@ -6,6 +6,7 @@ export default defineConfig({
     supportFile: false
   },
   env: {
+    lmyc_backend_host: "http://localhost:8000/lubricentro_myc/",
     lmyc_username: "matiasadrian",
     lmyc_password: "1234"
   }

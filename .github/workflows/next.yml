@@ -47,3 +47,7 @@ jobs:
           command: npm run cypress:run
           start: npm run start
           wait-on: http://localhost:3000
+        env:
+          CYPRESS_lmyc_backend_host: ${{secrets.LMYC_BACKEND_HOST}}
+          CYPRESS_lmyc_username: ${{secrets.LMYC_USERNAME}}
+          CYPRESS_lmyc_password: ${{secrets.LMYC_PASSWORD}}

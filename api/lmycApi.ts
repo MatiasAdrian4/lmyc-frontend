@@ -94,7 +94,7 @@ class ProductsApi extends LMYCApi {
         )
       ).data
     } catch {
-      return undefined
+      return { results: [] }
     }
   }
 
@@ -134,7 +134,7 @@ class ClientsApi extends LMYCApi {
         await this.clientsAPI.clientesGet(pageNumber, pageSize, name, query)
       ).data
     } catch {
-      return undefined
+      return { results: [] }
     }
   }
 
@@ -176,7 +176,7 @@ class InvoicesApi extends LMYCApi {
       return (await this.invoicesAPI.remitosGet(pageNumber, pageSize, name))
         .data
     } catch {
-      return undefined
+      return { results: [] }
     }
   }
 }
@@ -198,7 +198,7 @@ class InvoiceItemsApi extends LMYCApi {
         await this.invoiceItemsApi.elementosRemitoGet(codigoCliente, pago)
       ).data
     } catch {
-      return undefined
+      return []
     }
   }
 }
@@ -233,7 +233,7 @@ class SalesApi extends LMYCApi {
         )
       ).data
     } catch {
-      return undefined
+      return { results: [] }
     }
   }
 }
