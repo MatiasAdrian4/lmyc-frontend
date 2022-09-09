@@ -6,7 +6,8 @@ export default defineConfig({
     supportFile: false
   },
   env: {
-    lmyc_username: "matiasadrian4_1993",
-    lmyc_password: "Algodon1206_"
-  }
+    lmyc_username: "admin",
+    lmyc_password: "password"
+  },
+  defaultCommandTimeout: 60000
 })
