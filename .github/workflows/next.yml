@@ -41,13 +41,14 @@ jobs:
         run: npm install @openapitools/openapi-generator-cli -g && npm run generate-backend-client
       - name: Build
         run: npm run build
+      - name: Run
+        run: npm run start
+        env:
+          LMYC_BACKEND_HOST: ${{secrets.LMYC_BACKEND_HOST}}
       - name: E2E
         uses: cypress-io/github-action@v2
         with:
           command: npm run cypress:run
-          start: npm run start
-          wait-on: http://localhost:3000
         env:
-          CYPRESS_lmyc_backend_host: ${{secrets.LMYC_BACKEND_HOST}}
           CYPRESS_lmyc_username: ${{secrets.LMYC_USERNAME}}
           CYPRESS_lmyc_password: ${{secrets.LMYC_PASSWORD}}
