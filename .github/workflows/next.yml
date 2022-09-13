@@ -34,16 +34,14 @@ jobs:
       - uses: actions/checkout@v3
         with:
           repository: matiasadrian4/lubricentro_myc
-          path: backend
+          path: lubricentro_myc
       - name: Start containers
-        run: docker-compose -f "docker-compose.yml" up -d --build
+        run: docker-compose -f "lubricentro_myc/docker-compose.yml" up -d --build
       - name: Run Migrations
-        run: docker-compose run --rm web python3 manage.py migrate --noinput
+        run: docker-compose run --rm web python3 lubricentro_myc/manage.py migrate --noinput
       - name: Setup Test Data
-        run: docker-compose run --rm web python3 manage.py generate_test_data
+        run: docker-compose run --rm web python3 lubricentro_myc/manage.py generate_test_data
       - uses: actions/checkout@v3
-        with:
-          path: frontend
       - uses: actions/setup-node@v3
         with:
           node-version: "14"
