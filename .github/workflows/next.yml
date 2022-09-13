@@ -28,7 +28,7 @@ jobs:
       - name: Lint
         run: npm run lint
 
-  test:
+  run_backend:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v3
@@ -42,6 +42,11 @@ jobs:
         run: docker-compose run --rm web python manage.py createsuperuser --username testuser --email test@email.com --noinput
         env:
           DJANGO_SUPERUSER_PASSWORD: testpassword
+
+  test:
+    needs: run_backend
+    runs-on: ubuntu-18.04
+    steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
