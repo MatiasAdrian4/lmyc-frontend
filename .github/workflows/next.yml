@@ -28,6 +28,19 @@ jobs:
       - name: Lint
         run: npm run lint
 
+  run_backend:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          repository: matiasadrian4/lubricentro_myc
+      - name: Start containers
+        run: docker-compose -f "docker-compose.yml" up -d --build
+      - name: Create Superuser
+        run: docker-compose run --rm web python manage.py createsuperuser --username testuser --email test@email.com --noinput
+        env:
+          DJANGO_SUPERUSER_PASSWORD: testpassword
+
   test:
     runs-on: ubuntu-18.04
     steps:
@@ -46,7 +59,3 @@ jobs:
           build: npm run build
           start: npm run start
           wait-on: http://localhost:3000
-        env:
-          LMYC_BACKEND_HOST: ${{secrets.LMYC_BACKEND_HOST}}
-          CYPRESS_lmyc_username: ${{secrets.LMYC_USERNAME}}
-          CYPRESS_lmyc_password: ${{secrets.LMYC_PASSWORD}}

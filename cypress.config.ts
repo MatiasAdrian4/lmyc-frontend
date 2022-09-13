@@ -3,11 +3,11 @@ import { defineConfig } from "cypress"
 export default defineConfig({
   e2e: {
     baseUrl: "http://localhost:3000/",
-    supportFile: false
+    supportFile: "cypress/support/command.js"
   },
   env: {
-    lmyc_username: "admin",
-    lmyc_password: "password"
+    lmyc_username: "testuser",
+    lmyc_password: "testpassword"
   },
-  defaultCommandTimeout: 60000
+  defaultCommandTimeout: 10000
 })
