@@ -38,7 +38,7 @@ jobs:
         run: docker-compose -f "docker-compose.yml" up -d --build
       - name: Run Migrations
         run: docker-compose run --rm web python3 manage.py migrate --noinput
-      - name: Create Superuser
+      - name: Setup Test Data
         run: docker-compose run --rm web python3 manage.py generate_test_data
 
   test:
