@@ -37,11 +37,9 @@ jobs:
       - name: Start containers
         run: docker-compose -f "docker-compose.yml" up -d --build
       - name: Run Migrations
-        run: docker-compose run --rm web python manage.py migrate --noinput
+        run: docker-compose run --rm web python3 manage.py migrate --noinput
       - name: Create Superuser
-        run: docker-compose run --rm web python manage.py createsuperuser --username testuser --email test@email.com --noinput
-        env:
-          DJANGO_SUPERUSER_PASSWORD: testpassword
+        run: docker-compose run --rm web python3 manage.py generate_test_data
 
   test:
     needs: run_backend

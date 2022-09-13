@@ -6,8 +6,8 @@ export default defineConfig({
     supportFile: "cypress/support/command.js"
   },
   env: {
-    lmyc_username: "testuser",
-    lmyc_password: "testpassword"
+    lmyc_username: "test_user",
+    lmyc_password: "test_password"
   },
   defaultCommandTimeout: 10000
 })
