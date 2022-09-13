@@ -36,6 +36,8 @@ jobs:
           repository: matiasadrian4/lubricentro_myc
       - name: Start containers
         run: docker-compose -f "docker-compose.yml" up -d --build
+      - name: Run Migrations
+        run: docker-compose run --rm web python manage.py migrate --noinput
       - name: Create Superuser
         run: docker-compose run --rm web python manage.py createsuperuser --username testuser --email test@email.com --noinput
         env:
