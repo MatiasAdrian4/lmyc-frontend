@@ -44,6 +44,7 @@ jobs:
           DJANGO_SUPERUSER_PASSWORD: testpassword
 
   test:
+    needs: run_backend
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v3
