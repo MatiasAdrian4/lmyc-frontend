@@ -28,24 +28,22 @@ jobs:
       - name: Lint
         run: npm run lint
 
-  run_backend:
+  test:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v3
         with:
           repository: matiasadrian4/lubricentro_myc
+          path: backend
       - name: Start containers
         run: docker-compose -f "docker-compose.yml" up -d --build
       - name: Run Migrations
         run: docker-compose run --rm web python3 manage.py migrate --noinput
       - name: Setup Test Data
         run: docker-compose run --rm web python3 manage.py generate_test_data
-
-  test:
-    needs: run_backend
-    runs-on: ubuntu-18.04
-    steps:
       - uses: actions/checkout@v3
+        with:
+          path: frontend
       - uses: actions/setup-node@v3
         with:
           node-version: "14"
