@@ -34,35 +34,35 @@ jobs:
       - uses: actions/checkout@v3
         with:
           repository: matiasadrian4/lubricentro_myc
-          path: ./lubricentro_myc
+          path: lubricentro_myc
       - name: Start containers
-        run: docker-compose -f "lubricentro_myc/docker-compose.yml" up -d --build
+        run: docker-compose up -d --build
+        working-directory: lubricentro_myc
       - name: Run Migrations
-        run: docker-compose -f "lubricentro_myc/docker-compose.yml" run --rm web python3 manage.py migrate --noinput
+        run: docker-compose run --rm web python3 manage.py migrate --noinput
+        working-directory: lubricentro_myc
       - name: Setup Test Data
-        run: docker-compose -f "lubricentro_myc/docker-compose.yml" run --rm web python3 manage.py generate_test_data
+        run: docker-compose run --rm web python3 manage.py generate_test_data
+        working-directory: lubricentro_myc
       - uses: actions/checkout@v3
         with:
-          path: ./lmyc-frontend
+          path: lmyc-frontend
       - uses: actions/setup-node@v3
         with:
           node-version: "14"
       - name: Install Dependencies
-        run: npm --prefix ./lmyc-frontend ci
+        run: npm ci
+        working-directory: lmyc-frontend
       - name: Generate Backend Client
-        run: npm install @openapitools/openapi-generator-cli -g && npm --prefix ./lmyc-frontend run generate-backend-client
-      - name: Install Cypress
-        uses: cypress-io/github-action@v4.2.0
-        with:
-          runTests: false
-          build: npm --prefix ./lmyc-frontend run build
-          project: ./lmyc-frontend
-      - name: Run Cypress
+        run: npm install @openapitools/openapi-generator-cli -g && npm run generate-backend-client
+        working-directory: lmyc-frontend
+      - name: E2E
         uses: cypress-io/github-action@v4.2.0
         with:
           install: false
           command: npm run cypress:run
+          build: npm run build
           start: npm run start
           wait-on: http://localhost:3000
-          project: ./lmyc-frontend
+          project: lmyc-frontend
 
