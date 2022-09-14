@@ -42,6 +42,8 @@ jobs:
       - name: Setup Test Data
         run: docker-compose -f "lubricentro_myc/docker-compose.yml" run --rm web python3 manage.py generate_test_data
       - uses: actions/checkout@v3
+        with:
+          path: lmyc-frontend
       - uses: actions/setup-node@v3
         with:
           node-version: "14"
