@@ -48,7 +48,7 @@ jobs:
         with:
           node-version: "14"
       - name: Install Dependencies
-        run: npm --prefix lmyc-frontend ci
+        run: npm --prefix lmyc-frontend install
       - name: Generate Backend Client
         run: npm install @openapitools/openapi-generator-cli -g && npm --prefix lmyc-frontend run generate-backend-client
       - name: E2E
