@@ -51,6 +51,8 @@ jobs:
         run: npm --prefix lmyc-frontend ci
       - name: Generate Backend Client
         run: npm install @openapitools/openapi-generator-cli -g && npm --prefix lmyc-frontend run generate-backend-client
+      - name: Build
+        run: npm --prefix lmyc-frontend build
       - name: E2E
         uses: cypress-io/github-action@v4.2.0
         with:
