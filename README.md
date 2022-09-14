@@ -14,3 +14,11 @@ npm run dev
 ```
 
 The server runs in http://localhost:3000.
+
+## Setup Using Docker
+
+#### Build Image and Run Container
+```bash
+docker-compose build
+docker-compose up
+```
