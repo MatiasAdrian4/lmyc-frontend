@@ -55,7 +55,7 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           command: npm run cypress:run
-          build: npm run build
-          start: npm run start
+          build: npm --prefix lmyc-frontend run build
+          start: npm --prefix lmyc-frontend run start
           wait-on: http://localhost:3000
 
