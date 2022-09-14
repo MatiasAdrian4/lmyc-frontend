@@ -38,9 +38,9 @@ jobs:
       - name: Start containers
         run: docker-compose -f "lubricentro_myc/docker-compose.yml" up -d --build
       - name: Run Migrations
-        run: docker-compose run --rm web python3 lubricentro_myc/manage.py migrate --noinput
+        run: docker-compose -f "lubricentro_myc/docker-compose.yml" run --rm web python3 manage.py migrate --noinput
       - name: Setup Test Data
-        run: docker-compose run --rm web python3 lubricentro_myc/manage.py generate_test_data
+        run: docker-compose -f "lubricentro_myc/docker-compose.yml" run --rm web python3 manage.py generate_test_data
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
