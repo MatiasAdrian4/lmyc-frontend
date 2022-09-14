@@ -9,5 +9,7 @@ export default defineConfig({
     lmyc_username: "test_user",
     lmyc_password: "test_password"
   },
-  defaultCommandTimeout: 10000
+  defaultCommandTimeout: 10000,
+  video: false,
+  screenshotOnRunFailure: false
 })
