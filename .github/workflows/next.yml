@@ -54,6 +54,7 @@ jobs:
       - name: E2E
         uses: cypress-io/github-action@v4.2.0
         with:
+          install: false
           command: npm --prefix lmyc-frontend run cypress:run
           build: npm --prefix lmyc-frontend run build
           start: npm --prefix lmyc-frontend run start
