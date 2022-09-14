@@ -58,7 +58,7 @@ jobs:
         with:
           install: false
           command: npm run cypress:run
-          start: npm run start
+          start: npm --prefix lmyc-frontend run start
           wait-on: http://localhost:3000
           project: ./lmyc-frontend
 
