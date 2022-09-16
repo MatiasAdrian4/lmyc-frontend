@@ -7,7 +7,7 @@ COPY . /lmyc
 
 RUN npm install
 
-RUN npm run generate-backend-client
+RUN npm install @openapitools/openapi-generator-cli -g && npm run generate-backend-client
 
 RUN npm run build
 
