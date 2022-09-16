@@ -1,4 +1,6 @@
-FROM node:alpine
+FROM node:latest
+
+RUN apt-get update && apt-get -y install default-jre
 
 RUN mkdir -p /lmyc
 WORKDIR /lmyc
