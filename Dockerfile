@@ -7,6 +7,8 @@ COPY . /lmyc
 
 RUN npm install
 
+RUN npm run generate-backend-client
+
 RUN npm run build
 
 EXPOSE 3000
