@@ -36,3 +36,5 @@ cypress/videos
 cypress/screenshots
 
 lmyc_client
+
+.vscode

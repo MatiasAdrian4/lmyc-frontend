@@ -1,4 +1,4 @@
-name: NextJS CI
+name: E2E Tests
 
 on:
   push:
