@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  env: {
+  publicRuntimeConfig: {
     LMYC_BACKEND_HOST: process.env.LMYC_BACKEND_HOST
   }
 }

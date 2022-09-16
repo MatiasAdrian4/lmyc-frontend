@@ -1,3 +1,5 @@
+import getConfig from "next/config"
+
 import { LMYC_JWT, ROWS_PER_PAGE } from "../utils/constants"
 import {
   UsersApi as LMYCUsersApi,
@@ -26,8 +28,10 @@ class LMYCApi {
   config: Configuration
 
   constructor(lmyc_jwt: string = undefined) {
+    const { publicRuntimeConfig } = getConfig()
+
     this.config = new Configuration({
-      basePath: process.env.LMYC_BACKEND_HOST,
+      basePath: publicRuntimeConfig.LMYC_BACKEND_HOST,
       baseOptions: {
         withCredentials: true
       }
