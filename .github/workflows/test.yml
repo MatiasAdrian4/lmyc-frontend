@@ -1,0 +1,67 @@
+name: E2E Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize]
+
+jobs:
+  avoid_redundancy:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Cancel Previous Redundant Builds
+        uses: styfle/cancel-workflow-action@0.9.1
+        with:
+          access_token: ${{ github.token }}
+
+  lint:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "14"
+      - name: Install Dependencies
+        run: npm ci
+      - name: Lint
+        run: npm run lint
+
+  test:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          repository: matiasadrian4/lubricentro_myc
+          path: lubricentro_myc
+      - name: Start containers
+        run: docker-compose up -d --build
+        working-directory: lubricentro_myc
+      - name: Run Migrations
+        run: docker-compose run --rm web python3 manage.py migrate --noinput
+        working-directory: lubricentro_myc
+      - name: Setup Test Data
+        run: docker-compose run --rm web python3 manage.py generate_test_data
+        working-directory: lubricentro_myc
+      - uses: actions/checkout@v3
+        with:
+          path: lmyc-frontend
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "14"
+      - name: Install Dependencies
+        run: npm ci
+        working-directory: lmyc-frontend
+      - name: Generate Backend Client
+        run: npm install @openapitools/openapi-generator-cli -g && npm run generate-backend-client
+        working-directory: lmyc-frontend
+      - name: E2E
+        uses: cypress-io/github-action@v4.2.0
+        with:
+          install: false
+          command: npm run cypress:run
+          build: npm run build
+          start: npm run start
+          wait-on: http://localhost:3000
+          working-directory: lmyc-frontend
