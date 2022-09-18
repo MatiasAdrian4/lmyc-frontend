@@ -18,13 +18,15 @@ import {
   SimplifiedInvoiceItem
 } from "../../lmyc_client"
 import {
+  actionPopup,
   downloadInvoicePDF,
+  errorPopup,
   isUserAuthenticated,
   ssRedirectToLoginPage,
+  successPopup,
   toFixed2
 } from "../../utils/utils"
 import styles from "../../styles/sales/Sales.module.css"
-import Swal from "sweetalert2"
 
 type CartProduct = ExtendedProduct & {
   cantidad?: number
@@ -127,23 +129,12 @@ export default function SalesList() {
           precio: product.total
         } as BasicSale)
     )
-
     try {
       await newSalesUpdatingStock({ ventas: producstForSale })
-      Swal.fire({
-        title: "Venta registrada correctamente.",
-        icon: "success",
-        confirmButtonText: "Salir",
-        confirmButtonColor: "#a7c13c"
-      })
+      successPopup("Venta registrada correctamente.")
       setProducts([{ total: 0.0 }])
     } catch (e) {
-      Swal.fire({
-        title: "Ha ocurrido un error al intentar registrar la venta.",
-        icon: "error",
-        confirmButtonText: "Salir",
-        confirmButtonColor: "#a7c13c"
-      })
+      errorPopup("Ha ocurrido un error al intentar registrar la venta.")
     }
   }
 
@@ -161,27 +152,12 @@ export default function SalesList() {
         cliente: clientSelected.id,
         elementos_remito: producstForSale
       })
-      Swal.fire({
-        title: "El recibo fue generado correctamente.",
-        icon: "success",
-        confirmButtonText: "Descargar",
-        confirmButtonColor: "#a7c13c",
-        showCancelButton: true,
-        cancelButtonText: "Salir",
-        cancelButtonColor: "#a7c13c"
-      }).then((result) => {
-        if (result.value) {
-          downloadInvoicePDF(response.data["codigo"])
-        }
-      })
+      actionPopup("El recibo fue generado correctamente.", "Descargar", () =>
+        downloadInvoicePDF(response.data["codigo"])
+      )
       setProducts([{ total: 0.0 }])
     } catch (e) {
-      Swal.fire({
-        title: "Ha ocurrido un error al intentar generar el remito.",
-        icon: "error",
-        confirmButtonText: "Salir",
-        confirmButtonColor: "white"
-      })
+      errorPopup("Ha ocurrido un error al intentar generar el remito.")
     }
   }
 

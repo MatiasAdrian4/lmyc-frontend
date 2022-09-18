@@ -1,6 +1,6 @@
 import { Fragment, useState } from "react"
 import styles from "../../styles/components/CustomForm.module.css"
-import { toTitleCase } from "../../utils/utils"
+import { successPopup, toTitleCase } from "../../utils/utils"
 
 interface FormField {
   /** Field's name */
@@ -42,22 +42,20 @@ export const CustomForm: React.FC<CustomFormProps> = ({
   const [model, setModel] = useState(data)
   const [updating, setUpdating] = useState(false)
   const [errors, setErrors] = useState(null)
-  const [successMessage, setSuccessMessage] = useState(null)
 
   const saveChanges = async () => {
     try {
       if (data) {
         await submitFunction(dataId, model)
-        setSuccessMessage(`${modelName} actualizado satisfactoriamente.`)
+        successPopup(`${modelName} actualizado satisfactoriamente.`)
       } else {
         /* if data is empty it means I'm creating a new instance */
         await submitFunction(model)
-        setSuccessMessage(`${modelName} creado satisfactoriamente.`)
+        successPopup(`${modelName} creado satisfactoriamente.`)
       }
       setErrors({})
       setUpdating(false)
     } catch (error) {
-      setSuccessMessage("")
       setErrors(error.response.data)
     }
   }
@@ -80,7 +78,6 @@ export const CustomForm: React.FC<CustomFormProps> = ({
                         value={model ? model[field.name] : null}
                         onChange={(e) => {
                           setModel({ ...model, [field.name]: e.target.value })
-                          setSuccessMessage("")
                           setUpdating(true)
                         }}
                         className={
@@ -94,7 +91,6 @@ export const CustomForm: React.FC<CustomFormProps> = ({
                         value={model ? model[field.name] : null}
                         onChange={(e) => {
                           setModel({ ...model, [field.name]: e.target.value })
-                          setSuccessMessage("")
                           setUpdating(true)
                         }}
                       >
@@ -126,11 +122,6 @@ export const CustomForm: React.FC<CustomFormProps> = ({
                   </li>
                 )
               })}
-            </ul>
-          )}
-          {successMessage && (
-            <ul>
-              <li style={{ color: "green" }}>{successMessage}</li>
             </ul>
           )}
         </div>
