@@ -60,7 +60,6 @@ export const downloadInvoicePDF = async (code: number) => {
 }
 
 export const successPopup = (message: string) => {
-  console.log("aca")
   Swal.fire({
     title: message,
     icon: "success",
