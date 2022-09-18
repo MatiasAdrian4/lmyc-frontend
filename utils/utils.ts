@@ -1,6 +1,7 @@
 import { format } from "date-fns"
 import { GetServerSidePropsContext } from "next"
 import { NextApiRequestCookies } from "next/dist/server/api-utils"
+import Swal from "sweetalert2"
 import { FileActionsApi, UsersApi } from "../api/lmycApi"
 import { LMYC_JWT } from "./constants"
 
@@ -56,4 +57,43 @@ export const downloadInvoicePDF = async (code: number) => {
   link.setAttribute("download", `remito_${code}.pdf`)
   document.body.appendChild(link)
   link.click()
+}
+
+export const successPopup = (message: string) => {
+  console.log("aca")
+  Swal.fire({
+    title: message,
+    icon: "success",
+    confirmButtonText: "Salir",
+    confirmButtonColor: "#a7c13c"
+  })
+}
+
+export const errorPopup = (message: string) => {
+  Swal.fire({
+    title: message,
+    icon: "error",
+    confirmButtonText: "Salir",
+    confirmButtonColor: "#a7c13c"
+  })
+}
+
+export const actionPopup = (
+  message: string,
+  confirmButtonText: string,
+  action: Function
+) => {
+  Swal.fire({
+    title: message,
+    icon: "success",
+    confirmButtonText: confirmButtonText,
+    confirmButtonColor: "#a7c13c",
+    showCancelButton: true,
+    cancelButtonText: "Salir",
+    cancelButtonColor: "#a7c13c"
+  }).then((result) => {
+    if (result.value) {
+      action()
+    }
+  })
 }
