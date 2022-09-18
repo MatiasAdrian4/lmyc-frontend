@@ -13,7 +13,7 @@ import { updateProduct } from "../../api/fetch"
 export default function Product({ product }) {
   return (
     <>
-      <h3 className={styles.sectionTitle}>Información del producto</h3>
+      <h3 className={styles.sectionTitle}>Información del Producto</h3>
       <div className={styles.section}>
         <CustomForm
           modelName={"Producto"}
