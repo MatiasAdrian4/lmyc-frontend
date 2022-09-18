@@ -1,0 +1,23 @@
+.sectionTitle {
+  margin-left: 20px;
+  margin-bottom: 30px;
+}
+
+.section {
+  margin-left: 20px;
+}
+
+.section fieldset {
+  border: none;
+}
+
+.section label {
+  margin-left: 10px;
+  margin-right: 5px;
+}
+
+.section input {
+  padding: 5px;
+  margin: 5px;
+  text-align: center;
+}
