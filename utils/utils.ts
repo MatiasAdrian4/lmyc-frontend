@@ -63,7 +63,7 @@ export const downloadInvoicePDF = async (code: number) => {
 export const parseInvoiceItem = (
   invoiceItem: SimplifiedInvoiceItem
 ): string => {
-  return `${invoiceItem.cantidad} und. - ${invoiceItem.producto}`
+  return `${invoiceItem.cantidad} und. - ${invoiceItem.producto.codigo} (${invoiceItem.producto.detalle})`
 }
 
 export const successPopup = (message: string) => {
