@@ -15,7 +15,7 @@ import {
   BasicSale,
   Client,
   ExtendedProduct,
-  SimplifiedInvoiceItem
+  CreateInvoiceItem
 } from "../../lmyc_client"
 import {
   actionPopup,
@@ -139,13 +139,13 @@ export default function SalesList() {
   }
 
   const makeInvoice = async () => {
-    const producstForSale: SimplifiedInvoiceItem[] =
+    const producstForSale: CreateInvoiceItem[] =
       getProductsReadyForSale().map(
         (product) =>
           ({
             producto: product.codigo,
             cantidad: product.cantidad
-          } as SimplifiedInvoiceItem)
+          } as CreateInvoiceItem)
       )
     try {
       const response = await newInvoice({

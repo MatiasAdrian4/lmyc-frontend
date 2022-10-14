@@ -1,5 +1,9 @@
 import Link from "next/link"
-import { downloadInvoicePDF, formatDate } from "../../utils/utils"
+import {
+  downloadInvoicePDF,
+  formatDate,
+  parseInvoiceItem
+} from "../../utils/utils"
 
 export interface Column {
   /** Column's header */
@@ -132,8 +136,8 @@ export const CLIENT_INVOICE_COLUMNS: Column[] = [
     width: "50%",
     Cell: ({ value }) => (
       <ul>
-        {value.split(";").map((v, i) => (
-          <li key={i}>{v}</li>
+        {value.map((e) => (
+          <li key={e.codigo}>{parseInvoiceItem(e)}</li>
         ))}
       </ul>
     )
@@ -189,8 +193,8 @@ export const INVOICE_COLUMNS: Column[] = [
     width: "40%",
     Cell: ({ value }) => (
       <ul>
-        {value.split(";").map((v, i) => (
-          <li key={i}>{v}</li>
+        {value.map((e) => (
+          <li key={e.codigo}>{parseInvoiceItem(e)}</li>
         ))}
       </ul>
     )
