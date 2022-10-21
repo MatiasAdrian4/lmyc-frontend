@@ -20,6 +20,7 @@ import {
   PaginatedInvoices,
   InvoiceItemWithProductData,
   ExtendedInvoice,
+  UpdateInvoice,
   SalesList,
   PaginatedSales
 } from "../lmyc_client/api"
@@ -191,6 +192,10 @@ class InvoicesApi extends LMYCApi {
     } catch {
       return undefined
     }
+  }
+
+  async updateInvoice(invoiceId: number, data: UpdateInvoice) {
+    return await this.invoicesAPI.remitosRemitoIdPatch(invoiceId, data)
   }
 }
 

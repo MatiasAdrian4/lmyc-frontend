@@ -6,6 +6,7 @@ import {
   PaginatedClients,
   InvoiceWithInvoiceItems,
   PaginatedInvoices,
+  UpdateInvoice,
   SalesList,
   PaginatedSales
 } from "../lmyc_client"
@@ -91,6 +92,11 @@ export const getInvoices = async (
 export const newInvoice = async (data: InvoiceWithInvoiceItems) => {
   const invoicesApi = new InvoicesApi()
   return await invoicesApi.newInvoice(data)
+}
+
+export const updateInvoice = async (invoiceId: number, data: UpdateInvoice) => {
+  const invoicesApi = new InvoicesApi()
+  return await invoicesApi.updateInvoice(invoiceId, data)
 }
 
 /*********************************************************************/
