@@ -1,5 +1,9 @@
 import Link from "next/link"
-import { downloadInvoicePDF, formatDate } from "../../utils/utils"
+import {
+  downloadInvoicePDF,
+  formatDate,
+  parseInvoiceItem
+} from "../../utils/utils"
 
 export interface Column {
   /** Column's header */
@@ -132,8 +136,8 @@ export const CLIENT_INVOICE_COLUMNS: Column[] = [
     width: "50%",
     Cell: ({ value }) => (
       <ul>
-        {value.split(";").map((v, i) => (
-          <li key={i}>{v}</li>
+        {value.map((e) => (
+          <li key={e.codigo}>{parseInvoiceItem(e)}</li>
         ))}
       </ul>
     )
@@ -173,7 +177,7 @@ export const INVOICE_COLUMNS: Column[] = [
   {
     Header: "Cliente",
     accessor: "cliente",
-    width: "25%"
+    width: "20%"
   },
   {
     Header: "Fecha",
@@ -186,11 +190,11 @@ export const INVOICE_COLUMNS: Column[] = [
   {
     Header: "Resumen",
     accessor: "resumen_elementos",
-    width: "45%",
+    width: "40%",
     Cell: ({ value }) => (
       <ul>
-        {value.split(";").map((v, i) => (
-          <li key={i}>{v}</li>
+        {value.map((e) => (
+          <li key={e.codigo}>{parseInvoiceItem(e)}</li>
         ))}
       </ul>
     )
@@ -212,6 +216,16 @@ export const INVOICE_COLUMNS: Column[] = [
   {
     Header: "",
     accessor: "ir_a",
+    width: "10%",
+    Cell: ({ row }) => (
+      <Link href={`/invoices/${row.original.codigo}`}>
+        <a>Abrir Remito</a>
+      </Link>
+    )
+  },
+  {
+    Header: "",
+    accessor: "download",
     width: "10%",
     Cell: ({ row }) => (
       <a onClick={() => downloadInvoicePDF(row.original.codigo)}>

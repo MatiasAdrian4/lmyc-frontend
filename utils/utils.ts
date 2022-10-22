@@ -4,6 +4,7 @@ import { NextApiRequestCookies } from "next/dist/server/api-utils"
 import Swal from "sweetalert2"
 import { FileActionsApi, UsersApi } from "../api/lmycApi"
 import { LMYC_JWT } from "./constants"
+import { SimplifiedInvoiceItem } from "../lmyc_client/api"
 
 export const getJWTFromCtx = (ctx: GetServerSidePropsContext) => {
   const cookies: NextApiRequestCookies = ctx.req.cookies
@@ -57,6 +58,12 @@ export const downloadInvoicePDF = async (code: number) => {
   link.setAttribute("download", `remito_${code}.pdf`)
   document.body.appendChild(link)
   link.click()
+}
+
+export const parseInvoiceItem = (
+  invoiceItem: SimplifiedInvoiceItem
+): string => {
+  return `${invoiceItem.cantidad} und. - ${invoiceItem.producto.codigo} (${invoiceItem.producto.detalle})`
 }
 
 export const successPopup = (message: string) => {

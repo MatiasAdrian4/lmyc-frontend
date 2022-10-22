@@ -1,0 +1,57 @@
+.sectionTitle {
+  margin-left: 20px;
+  margin-bottom: 30px;
+}
+
+.section {
+  margin-left: 20px;
+  margin-bottom: 30px;
+}
+
+.section fieldset {
+  border: none;
+}
+
+.section label {
+  margin-left: 10px;
+  margin-right: 5px;
+}
+
+.section input {
+  padding: 5px;
+  margin: 5px;
+  text-align: center;
+}
+
+.invoiceItemsTable {
+  width: 80%;
+  margin-bottom: 30px;
+  margin-left: 20px;
+}
+
+.invoiceItemsTable td,
+.invoiceItemsTable th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.invoiceItemsTable input {
+  padding: 5px;
+  text-align: center;
+}
+
+.invoiceItemsTable input::-webkit-outer-spin-button,
+.invoiceItemsTable input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.submitSection {
+  margin-left: 20px;
+}
+
+.deleteButton {
+  padding: 3px 7px 3px 7px;
+  background-color: #636363;
+}
