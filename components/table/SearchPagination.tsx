@@ -3,6 +3,7 @@ import styles from "../../styles/components/SearchPagination.module.css"
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 import es from "date-fns/locale/es"
+import { getDayMonthAndYear, getMonthAndYear, getYear } from "../../utils/utils"
 
 interface SearchPaginationProps {
   /** Number of pages */
@@ -74,21 +75,19 @@ export const SearchPagination: React.FC<SearchPaginationProps> = ({
     }
   }, [text])
 
-  const getFormattedDate = () => {
+  const getFormattedDate = (date) => {
     if (!date) {
       return null
     }
     switch (datepickerSelected) {
       case DatepickerType.Day: {
-        return `${date.getUTCDate()}/${
-          date.getUTCMonth() + 1
-        }/${date.getUTCFullYear()}`
+        return getDayMonthAndYear(date)
       }
       case DatepickerType.Month: {
-        return `${date.getUTCMonth() + 1}/${date.getUTCFullYear()}`
+        return getMonthAndYear(date)
       }
       case DatepickerType.Year: {
-        return `${date.getUTCFullYear()}`
+        return getYear(date)
       }
       default: {
         return null
@@ -98,7 +97,7 @@ export const SearchPagination: React.FC<SearchPaginationProps> = ({
 
   useEffect(() => {
     if (useDatePicker) {
-      dateChangeHandler(getFormattedDate())
+      dateChangeHandler(getFormattedDate(date))
       currentPage == 1 ? reloadHandler(true) : setCurrentPage(1)
     }
   }, [date])
@@ -108,7 +107,7 @@ export const SearchPagination: React.FC<SearchPaginationProps> = ({
       if (date) {
         setDate(null)
       } else {
-        dateChangeHandler(getFormattedDate())
+        dateChangeHandler(getFormattedDate(date))
         currentPage == 1 ? reloadHandler(true) : setCurrentPage(1)
       }
     }

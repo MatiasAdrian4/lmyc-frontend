@@ -45,6 +45,20 @@ export const formatDate = (value) => {
   return format(new Date(value), "dd/MM/yyyy")
 }
 
+export const getDayMonthAndYear = (date) => {
+  return `${date.getUTCDate()}/${
+    date.getUTCMonth() + 1
+  }/${date.getUTCFullYear()}`
+}
+
+export const getMonthAndYear = (date) => {
+  return `${date.getUTCMonth() + 1}/${date.getUTCFullYear()}`
+}
+
+export const getYear = (date) => {
+  return `${date.getUTCFullYear()}`
+}
+
 export const toFixed2 = (value: number) => {
   return Math.round(value * 1e2) / 1e2
 }

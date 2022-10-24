@@ -70,6 +70,15 @@ export default function NavBar() {
               </Link>
             </li>
             <li>
+              <Link href="/graphs">
+                <a
+                  className={`${asPath == "/graphs" ? styles.selectedTab : ""}`}
+                >
+                  Gráficos
+                </a>
+              </Link>
+            </li>
+            <li>
               <Link href="/">
                 <a onClick={logout}>Cerrar Sesión</a>
               </Link>

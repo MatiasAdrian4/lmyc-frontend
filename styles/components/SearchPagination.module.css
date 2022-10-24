@@ -11,16 +11,17 @@
 .searchInput,
 .datepicker input {
   margin-right: 15px;
-  padding: 10px;
 }
 
 .searchInput {
   width: 200px;
+  padding: 10px;
 }
 
 .datepicker input {
   width: 100px;
   text-align: center;
+  padding: 5px;
 }
 
 .datepicker,
