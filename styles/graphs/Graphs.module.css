@@ -4,7 +4,7 @@
 }
 
 .datepickerType {
-  margin-right: 30px;
+  margin-right: 20px;
   padding: 2px;
 }
 
@@ -13,15 +13,25 @@
 }
 
 .datepicker,
-.datepickerType {
+.datepickerType,
+.incrementalCheck {
   display: inline-block;
+}
+
+.datepicker {
+  margin-left: 15px;
+  margin-right: 15px;
 }
 
 .datepicker input {
   width: 100px;
   text-align: center;
-  margin-right: 15px;
   padding: 5px;
+}
+
+.incrementalCheck input {
+  margin-left: 20px;
+  margin-right: 5px;
 }
 
 .graphSection {

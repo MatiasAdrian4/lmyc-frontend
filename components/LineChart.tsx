@@ -20,15 +20,21 @@ ChartJS.register(
   Legend
 )
 
-interface DatasetProps {
+export interface DatasetProps {
+  /** Dataset label */
   label: string
+  /** Dataset data */
   data: number[]
+  /** Line's border color */
   borderColor: string
+  /** Line's background color */
   backgroundColor: string
 }
 
 interface LineChartProps {
+  /** Labels in the X */
   labels: string[]
+  /** Data to be render in the graph. Each dataset represents a line */
   datasets: DatasetProps[]
 }
 

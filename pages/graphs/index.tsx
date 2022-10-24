@@ -10,7 +10,7 @@ import { useEffect, useState } from "react"
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 import es from "date-fns/locale/es"
-import { LineChart } from "../../components/LineChart"
+import { DatasetProps, LineChart } from "../../components/LineChart"
 import { MONTHS } from "../../utils/constants"
 import { getSalesPerMonth, getSalesPerYear } from "../../api/fetch"
 
@@ -20,48 +20,119 @@ enum SalesDatepickerType {
 }
 
 export default function Graphs() {
-  const [date, setDate] = useState(null)
   const [datepickerSelected, setDatepickerSelected] = useState(
     SalesDatepickerType.Month
   )
-  const [data, setData] = useState(null)
-  const [graphLabels, setGraphLabels] = useState(null)
 
-  const onChangeDate = (event) => {
+  const [date, setDate] = useState(null)
+  const [compareDate, setCompareDate] = useState(null)
+
+  const [dataset, setDataset] = useState(null)
+  const [compareDataset, setCompareDataset] = useState(null)
+
+  const [incremental, setIncremental] = useState(false)
+  const [compare, setCompare] = useState(false)
+
+  const onChangeDateType = (event) => {
     setDatepickerSelected(+event.target.value)
     setDate(null)
-    setGraphLabels([])
+    setCompareDate(null)
+  }
+
+  const getFormattedDate = (date) => {
+    if (!date) {
+      return null
+    }
+    switch (datepickerSelected) {
+      case SalesDatepickerType.Month: {
+        return getMonthAndYear(date)
+      }
+      case SalesDatepickerType.Year: {
+        return getYear(date)
+      }
+      default: {
+        return null
+      }
+    }
+  }
+
+  const getDataInIncrementalFormat = (datasetSelected) => {
+    const incrementalDataset = []
+    datasetSelected.reduce((a, b, i) => (incrementalDataset[i] = a + b), 0)
+    return incrementalDataset
+  }
+
+  const fetchDataset = async (dateSelected, setDatasetSelected) => {
+    if (dateSelected && datepickerSelected == SalesDatepickerType.Month) {
+      const data = await getSalesPerMonth(
+        getFormattedDate(dateSelected).split("/")[0],
+        getFormattedDate(dateSelected).split("/")[1]
+      )
+      setDatasetSelected([].concat(data.sales_per_month))
+    } else if (dateSelected && datepickerSelected == SalesDatepickerType.Year) {
+      const data = await getSalesPerYear(getFormattedDate(dateSelected))
+      setDatasetSelected([].concat(data.sales_per_year))
+    }
   }
 
   useEffect(() => {
-    const fetchData = async (date) => {
-      if (date && datepickerSelected == SalesDatepickerType.Month) {
-        const formattedDate = getMonthAndYear(date)
-        const data = await getSalesPerMonth(
-          formattedDate.split("/")[0],
-          formattedDate.split("/")[1]
-        )
-        setData([].concat(data.sales_per_month))
-        setGraphLabels(
-          Array.from({ length: data.sales_per_month.length }, (_, i) => i + 1)
-        )
-      } else if (date && datepickerSelected == SalesDatepickerType.Year) {
-        const formattedDate = getYear(date)
-        const data = await getSalesPerYear(formattedDate)
-        setData([].concat(data.sales_per_year))
-        setGraphLabels(MONTHS)
+    fetchDataset(date, setDataset)
+  }, [date])
+
+  useEffect(() => {
+    fetchDataset(compareDate, setCompareDataset)
+  }, [compareDate])
+
+  useEffect(() => {
+    if (!compare) {
+      setCompareDate(null)
+    }
+  }, [compare])
+
+  const getDatasets = (): DatasetProps[] => {
+    const datasets = []
+    if (date && dataset) {
+      datasets.push({
+        label: `Ventas ${getFormattedDate(date)}`,
+        data: incremental ? getDataInIncrementalFormat(dataset) : dataset,
+        borderColor: "rgb(255, 99, 132)",
+        backgroundColor: "rgba(255, 99, 132, 0.5)"
+      })
+      if (compareDate && compareDataset) {
+        datasets.push({
+          label: `Ventas ${getFormattedDate(compareDate)}`,
+          data: incremental
+            ? getDataInIncrementalFormat(compareDataset)
+            : compareDataset,
+          borderColor: "rgb(53, 162, 235)",
+          backgroundColor: "rgba(53, 162, 235, 0.5)"
+        })
       }
     }
+    return datasets
+  }
 
-    fetchData(date)
-  }, [date])
+  const getGraphLabels = (): string[] => {
+    if (!date || !dataset) {
+      return []
+    }
+    if (datepickerSelected == SalesDatepickerType.Month) {
+      const length =
+        compareDate && compareDataset && compareDataset.length > dataset.length
+          ? compareDataset.length
+          : dataset.length
+      return Array.from({ length: length }, (_, i) => (i + 1).toString())
+    }
+    if (datepickerSelected == SalesDatepickerType.Year) {
+      return MONTHS
+    }
+    return []
+  }
 
   return (
     <>
       <h3 className={styles.sectionTitle}>Gráfico de Ventas</h3>
-      {/*02-2022 (show the 30 o 31 days) o 2020 (show the months)*/}
-
-      <div className={styles.datepickerType} onChange={onChangeDate}>
+      <div className={styles.datepickerType} onChange={onChangeDateType}>
         <input
           type="radio"
           value={SalesDatepickerType.Month}
@@ -71,7 +142,6 @@ export default function Graphs() {
         Mes/Año
         <input type="radio" value={SalesDatepickerType.Year} name="date" /> Año
       </div>
-
       <div className={styles.datepicker}>
         {datepickerSelected == SalesDatepickerType.Month && (
           <DatePicker
@@ -93,18 +163,47 @@ export default function Graphs() {
           />
         )}
       </div>
+      <div className={styles.incrementalCheck}>
+        <input
+          type="checkbox"
+          checked={incremental}
+          onChange={(e) => setIncremental(e.target.checked)}
+        />{" "}
+        Incremental
+        <input
+          type="checkbox"
+          checked={compare}
+          onChange={(e) => setCompare(e.target.checked)}
+        />{" "}
+        Comparar con otro periodo
+      </div>
+      {compare && (
+        <>
+          <div className={styles.datepicker}>
+            {datepickerSelected == SalesDatepickerType.Month && (
+              <DatePicker
+                locale={es}
+                dateFormat="MM/yyyy"
+                selected={compareDate}
+                onChange={(compareDate) => setCompareDate(compareDate)}
+                showMonthYearPicker
+                showFullMonthYearPicker
+              />
+            )}
+            {datepickerSelected == SalesDatepickerType.Year && (
+              <DatePicker
+                locale={es}
+                dateFormat="yyyy"
+                selected={compareDate}
+                onChange={(compareDate) => setCompareDate(compareDate)}
+                showYearPicker
+              />
+            )}
+          </div>
+        </>
+      )}
       <div className={styles.graphSection}>
-        <LineChart
-          labels={graphLabels}
-          datasets={[
-            {
-              label: "Ventas",
-              data: data,
-              borderColor: "rgb(255, 99, 132)",
-              backgroundColor: "rgba(255, 99, 132, 0.5)"
-            }
-          ]}
-        />
+        <LineChart labels={getGraphLabels()} datasets={getDatasets()} />
       </div>
     </>
   )
