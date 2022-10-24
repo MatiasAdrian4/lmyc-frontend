@@ -1,0 +1,32 @@
+.sectionTitle {
+  margin-left: 20px;
+  margin-bottom: 30px;
+}
+
+.datepickerType {
+  margin-right: 30px;
+  padding: 2px;
+}
+
+.datepickerType input {
+  margin-left: 20px;
+}
+
+.datepicker,
+.datepickerType {
+  display: inline-block;
+}
+
+.datepicker input {
+  width: 100px;
+  text-align: center;
+  margin-right: 15px;
+  padding: 5px;
+}
+
+.graphSection {
+  max-width: 900px;
+  max-height: 900px;
+  margin-top: 25px;
+  margin-left: 30px;
+}

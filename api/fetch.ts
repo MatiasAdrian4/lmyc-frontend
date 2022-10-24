@@ -146,3 +146,13 @@ export const newSalesUpdatingStock = async (data: SalesList) => {
   const salesApi = new SalesApi()
   return await salesApi.bulkSales(data, "true")
 }
+
+export const getSalesPerMonth = async (month: string, year: string) => {
+  const salesApi = new SalesApi()
+  return await salesApi.getSalesPerMonth(month, year)
+}
+
+export const getSalesPerYear = async (year: string) => {
+  const salesApi = new SalesApi()
+  return await salesApi.getSalesPerYear(year)
+}

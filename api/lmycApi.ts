@@ -22,7 +22,9 @@ import {
   ExtendedInvoice,
   UpdateInvoice,
   SalesList,
-  PaginatedSales
+  PaginatedSales,
+  SalesPerMonth,
+  SalesPerYear
 } from "../lmyc_client/api"
 import { Configuration } from "../lmyc_client/configuration"
 
@@ -252,6 +254,23 @@ class SalesApi extends LMYCApi {
       ).data
     } catch {
       return { results: [] }
+    }
+  }
+
+  async getSalesPerMonth(month: string, year: string): Promise<SalesPerMonth> {
+    try {
+      return (await this.salesHistoryApi.ventasVentasPorMesGet(month, year))
+        .data
+    } catch {
+      return { sales_per_month: [] }
+    }
+  }
+
+  async getSalesPerYear(year: string): Promise<SalesPerYear> {
+    try {
+      return (await this.salesHistoryApi.ventasVentasPorAnioGet(year)).data
+    } catch {
+      return { sales_per_year: [] }
     }
   }
 }

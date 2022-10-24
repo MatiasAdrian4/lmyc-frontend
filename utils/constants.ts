@@ -28,3 +28,18 @@ export const PRODUCT_CATEGORIES = [
 export const PRODUCT_CATEGORIES_WITH_EMPTY_OPTION = [""].concat(
   PRODUCT_CATEGORIES
 )
+
+export const MONTHS = [
+  "Enero",
+  "Febrero",
+  "Marzo",
+  "Abril",
+  "Mayo",
+  "Junio",
+  "Julio",
+  "Agosto",
+  "Septiembre",
+  "Octubre",
+  "Noviembre",
+  "Diciembre"
+]
