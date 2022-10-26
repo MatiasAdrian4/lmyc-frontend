@@ -13,6 +13,7 @@ import {
   PaginatedProducts,
   Product,
   ExtendedProduct,
+  ProductPriceHistoryList,
   PaginatedClients,
   Client,
   ExtendedClient,
@@ -120,6 +121,16 @@ class ProductsApi extends LMYCApi {
 
   async updateProduct(productId: number, data: ExtendedProduct) {
     return await this.productsAPI.productosProductoIdPatch(productId, data)
+  }
+
+  async getProductHistory(productId: number): Promise<ProductPriceHistoryList> {
+    try {
+      return (
+        await this.productsAPI.productosProductoIdHistorialPreciosGet(productId)
+      ).data
+    } catch {
+      return { prices: [] }
+    }
   }
 }
 

@@ -9,8 +9,10 @@ import {
 import styles from "../../styles/products/Product.module.css"
 import { PRODUCT_SECTIONS } from "../../components/form/forms"
 import { updateProduct } from "../../api/fetch"
+import { BasicTable } from "../../components/table/BasicTable"
+import { PRODUCT_HISTORY_PRICES_COLUMNS } from "../../components/table/columns"
 
-export default function Product({ product }) {
+export default function Product({ product, historyPrices }) {
   return (
     <>
       <h3 className={styles.sectionTitle}>Información del Producto</h3>
@@ -23,6 +25,10 @@ export default function Product({ product }) {
           submitFunction={updateProduct}
         />
       </div>
+      <h3 className={styles.sectionTitle}>Historial de Precios</h3>
+      <div className={styles.historyPricesSection}>
+        <BasicTable columns={PRODUCT_HISTORY_PRICES_COLUMNS} data={historyPrices.prices} />
+      </div>
     </>
   )
 }
@@ -32,10 +38,14 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   const productsApi = new ProductsApi(getJWTFromCtx(ctx))
   const product = await productsApi.getProduct(+ctx.params.productId)
+  const historyPrices = await productsApi.getProductHistory(
+    +ctx.params.productId
+  )
 
   return {
     props: {
-      product: product
+      product: product,
+      historyPrices: historyPrices
     }
   }
 }
