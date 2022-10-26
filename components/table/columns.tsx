@@ -83,17 +83,26 @@ export const PRODUCT_COLUMNS: Column[] = [
   {
     Header: "Precio Costo",
     accessor: "precio_costo",
-    width: "10%"
+    width: "10%",
+    Cell: ({ value }) => {
+      return value.toFixed(2)
+    }
   },
   {
     Header: "Precio Venta Contado",
     accessor: "precio_venta_contado",
-    width: "15%"
+    width: "15%",
+    Cell: ({ value }) => {
+      return value.toFixed(2)
+    }
   },
   {
     Header: "Precio Venta Cta. Cte.",
     accessor: "precio_venta_cta_cte",
-    width: "15%"
+    width: "15%",
+    Cell: ({ value }) => {
+      return value.toFixed(2)
+    }
   },
   {
     Header: "Categoría",
@@ -109,6 +118,33 @@ export const PRODUCT_COLUMNS: Column[] = [
         <a>Abrir Producto</a>
       </Link>
     )
+  }
+]
+
+export const PRODUCT_HISTORY_PRICES_COLUMNS: Column[] = [
+  {
+    Header: "Fecha de Actualización",
+    accessor: "date",
+    width: "33%",
+    Cell: ({ value }) => {
+      return formatDate(value)
+    }
+  },
+  {
+    Header: "De",
+    accessor: "old_price",
+    width: "33%",
+    Cell: ({ value }) => {
+      return value.toFixed(2)
+    }
+  },
+  {
+    Header: "A",
+    accessor: "new_price",
+    width: "33%",
+    Cell: ({ value }) => {
+      return value.toFixed(2)
+    }
   }
 ]
 
@@ -249,7 +285,10 @@ export const SALES_HISTORY_COLUMNS: Column[] = [
   {
     Header: "Precio",
     accessor: "precio",
-    width: "15%"
+    width: "15%",
+    Cell: ({ value }) => {
+      return value.toFixed(2)
+    }
   },
   {
     Header: "Fecha",
