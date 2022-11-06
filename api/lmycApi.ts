@@ -14,6 +14,7 @@ import {
   Product,
   ExtendedProduct,
   ProductPriceHistoryList,
+  AvailableCodesList,
   PaginatedClients,
   Client,
   ExtendedClient,
@@ -130,6 +131,14 @@ class ProductsApi extends LMYCApi {
       ).data
     } catch {
       return { prices: [] }
+    }
+  }
+
+  async getAvailableCodes(): Promise<AvailableCodesList> {
+    try {
+      return (await this.productsAPI.productoCodigosDisponiblesGet()).data
+    } catch {
+      return { available_codes: [] }
     }
   }
 }
