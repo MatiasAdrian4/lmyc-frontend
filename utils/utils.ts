@@ -3,8 +3,9 @@ import { GetServerSidePropsContext } from "next"
 import { NextApiRequestCookies } from "next/dist/server/api-utils"
 import Swal from "sweetalert2"
 import { FileActionsApi, UsersApi } from "../api/lmycApi"
-import { LMYC_JWT } from "./constants"
+import { LMYC_JWT, AMOUNT_OPTIONS_IN_SELECT } from "./constants"
 import { SimplifiedInvoiceItem } from "../lmyc_client/api"
+import { getAvailableCodes } from "../api/fetch"
 
 export const getJWTFromCtx = (ctx: GetServerSidePropsContext) => {
   const cookies: NextApiRequestCookies = ctx.req.cookies
@@ -115,5 +116,14 @@ export const actionPopup = (
     if (result.value) {
       action()
     }
+  })
+}
+
+export const fetchAvailableCodes = (start: number) => {
+  return getAvailableCodes(start, AMOUNT_OPTIONS_IN_SELECT).then((data) => {
+    return data.available_codes.map((code) => ({
+      label: code,
+      value: code
+    }))
   })
 }

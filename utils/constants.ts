@@ -1,6 +1,8 @@
 export const LMYC_JWT = "lmyc_jwt"
 export const ROWS_PER_PAGE = 10
 
+export const AMOUNT_OPTIONS_IN_SELECT = 15
+
 /* TODO: Categories logic refactor in the backend */
 export const PRODUCT_CATEGORIES = [
   "Electricidad",
@@ -24,10 +26,6 @@ export const PRODUCT_CATEGORIES = [
   "Correas",
   "Faros"
 ]
-
-export const PRODUCT_CATEGORIES_WITH_EMPTY_OPTION = [""].concat(
-  PRODUCT_CATEGORIES
-)
 
 export const MONTHS = [
   "Enero",

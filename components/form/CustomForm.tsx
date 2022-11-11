@@ -1,6 +1,9 @@
 import { Fragment, useState } from "react"
+import Select from "react-select"
+import AsyncSelect from "react-select/async"
 import styles from "../../styles/components/CustomForm.module.css"
 import { successPopup, toTitleCase } from "../../utils/utils"
+import { REACT_SELECT_STYLES } from "./reactSelectStyles"
 
 interface FormField {
   /** Field's name */
@@ -9,6 +12,8 @@ interface FormField {
   displayName: string
   /** In case of a select, a list with all the possible values */
   selectOptions?: string[]
+  /** In case of an async select, function to fetch possible values */
+  fetchSelectOptions?: any
   /** Field's width (in %) */
   width: string
 }
@@ -45,7 +50,7 @@ export const CustomForm: React.FC<CustomFormProps> = ({
 
   const saveChanges = async () => {
     try {
-      if (data) {
+      if (dataId) {
         await submitFunction(dataId, model)
         successPopup(`${modelName} actualizado satisfactoriamente.`)
       } else {
@@ -71,7 +76,7 @@ export const CustomForm: React.FC<CustomFormProps> = ({
                 return (
                   <Fragment key={j}>
                     <label htmlFor={field.name}>{field.displayName}</label>
-                    {!field.selectOptions && (
+                    {!field.selectOptions && !field.fetchSelectOptions && (
                       <input
                         id={field.name}
                         type="text"
@@ -87,21 +92,41 @@ export const CustomForm: React.FC<CustomFormProps> = ({
                       />
                     )}
                     {field.selectOptions && (
-                      <select
-                        value={model ? model[field.name] : null}
-                        onChange={(e) => {
-                          setModel({ ...model, [field.name]: e.target.value })
-                          setUpdating(true)
-                        }}
-                      >
-                        {field.selectOptions.map((value) => {
-                          return (
-                            <option key={value} value={value}>
-                              {value}
-                            </option>
-                          )
-                        })}
-                      </select>
+                      <div className={styles.reactSelect}>
+                        <Select
+                          instanceId={"react-select"}
+                          value={{
+                            label: model[field.name],
+                            value: model[field.name]
+                          }}
+                          onChange={(option) => {
+                            setModel({ ...model, [field.name]: option.value })
+                            setUpdating(true)
+                          }}
+                          options={field.selectOptions.map((value) => ({
+                            label: value,
+                            value: value
+                          }))}
+                          styles={REACT_SELECT_STYLES}
+                        />
+                      </div>
+                    )}
+                    {field.fetchSelectOptions && (
+                      <div className={styles.reactSelect}>
+                        <AsyncSelect
+                          instanceId={"react-async-select"}
+                          defaultValue={{
+                            label: model[field.name],
+                            value: model[field.name]
+                          }}
+                          loadOptions={field.fetchSelectOptions}
+                          styles={REACT_SELECT_STYLES}
+                          onChange={(option) => {
+                            setModel({ ...model, [field.name]: option.value })
+                            setUpdating(true)
+                          }}
+                        />
+                      </div>
                     )}
                   </Fragment>
                 )
