@@ -134,9 +134,9 @@ class ProductsApi extends LMYCApi {
     }
   }
 
-  async getAvailableCodes(): Promise<AvailableCodesList> {
+  async getAvailableCodes(start?: number, amount?: number): Promise<AvailableCodesList> {
     try {
-      return (await this.productsAPI.productoCodigosDisponiblesGet()).data
+      return (await this.productsAPI.productosCodigosDisponiblesGet(start, amount)).data
     } catch {
       return { available_codes: [] }
     }
