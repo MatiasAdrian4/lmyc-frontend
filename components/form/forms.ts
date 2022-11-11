@@ -1,5 +1,5 @@
 import { FormSection } from "./CustomForm"
-import { PRODUCT_CATEGORIES_WITH_EMPTY_OPTION } from "../../utils/constants"
+import { PRODUCT_CATEGORIES } from "../../utils/constants"
 
 export const CLIENT_SECTIONS: FormSection[] = [
   {
@@ -26,16 +26,23 @@ export const CLIENT_SECTIONS: FormSection[] = [
   }
 ]
 
-export const PRODUCT_SECTIONS: FormSection[] = [
+export const PRODUCT_SECTIONS = (
+  fetchAvailableCodes: Function
+): FormSection[] => [
   {
     title: "Descripción",
     fields: [
-      { name: "codigo_en_pantalla", displayName: "Código", width: "50px" },
+      {
+        name: "codigo_en_pantalla",
+        displayName: "Código",
+        width: "50px",
+        fetchSelectOptions: fetchAvailableCodes
+      },
       { name: "detalle", displayName: "Detalle", width: "300px" },
       {
         name: "categoria",
         displayName: "Categoría",
-        selectOptions: PRODUCT_CATEGORIES_WITH_EMPTY_OPTION,
+        selectOptions: PRODUCT_CATEGORIES,
         width: "150px"
       }
     ]

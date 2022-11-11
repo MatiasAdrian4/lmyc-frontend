@@ -2,6 +2,7 @@ import { GetServerSideProps } from "next"
 import { ProductsApi } from "../../api/lmycApi"
 import { CustomForm } from "../../components/form/CustomForm"
 import {
+  fetchAvailableCodes,
   getJWTFromCtx,
   isUserAuthenticated,
   ssRedirectToLoginPage
@@ -21,13 +22,16 @@ export default function Product({ product, historyPrices }) {
           modelName={"Producto"}
           data={product}
           dataId={product.codigo}
-          sections={PRODUCT_SECTIONS}
+          sections={PRODUCT_SECTIONS(fetchAvailableCodes)}
           submitFunction={updateProduct}
         />
       </div>
       <h3 className={styles.sectionTitle}>Historial de Precios</h3>
       <div className={styles.historyPricesSection}>
-        <BasicTable columns={PRODUCT_HISTORY_PRICES_COLUMNS} data={historyPrices.prices} />
+        <BasicTable
+          columns={PRODUCT_HISTORY_PRICES_COLUMNS}
+          data={historyPrices.prices}
+        />
       </div>
     </>
   )

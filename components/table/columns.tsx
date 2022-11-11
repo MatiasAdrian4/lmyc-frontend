@@ -303,7 +303,7 @@ export const SALES_HISTORY_COLUMNS: Column[] = [
 export const SEARCH_PRODUCTS_COLUMNS = (selectFunction: Function): Column[] => [
   {
     Header: "Código",
-    accessor: "codigo",
+    accessor: "codigo_en_pantalla",
     width: "20%"
   },
   {
