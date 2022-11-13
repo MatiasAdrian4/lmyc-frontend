@@ -1,0 +1,47 @@
+.sectionTitle {
+  margin-left: 20px;
+  margin-bottom: 30px;
+}
+
+.invoiceItemsTable {
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.invoiceItemsTable td,
+.invoiceItemsTable th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.invoiceItemsTable input {
+  padding: 5px;
+  text-align: center;
+}
+
+.invoiceItemsTable input::-webkit-outer-spin-button,
+.invoiceItemsTable input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.invoiceItemsTable a {
+  color: #a7c13c;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.billingSection {
+  float: right;
+  margin-top: 20px;
+  margin-right: 120px;
+}
+
+.billingSection input {
+  width: 100px;
+  padding: 10px;
+  margin-right: 20px;
+  text-align: right;
+}
