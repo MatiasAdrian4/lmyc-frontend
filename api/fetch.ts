@@ -114,11 +114,11 @@ export const updateInvoice = async (invoiceId: number, data: UpdateInvoice) => {
 /********** Invoice Item *********************************************/
 /*********************************************************************/
 
-export const markedInvoiceItemsAsPaid = async (
+export const markInvoiceItemsAsPaid = async (
   invoiceItemIds: InvoiceItemIds
 ) => {
   const invoiceItemsApi = new InvoiceItemsApi()
-  return await invoiceItemsApi.markedInvoiceItemsAsPaid(invoiceItemIds)
+  return await invoiceItemsApi.markInvoiceItemsAsPaid(invoiceItemIds)
 }
 
 /*********************************************************************/

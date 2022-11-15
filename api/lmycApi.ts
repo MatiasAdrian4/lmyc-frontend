@@ -248,7 +248,7 @@ class InvoiceItemsApi extends LMYCApi {
     }
   }
 
-  async markedInvoiceItemsAsPaid(invoiceItemIds: InvoiceItemIds) {
+  async markInvoiceItemsAsPaid(invoiceItemIds: InvoiceItemIds) {
     return await this.invoiceItemsApi.elementosRemitoBulkPost(invoiceItemIds)
   }
 }
