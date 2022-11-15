@@ -20,9 +20,10 @@ import {
   ExtendedClient,
   InvoiceWithInvoiceItems,
   PaginatedInvoices,
-  InvoiceItemWithProductData,
   ExtendedInvoice,
   UpdateInvoice,
+  InvoiceItemWithProductData,
+  InvoiceItemIds,
   SalesList,
   PaginatedSales,
   SalesPerMonth,
@@ -134,9 +135,14 @@ class ProductsApi extends LMYCApi {
     }
   }
 
-  async getAvailableCodes(start?: number, amount?: number): Promise<AvailableCodesList> {
+  async getAvailableCodes(
+    start?: number,
+    amount?: number
+  ): Promise<AvailableCodesList> {
     try {
-      return (await this.productsAPI.productosCodigosDisponiblesGet(start, amount)).data
+      return (
+        await this.productsAPI.productosCodigosDisponiblesGet(start, amount)
+      ).data
     } catch {
       return { available_codes: [] }
     }
@@ -240,6 +246,10 @@ class InvoiceItemsApi extends LMYCApi {
     } catch {
       return []
     }
+  }
+
+  async markedInvoiceItemsAsPaid(invoiceItemIds: InvoiceItemIds) {
+    return await this.invoiceItemsApi.elementosRemitoBulkPost(invoiceItemIds)
   }
 }
 
