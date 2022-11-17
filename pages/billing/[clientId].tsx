@@ -2,13 +2,16 @@ import { GetServerSideProps } from "next"
 import { ClientsApi, InvoiceItemsApi } from "../../api/lmycApi"
 import {
   downloadInvoicePDF,
+  errorPopup,
   getJWTFromCtx,
   isUserAuthenticated,
   ssRedirectToLoginPage,
+  successPopup,
   toFixed2
 } from "../../utils/utils"
 import styles from "../../styles/billing/Billing.module.css"
 import { useState } from "react"
+import { markInvoiceItemsAsPaid } from "../../api/fetch"
 
 export default function Billing({ client, invoiceItems }) {
   const [billingItems, setBillingItems] = useState(
@@ -34,6 +37,23 @@ export default function Billing({ client, invoiceItems }) {
     billingItems[pos].selected = checked
     setBillingItems([...billingItems])
     setTotal(toFixed2(calculateTotalToBill()))
+  }
+
+  const billItems = async () => {
+    try {
+      await markInvoiceItemsAsPaid({
+        items: billingItems
+          .filter((item) => item.selected)
+          .map((item) => item.id)
+      })
+      successPopup(`Los items seleccionados fueron facturados correctamente.`)
+      setBillingItems(billingItems.filter((item) => !item.selected))
+      setTotal(0)
+    } catch (error) {
+      errorPopup(
+        "Ha ocurrido un error al intentar facturar los items seleccionados."
+      )
+    }
   }
 
   return (
@@ -92,7 +112,7 @@ export default function Billing({ client, invoiceItems }) {
       </table>
       <div className={styles.billingSection}>
         <input value={total} />
-        <button /*onClick={}*/>Facturar</button>
+        <button onClick={billItems}>Facturar</button>
       </div>
     </>
   )
