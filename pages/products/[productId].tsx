@@ -12,6 +12,7 @@ import { PRODUCT_SECTIONS } from "../../components/form/forms"
 import { updateProduct } from "../../api/fetch"
 import { BasicTable } from "../../components/table/BasicTable"
 import { PRODUCT_HISTORY_PRICES_COLUMNS } from "../../components/table/columns"
+import { Models } from "../../utils/constants"
 
 export default function Product({ product, historyPrices }) {
   return (
@@ -29,6 +30,7 @@ export default function Product({ product, historyPrices }) {
       <h3 className={styles.sectionTitle}>Historial de Precios</h3>
       <div className={styles.historyPricesSection}>
         <BasicTable
+          title={Models.Product}
           columns={PRODUCT_HISTORY_PRICES_COLUMNS}
           data={historyPrices.prices}
         />

@@ -12,6 +12,7 @@ import { CLIENT_INVOICE_COLUMNS } from "../../components/table/columns"
 import Link from "next/link"
 import { CLIENT_SECTIONS } from "../../components/form/forms"
 import { updateClient } from "../../api/fetch"
+import { Models } from "../../utils/constants"
 
 export default function Client({ client }) {
   return (
@@ -44,6 +45,7 @@ export default function Client({ client }) {
       <h3 className={styles.sectionTitle}>Historial de remitos</h3>
       <div className={`${styles.invoicesSection} ${styles.section}`}>
         <BasicTable
+          title={Models.Client}
           columns={CLIENT_INVOICE_COLUMNS}
           data={client.lista_remitos}
         />

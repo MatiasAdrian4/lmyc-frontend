@@ -4,6 +4,8 @@ import { BasicTable } from "./BasicTable"
 import { SearchPagination } from "./SearchPagination"
 
 interface PaginatedTableProps {
+  /** What the table displays */
+  title: string
   /** Table's structure */
   columns: Column[]
   /** Data to render in the table */
@@ -21,6 +23,7 @@ interface PaginatedTableProps {
 }
 
 export const PaginatedTable: React.FC<PaginatedTableProps> = ({
+  title,
   columns,
   rows,
   totalRows,
@@ -74,7 +77,7 @@ export const PaginatedTable: React.FC<PaginatedTableProps> = ({
         reloadHandler={setReload}
       />
       <br></br>
-      <BasicTable columns={columns} data={pageData.rows} />
+      <BasicTable title={title} columns={columns} data={pageData.rows} />
     </>
   )
 }

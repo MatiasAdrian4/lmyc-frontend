@@ -3,7 +3,11 @@ import { ProductsApi } from "../../api/lmycApi"
 import { CustomForm } from "../../components/form/CustomForm"
 import { PaginatedTable } from "../../components/table/PaginatedTable"
 import { PRODUCT_COLUMNS } from "../../components/table/columns"
-import { PRODUCT_CATEGORIES, ROWS_PER_PAGE } from "../../utils/constants"
+import {
+  Models,
+  PRODUCT_CATEGORIES,
+  ROWS_PER_PAGE
+} from "../../utils/constants"
 import { PRODUCT_SECTIONS } from "../../components/form/forms"
 import {
   fetchAvailableCodes,
@@ -21,6 +25,7 @@ export default function ProductsList({
   return (
     <>
       <PaginatedTable
+        title={Models.Product}
         columns={PRODUCT_COLUMNS}
         rows={paginatedProducts.results}
         totalRows={paginatedProducts.count}
