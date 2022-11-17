@@ -2,7 +2,7 @@ import { GetServerSideProps } from "next"
 import { ClientsApi } from "../../api/lmycApi"
 import { CLIENT_COLUMNS } from "../../components/table/columns"
 import { PaginatedTable } from "../../components/table/PaginatedTable"
-import { ROWS_PER_PAGE } from "../../utils/constants"
+import { Models, ROWS_PER_PAGE } from "../../utils/constants"
 import {
   getJWTFromCtx,
   isUserAuthenticated,
@@ -17,6 +17,7 @@ export default function ClientList({ paginatedClients }) {
   return (
     <>
       <PaginatedTable
+        title={Models.Client}
         columns={CLIENT_COLUMNS}
         rows={paginatedClients.results}
         totalRows={paginatedClients.count}

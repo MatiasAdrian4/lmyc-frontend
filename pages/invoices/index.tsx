@@ -2,7 +2,7 @@ import { GetServerSideProps } from "next"
 import { InvoicesApi } from "../../api/lmycApi"
 import { INVOICE_COLUMNS } from "../../components/table/columns"
 import { PaginatedTable } from "../../components/table/PaginatedTable"
-import { ROWS_PER_PAGE } from "../../utils/constants"
+import { Models, ROWS_PER_PAGE } from "../../utils/constants"
 import {
   getJWTFromCtx,
   isUserAuthenticated,
@@ -14,6 +14,7 @@ export default function InvoicesList({ paginatedInvoices }) {
   return (
     <>
       <PaginatedTable
+        title={Models.Invoice}
         columns={INVOICE_COLUMNS}
         rows={paginatedInvoices.results}
         totalRows={paginatedInvoices.count}

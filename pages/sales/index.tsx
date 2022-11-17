@@ -27,6 +27,7 @@ import {
   toFixed2
 } from "../../utils/utils"
 import styles from "../../styles/sales/Sales.module.css"
+import { Models } from "../../utils/constants"
 
 type CartProduct = ExtendedProduct & {
   cantidad?: number
@@ -139,14 +140,13 @@ export default function SalesList() {
   }
 
   const makeInvoice = async () => {
-    const producstForSale: CreateInvoiceItem[] =
-      getProductsReadyForSale().map(
-        (product) =>
-          ({
-            producto: product.codigo,
-            cantidad: product.cantidad
-          } as CreateInvoiceItem)
-      )
+    const producstForSale: CreateInvoiceItem[] = getProductsReadyForSale().map(
+      (product) =>
+        ({
+          producto: product.codigo,
+          cantidad: product.cantidad
+        } as CreateInvoiceItem)
+    )
     try {
       const response = await newInvoice({
         cliente: clientSelected.id,
@@ -226,14 +226,14 @@ export default function SalesList() {
         </table>
         <SearchModal
           ref={productModalRef}
-          modelName={"Producto"}
+          modelName={Models.Product}
           columns={SEARCH_PRODUCTS_COLUMNS(selectProduct)}
           fetchData={getProducts}
           searchInputPlaceholder={"Buscar por Cód., Det. o Cat."}
         />
         <SearchModal
           ref={clientModalRef}
-          modelName={"Cliente"}
+          modelName={Models.Client}
           columns={SEARCH_CLIENT_COLUMNS(selectClient)}
           fetchData={getClients}
           searchInputPlaceholder={"Buscar por nombre."}

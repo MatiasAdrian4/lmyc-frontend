@@ -54,6 +54,7 @@ export const SearchModal = forwardRef(
         >
           <h2>Buscador de {modelName}s</h2>
           <PaginatedTable
+            title={modelName}
             columns={columns}
             rows={[]}
             totalRows={0}

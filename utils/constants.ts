@@ -41,3 +41,10 @@ export const MONTHS = [
   "Noviembre",
   "Diciembre"
 ]
+
+export enum Models {
+  Client = "Cliente",
+  Product = "Producto",
+  Invoice = "Remito",
+  Sale = "Venta"
+}
