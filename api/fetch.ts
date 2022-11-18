@@ -94,10 +94,10 @@ export const updateClient = async (clientId: number, data: Client) => {
 export const getInvoices = async (
   pageNumber: number,
   pageSize: number,
-  nombre: string
+  query: string
 ): Promise<PaginatedInvoices> => {
   const invoicesApi = new InvoicesApi()
-  return await invoicesApi.getInvoices(pageNumber, pageSize, nombre)
+  return await invoicesApi.getInvoices(pageNumber, pageSize, "", query)
 }
 
 export const newInvoice = async (data: InvoiceWithInvoiceItems) => {
