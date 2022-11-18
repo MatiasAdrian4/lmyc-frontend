@@ -204,11 +204,13 @@ class InvoicesApi extends LMYCApi {
   async getInvoices(
     pageNumber = 1,
     pageSize = ROWS_PER_PAGE,
-    name: string = undefined
+    name: string = undefined,
+    query: string = undefined
   ): Promise<PaginatedInvoices> {
     try {
-      return (await this.invoicesAPI.remitosGet(pageNumber, pageSize, name))
-        .data
+      return (
+        await this.invoicesAPI.remitosGet(pageNumber, pageSize, name, query)
+      ).data
     } catch {
       return { results: [] }
     }
