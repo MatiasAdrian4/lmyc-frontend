@@ -236,7 +236,7 @@ export default function SalesList() {
           modelName={Models.Client}
           columns={SEARCH_CLIENT_COLUMNS(selectClient)}
           fetchData={getClients}
-          searchInputPlaceholder={"Buscar por nombre."}
+          searchInputPlaceholder={"Buscar por Cód. o Nombre."}
         />
         <div className={styles.salesActions} onChange={onChangeSaleType}>
           <input
