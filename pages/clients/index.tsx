@@ -23,7 +23,7 @@ export default function ClientList({ paginatedClients }) {
         totalRows={paginatedClients.count}
         rowsPerPage={ROWS_PER_PAGE}
         fetchData={getClients}
-        searchInputPlaceholder={"Buscar por nombre"}
+        searchInputPlaceholder={"Buscar por Cód. o Nombre"}
       />
       <div className={styles.newClientSection}>
         <h3>Agregar Nuevo Cliente</h3>
