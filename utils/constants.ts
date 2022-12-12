@@ -48,3 +48,5 @@ export enum Models {
   Invoice = "Remito",
   Sale = "Venta"
 }
+
+export const PRODUCTS_SEARCH_LOCAL_STORAGE = "productsSearch"

@@ -22,6 +22,8 @@ interface SearchPaginationProps {
   dateChangeHandler: Function
   /** Set state action used for reload purposes */
   reloadHandler: Function
+  /** Set a value in the search bar */
+  defaultSearchValue?: string
 }
 
 enum DatepickerType {
@@ -38,12 +40,13 @@ export const SearchPagination: React.FC<SearchPaginationProps> = ({
   searchInputPlaceholder,
   useDatePicker = false,
   dateChangeHandler,
-  reloadHandler
+  reloadHandler,
+  defaultSearchValue
 }: SearchPaginationProps) => {
   const numberOfPages = Math.ceil(totalRows / rowsPerPage)
 
   const [currentPage, setCurrentPage] = useState(1)
-  const [text, setText] = useState(null)
+  const [text, setText] = useState(defaultSearchValue)
   const [date, setDate] = useState(null)
   const [datepickerSelected, setDatepickerSelected] = useState(
     DatepickerType.Day
@@ -127,6 +130,7 @@ export const SearchPagination: React.FC<SearchPaginationProps> = ({
               type="text"
               placeholder={searchInputPlaceholder}
               onChange={(e) => setText(e.target.value)}
+              defaultValue={defaultSearchValue}
             />
           )}
           {useDatePicker && (

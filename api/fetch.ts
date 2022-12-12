@@ -37,7 +37,7 @@ export const logout = async () => {
 export const getProducts = async (
   pageNumber: number,
   pageSize: number,
-  query: string
+  query: string = ""
 ): Promise<PaginatedProducts> => {
   const productsApi = new ProductsApi()
   return await productsApi.getProducts(pageNumber, pageSize, "", "", query)
