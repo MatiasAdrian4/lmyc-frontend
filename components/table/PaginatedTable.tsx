@@ -20,6 +20,10 @@ interface PaginatedTableProps {
   searchInputPlaceholder?: string
   /** Use a datepicker instead a text input */
   useDatePicker?: boolean
+  /** Set a value in the search bar */
+  defaultSearchValue?: string
+  /** Function called when something is typed in the search bar */
+  onChangeSearchValue?: Function
 }
 
 export const PaginatedTable: React.FC<PaginatedTableProps> = ({
@@ -30,7 +34,9 @@ export const PaginatedTable: React.FC<PaginatedTableProps> = ({
   rowsPerPage,
   fetchData,
   searchInputPlaceholder,
-  useDatePicker = false
+  useDatePicker = false,
+  defaultSearchValue,
+  onChangeSearchValue
 }: PaginatedTableProps) => {
   const [pageData, setPageData] = useState({
     rows: rows,
@@ -38,7 +44,7 @@ export const PaginatedTable: React.FC<PaginatedTableProps> = ({
   })
 
   const [currentPage, setCurrentPage] = useState(1)
-  const [text, setText] = useState("")
+  const [text, setText] = useState(defaultSearchValue)
   const [reload, setReload] = useState(false)
 
   const [loaded, setLoaded] = useState(false)
@@ -64,6 +70,12 @@ export const PaginatedTable: React.FC<PaginatedTableProps> = ({
     }
   }, [reload])
 
+  useEffect(() => {
+    if (onChangeSearchValue) {
+      onChangeSearchValue(text)
+    }
+  }, [text])
+
   return (
     <>
       <SearchPagination
@@ -75,6 +87,7 @@ export const PaginatedTable: React.FC<PaginatedTableProps> = ({
         useDatePicker={useDatePicker}
         dateChangeHandler={setText}
         reloadHandler={setReload}
+        defaultSearchValue={text}
       />
       <br></br>
       <BasicTable title={title} columns={columns} data={pageData.rows} />
