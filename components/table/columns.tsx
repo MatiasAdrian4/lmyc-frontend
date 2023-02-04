@@ -341,3 +341,37 @@ export const SEARCH_CLIENT_COLUMNS = (selectFunction: Function): Column[] => [
     )
   }
 ]
+
+export const UPDATE_PRODUCT_PRICES_COLUMNS = (
+  setSelected: Function
+): Column[] => [
+  {
+    Header: "Código",
+    accessor: "codigo",
+    width: "10%"
+  },
+  {
+    Header: "Detalle",
+    accessor: "detalle",
+    width: "70%"
+  },
+  {
+    Header: "Precio Costo",
+    accessor: "precio_costo",
+    width: "10%"
+  },
+  {
+    Header: "",
+    accessor: "selected",
+    width: "10%",
+    Cell: ({ row }) => (
+      <input
+        type="checkbox"
+        defaultChecked={row.original.selected}
+        onChange={(e) => {
+          setSelected(row.original.codigo, e.target.checked)
+        }}
+      />
+    )
+  }
+]

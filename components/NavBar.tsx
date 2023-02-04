@@ -37,6 +37,17 @@ export default function NavBar() {
               </Link>
             </li>
             <li>
+              <Link href="/price-updates">
+                <a
+                  className={`${
+                    asPath == "/price-updates" ? styles.selectedTab : ""
+                  }`}
+                >
+                  Actualización de Precios
+                </a>
+              </Link>
+            </li>
+            <li>
               <Link href="/clients">
                 <a
                   className={`${

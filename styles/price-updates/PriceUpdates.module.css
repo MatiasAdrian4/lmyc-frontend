@@ -1,0 +1,25 @@
+.section {
+  margin-left: 100px;
+  margin-bottom: 20px;
+}
+
+.searchBar input {
+  width: 200px;
+  padding: 10px;
+  margin-right: 15px;
+}
+
+.productsList {
+  width: 70%;
+}
+
+.updateActions span {
+  margin-left: 10px;
+}
+
+.updateActions input {
+  width: 40px;
+  padding: 10px;
+  margin-left: 10px;
+  margin-right: 40px;
+}
