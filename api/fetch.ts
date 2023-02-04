@@ -3,6 +3,7 @@ import {
   ExtendedProduct,
   PaginatedProducts,
   AvailableCodesList,
+  ProductUpdateCost,
   Client,
   PaginatedClients,
   InvoiceWithInvoiceItems,
@@ -62,6 +63,13 @@ export const getAvailableCodes = async (
 ): Promise<AvailableCodesList> => {
   const productsApi = new ProductsApi()
   return await productsApi.getAvailableCodes(start, amount)
+}
+
+export const productsPriceUpdates = async (
+  productUpdateCost: ProductUpdateCost
+) => {
+  const productsApi = new ProductsApi()
+  return await productsApi.productsPriceUpdates(productUpdateCost)
 }
 
 /*********************************************************************/

@@ -15,6 +15,7 @@ import {
   ExtendedProduct,
   ProductPriceHistoryList,
   AvailableCodesList,
+  ProductUpdateCost,
   PaginatedClients,
   Client,
   ExtendedClient,
@@ -146,6 +147,12 @@ class ProductsApi extends LMYCApi {
     } catch {
       return { available_codes: [] }
     }
+  }
+
+  async productsPriceUpdates(productUpdateCost: ProductUpdateCost) {
+    return await this.productsAPI.productosAumentoMasivoPrecioCostoPost(
+      productUpdateCost
+    )
   }
 }
 

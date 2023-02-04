@@ -20,7 +20,7 @@ export default function InvoicesList({ paginatedInvoices }) {
         totalRows={paginatedInvoices.count}
         rowsPerPage={ROWS_PER_PAGE}
         fetchData={getInvoices}
-        searchInputPlaceholder={"Buscar por nombre de cliente"}
+        searchInputPlaceholder={"Buscar por Cód. o Nom. de Cli."}
       />
     </>
   )
