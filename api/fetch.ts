@@ -57,6 +57,11 @@ export const updateProduct = async (
   return await productsApi.updateProduct(productId, data)
 }
 
+export const getProductHistory = async (productId: number) => {
+  const productsApi = new ProductsApi()
+  return await productsApi.getProductHistory(productId)
+}
+
 export const getAvailableCodes = async (
   start?: number,
   amount?: number
