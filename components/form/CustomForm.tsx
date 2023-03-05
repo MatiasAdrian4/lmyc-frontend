@@ -1,8 +1,8 @@
 import { Fragment, useState } from "react"
 import Select from "react-select"
 import AsyncSelect from "react-select/async"
-import styles from "../../styles/components/CustomForm.module.css"
-import { successPopup, toTitleCase } from "../../utils/utils"
+import styles from "styles/components/CustomForm.module.css"
+import { successPopup, toTitleCase } from "utils/utils"
 import { REACT_SELECT_STYLES } from "./reactSelectStyles"
 
 interface FormField {

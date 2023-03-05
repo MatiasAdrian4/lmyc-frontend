@@ -1,18 +1,18 @@
 import { GetServerSideProps } from "next"
-import { ClientsApi } from "../../api/lmycApi"
-import { CustomForm } from "../../components/form/CustomForm"
+import { ClientsApi } from "api/lmycApi"
+import { CustomForm } from "components/form/CustomForm"
 import {
   getJWTFromCtx,
   isUserAuthenticated,
   ssRedirectToLoginPage
-} from "../../utils/utils"
-import { BasicTable } from "../../components/table/BasicTable"
-import styles from "../../styles/clients/Client.module.css"
-import { CLIENT_INVOICE_COLUMNS } from "../../components/table/columns"
+} from "utils/utils"
+import { BasicTable } from "components/table/BasicTable"
+import styles from "styles/clients/Client.module.css"
+import { CLIENT_INVOICE_COLUMNS } from "components/table/columns"
 import Link from "next/link"
-import { CLIENT_SECTIONS } from "../../components/form/forms"
-import { updateClient } from "../../api/fetch"
-import { Models } from "../../utils/constants"
+import { CLIENT_SECTIONS } from "components/form/forms"
+import { updateClient } from "api/fetch"
+import { Models } from "utils/constants"
 
 export default function Client({ client }) {
   return (

@@ -1,20 +1,20 @@
 import { GetServerSideProps } from "next"
-import { ProductsApi } from "../../api/lmycApi"
-import { CustomForm } from "../../components/form/CustomForm"
+import { ProductsApi } from "api/lmycApi"
+import { CustomForm } from "components/form/CustomForm"
 import {
   fetchAvailableCodes,
   getJWTFromCtx,
   isUserAuthenticated,
   ssRedirectToLoginPage
-} from "../../utils/utils"
-import styles from "../../styles/products/Product.module.css"
-import { PRODUCT_SECTIONS } from "../../components/form/forms"
-import { getProductHistory, updateProduct } from "../../api/fetch"
-import { BasicTable } from "../../components/table/BasicTable"
-import { PRODUCT_HISTORY_PRICES_COLUMNS } from "../../components/table/columns"
-import { Models } from "../../utils/constants"
+} from "utils/utils"
+import styles from "styles/products/Product.module.css"
+import { PRODUCT_SECTIONS } from "components/form/forms"
+import { getProductHistory, updateProduct } from "api/fetch"
+import { BasicTable } from "components/table/BasicTable"
+import { PRODUCT_HISTORY_PRICES_COLUMNS } from "components/table/columns"
+import { Models } from "utils/constants"
 import { useState } from "react"
-import { ExtendedProduct } from "../../lmyc_client"
+import { ExtendedProduct } from "lmyc_client"
 
 export default function Product({ product, historyPrices }) {
   const [productPricesHistory, setProductPricesHistory] = useState(

@@ -2,10 +2,10 @@ import { format } from "date-fns"
 import { GetServerSidePropsContext } from "next"
 import { NextApiRequestCookies } from "next/dist/server/api-utils"
 import Swal from "sweetalert2"
-import { FileActionsApi, UsersApi } from "../api/lmycApi"
+import { FileActionsApi, UsersApi } from "api/lmycApi"
 import { LMYC_JWT, AMOUNT_OPTIONS_IN_SELECT } from "./constants"
-import { SimplifiedInvoiceItem } from "../lmyc_client/api"
-import { getAvailableCodes } from "../api/fetch"
+import { SimplifiedInvoiceItem } from "lmyc_client/api"
+import { getAvailableCodes } from "api/fetch"
 
 export const getJWTFromCtx = (ctx: GetServerSidePropsContext) => {
   const cookies: NextApiRequestCookies = ctx.req.cookies

@@ -1,22 +1,22 @@
 import { GetServerSideProps } from "next"
-import { ProductsApi } from "../../api/lmycApi"
-import { CustomForm } from "../../components/form/CustomForm"
-import { PaginatedTable } from "../../components/table/PaginatedTable"
-import { PRODUCT_COLUMNS } from "../../components/table/columns"
+import { ProductsApi } from "api/lmycApi"
+import { CustomForm } from "components/form/CustomForm"
+import { PaginatedTable } from "components/table/PaginatedTable"
+import { PRODUCT_COLUMNS } from "components/table/columns"
 import {
   Models,
   PRODUCT_CATEGORIES,
   ROWS_PER_PAGE
-} from "../../utils/constants"
-import { PRODUCT_SECTIONS } from "../../components/form/forms"
+} from "utils/constants"
+import { PRODUCT_SECTIONS } from "components/form/forms"
 import {
   fetchAvailableCodes,
   getJWTFromCtx,
   isUserAuthenticated,
   ssRedirectToLoginPage
-} from "../../utils/utils"
-import styles from "../../styles/products/Products.module.css"
-import { getProducts, newProduct } from "../../api/fetch"
+} from "utils/utils"
+import styles from "styles/products/Products.module.css"
+import { getProducts, newProduct } from "api/fetch"
 
 export default function ProductsList({
   paginatedProducts,

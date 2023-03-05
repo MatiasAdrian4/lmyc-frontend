@@ -12,7 +12,7 @@ import {
   InvoiceItemIds,
   SalesList,
   PaginatedSales
-} from "../lmyc_client"
+} from "lmyc_client"
 import {
   ClientsApi,
   InvoiceItemsApi,

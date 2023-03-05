@@ -1,6 +1,6 @@
 import { useMemo } from "react"
 import { useTable } from "react-table"
-import styles from "../../styles/components/BasicTable.module.css"
+import styles from "styles/components/BasicTable.module.css"
 import { Column } from "./columns"
 
 interface BasicTableProps {

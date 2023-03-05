@@ -1,6 +1,6 @@
 import getConfig from "next/config"
 
-import { LMYC_JWT, ROWS_PER_PAGE } from "../utils/constants"
+import { LMYC_JWT, ROWS_PER_PAGE } from "utils/constants"
 import {
   UsersApi as LMYCUsersApi,
   ProductsApi as LMYCProductsApi,
@@ -29,8 +29,8 @@ import {
   PaginatedSales,
   SalesPerMonth,
   SalesPerYear
-} from "../lmyc_client/api"
-import { Configuration } from "../lmyc_client/configuration"
+} from "lmyc_client/api"
+import { Configuration } from "lmyc_client/configuration"
 
 class LMYCApi {
   config: Configuration

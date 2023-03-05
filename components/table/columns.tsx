@@ -3,7 +3,7 @@ import {
   downloadInvoicePDF,
   formatDate,
   parseInvoiceItem
-} from "../../utils/utils"
+} from "utils/utils"
 
 export interface Column {
   /** Column's header */
