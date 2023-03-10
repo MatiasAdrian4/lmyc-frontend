@@ -1,9 +1,6 @@
 describe("Navigation Bar", () => {
   beforeEach(() => {
-    cy.visit("/")
-    cy.get('[data-cy="username"]').type(Cypress.env("lmyc_username"))
-    cy.get('[data-cy="password"]').type(Cypress.env("lmyc_password"))
-    cy.get('[data-cy="login-button"]').click()
+    cy.login()
   })
 
   it("Should navigate to sales page", () => {

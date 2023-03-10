@@ -36,13 +36,10 @@ jobs:
           repository: matiasadrian4/lubricentro_myc
           path: lubricentro_myc
       - name: Start containers
-        run: docker-compose up -d --build
+        run: docker-compose -f docker-compose-test.yml up -d --build
         working-directory: lubricentro_myc
       - name: Run Migrations
-        run: docker-compose run --rm web python3 manage.py migrate --noinput
-        working-directory: lubricentro_myc
-      - name: Setup Test Data
-        run: docker-compose run --rm web python3 manage.py generate_test_data
+        run: docker-compose -f docker-compose-test.yml run --rm web python3 manage.py migrate --noinput
         working-directory: lubricentro_myc
       - uses: actions/checkout@v3
         with:
@@ -62,6 +59,6 @@ jobs:
           install: false
           command: npm run cypress:run
           build: npm run build
-          start: npm run start
+          start: npm run start:e2e
           wait-on: http://localhost:3000
           working-directory: lmyc-frontend
