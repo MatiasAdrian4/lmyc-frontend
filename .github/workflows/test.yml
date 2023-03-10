@@ -39,7 +39,7 @@ jobs:
         run: docker-compose -f docker-compose-test.yml up -d --build
         working-directory: lubricentro_myc
       - name: Run Migrations
-        run: docker-compose run --rm web DB_NAME=lubricentro_myc_test DB_PORT=5433 python3 manage.py migrate --noinput
+        run: docker-compose -f docker-compose-test.yml run --rm web python3 manage.py migrate --noinput
         working-directory: lubricentro_myc
       - uses: actions/checkout@v3
         with:
