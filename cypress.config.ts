@@ -6,8 +6,9 @@ export default defineConfig({
     supportFile: "cypress/support/command.js"
   },
   env: {
-    lmyc_username: "test_user",
-    lmyc_password: "test_password"
+    backendUrl: "http://localhost:8000/",
+    lmycUsername: "test_user",
+    lmycPassword: "test_password"
   },
   defaultCommandTimeout: 10000,
   video: false,
