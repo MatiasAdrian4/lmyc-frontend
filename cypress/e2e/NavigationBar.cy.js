@@ -1,9 +1,6 @@
 describe("Navigation Bar", () => {
   beforeEach(() => {
-    cy.login({
-      username: Cypress.env("lmycUsername"),
-      password: Cypress.env("lmycPassword")
-    })
+    cy.login()
   })
 
   it("Should navigate to sales page", () => {

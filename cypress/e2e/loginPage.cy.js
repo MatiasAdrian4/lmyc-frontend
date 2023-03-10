@@ -16,10 +16,7 @@ describe("Login Page", () => {
   })
 
   it("Should correctly login", () => {
-    cy.signup({
-      username: Cypress.env("lmycUsername"),
-      password: Cypress.env("lmycPassword")
-    })
+    cy.signup()
     cy.get('[data-cy="login-form"] input')
       .first()
       .type(Cypress.env("lmycUsername"))
