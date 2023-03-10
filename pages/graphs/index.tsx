@@ -4,15 +4,15 @@ import {
   getYear,
   isUserAuthenticated,
   ssRedirectToLoginPage
-} from "../../utils/utils"
-import styles from "../../styles/graphs/Graphs.module.css"
+} from "utils/utils"
+import styles from "styles/graphs/Graphs.module.css"
 import { useEffect, useState } from "react"
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 import es from "date-fns/locale/es"
-import { DatasetProps, LineChart } from "../../components/LineChart"
-import { MONTHS } from "../../utils/constants"
-import { getSalesPerMonth, getSalesPerYear } from "../../api/fetch"
+import { DatasetProps, LineChart } from "components/LineChart"
+import { MONTHS } from "utils/constants"
+import { getSalesPerMonth, getSalesPerYear } from "api/fetch"
 
 enum SalesDatepickerType {
   Month = 1,

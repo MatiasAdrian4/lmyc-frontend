@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react"
-import styles from "../../styles/components/SearchPagination.module.css"
+import styles from "styles/components/SearchPagination.module.css"
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 import es from "date-fns/locale/es"
-import { getDayMonthAndYear, getMonthAndYear, getYear } from "../../utils/utils"
+import { getDayMonthAndYear, getMonthAndYear, getYear } from "utils/utils"
 
 interface SearchPaginationProps {
   /** Number of pages */

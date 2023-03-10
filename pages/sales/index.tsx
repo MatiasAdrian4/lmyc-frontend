@@ -5,18 +5,18 @@ import {
   getProducts,
   newInvoice,
   newSalesUpdatingStock
-} from "../../api/fetch"
-import { SearchModal } from "../../components/SearchModal"
+} from "api/fetch"
+import { SearchModal } from "components/SearchModal"
 import {
   SEARCH_CLIENT_COLUMNS,
   SEARCH_PRODUCTS_COLUMNS
-} from "../../components/table/columns"
+} from "components/table/columns"
 import {
   BasicSale,
   Client,
   ExtendedProduct,
   CreateInvoiceItem
-} from "../../lmyc_client"
+} from "lmyc_client"
 import {
   actionPopup,
   downloadInvoicePDF,
@@ -25,9 +25,9 @@ import {
   ssRedirectToLoginPage,
   successPopup,
   toFixed2
-} from "../../utils/utils"
-import styles from "../../styles/sales/Sales.module.css"
-import { Models } from "../../utils/constants"
+} from "utils/utils"
+import styles from "styles/sales/Sales.module.css"
+import { Models } from "utils/constants"
 
 type CartProduct = ExtendedProduct & {
   cantidad?: number

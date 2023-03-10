@@ -1,5 +1,5 @@
 import { GetServerSideProps } from "next"
-import { InvoicesApi } from "../../api/lmycApi"
+import { InvoicesApi } from "api/lmycApi"
 import {
   errorPopup,
   formatDate,
@@ -7,10 +7,10 @@ import {
   isUserAuthenticated,
   ssRedirectToLoginPage,
   successPopup
-} from "../../utils/utils"
-import styles from "../../styles/invoices/Invoice.module.css"
+} from "utils/utils"
+import styles from "styles/invoices/Invoice.module.css"
 import { useState } from "react"
-import { updateInvoice } from "../../api/fetch"
+import { updateInvoice } from "api/fetch"
 
 export default function Invoice({ invoice }) {
   const [invoiceItems, setInvoiceItems] = useState(invoice.resumen_elementos)

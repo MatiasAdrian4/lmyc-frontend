@@ -1,9 +1,9 @@
 import { GetServerSideProps } from "next"
 import { useRouter } from "next/router"
 import { useState } from "react"
-import { UsersApi } from "../api/lmycApi"
-import styles from "../styles/Home.module.css"
-import { isUserAuthenticated, ssRedirectToSalesPage } from "../utils/utils"
+import { UsersApi } from "api/lmycApi"
+import styles from "styles/Home.module.css"
+import { isUserAuthenticated, ssRedirectToSalesPage } from "utils/utils"
 
 export default function Home() {
   const router = useRouter()

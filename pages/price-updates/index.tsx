@@ -4,13 +4,13 @@ import {
   isUserAuthenticated,
   ssRedirectToLoginPage,
   successPopup
-} from "../../utils/utils"
-import styles from "../../styles/price-updates/PriceUpdates.module.css"
-import { BasicTable } from "../../components/table/BasicTable"
-import { UPDATE_PRODUCT_PRICES_COLUMNS } from "../../components/table/columns"
+} from "utils/utils"
+import styles from "styles/price-updates/PriceUpdates.module.css"
+import { BasicTable } from "components/table/BasicTable"
+import { UPDATE_PRODUCT_PRICES_COLUMNS } from "components/table/columns"
 import { useState } from "react"
-import { getProducts, productsPriceUpdates } from "../../api/fetch"
-import { ExtendedProduct } from "../../lmyc_client"
+import { getProducts, productsPriceUpdates } from "api/fetch"
+import { ExtendedProduct } from "lmyc_client"
 
 type ProductForUpdate = ExtendedProduct & {
   selected?: boolean

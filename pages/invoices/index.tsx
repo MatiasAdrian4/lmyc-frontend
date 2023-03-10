@@ -1,14 +1,14 @@
 import { GetServerSideProps } from "next"
-import { InvoicesApi } from "../../api/lmycApi"
-import { INVOICE_COLUMNS } from "../../components/table/columns"
-import { PaginatedTable } from "../../components/table/PaginatedTable"
-import { Models, ROWS_PER_PAGE } from "../../utils/constants"
+import { InvoicesApi } from "api/lmycApi"
+import { INVOICE_COLUMNS } from "components/table/columns"
+import { PaginatedTable } from "components/table/PaginatedTable"
+import { Models, ROWS_PER_PAGE } from "utils/constants"
 import {
   getJWTFromCtx,
   isUserAuthenticated,
   ssRedirectToLoginPage
-} from "../../utils/utils"
-import { getInvoices } from "../../api/fetch"
+} from "utils/utils"
+import { getInvoices } from "api/fetch"
 
 export default function InvoicesList({ paginatedInvoices }) {
   return (

@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { useRouter } from "next/router"
-import { logout } from "../api/fetch"
-import styles from "../styles/components/NavBar.module.css"
+import { logout } from "api/fetch"
+import styles from "styles/components/NavBar.module.css"
 
 export default function NavBar() {
   const { asPath } = useRouter()

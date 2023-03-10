@@ -1,5 +1,5 @@
 import { GetServerSideProps } from "next"
-import { ClientsApi, InvoiceItemsApi } from "../../api/lmycApi"
+import { ClientsApi, InvoiceItemsApi } from "api/lmycApi"
 import {
   downloadInvoicePDF,
   errorPopup,
@@ -8,10 +8,10 @@ import {
   ssRedirectToLoginPage,
   successPopup,
   toFixed2
-} from "../../utils/utils"
-import styles from "../../styles/billing/Billing.module.css"
+} from "utils/utils"
+import styles from "styles/billing/Billing.module.css"
 import { useState } from "react"
-import { markInvoiceItemsAsPaid } from "../../api/fetch"
+import { markInvoiceItemsAsPaid } from "api/fetch"
 
 export default function Billing({ client, invoiceItems }) {
   const [billingItems, setBillingItems] = useState(

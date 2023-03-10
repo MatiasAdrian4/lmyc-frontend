@@ -1,5 +1,5 @@
 import { FormSection } from "./CustomForm"
-import { PRODUCT_CATEGORIES } from "../../utils/constants"
+import { PRODUCT_CATEGORIES } from "utils/constants"
 
 export const CLIENT_SECTIONS: FormSection[] = [
   {
