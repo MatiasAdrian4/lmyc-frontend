@@ -6,7 +6,7 @@ export default defineConfig({
     supportFile: "cypress/support/command.js"
   },
   env: {
-    backendUrl: "http://localhost:8000/",
+    backendUrl: "http://localhost:8001/",
     lmycUsername: "test_user",
     lmycPassword: "test_password"
   },
