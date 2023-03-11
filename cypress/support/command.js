@@ -1,24 +1,18 @@
-Cypress.Commands.add("signup", () => {
+Cypress.Commands.add("signup", ({ username, password }) => {
   cy.request({
     method: "POST",
     url: `${Cypress.env().backendUrl}lubricentro_myc/account/signup/`,
-    body: {
-      username: Cypress.env("lmycUsername"),
-      password: Cypress.env("lmycPassword")
-    },
+    body: { username, password },
     failOnStatusCode: false // it prevents the test to fail if the user already exists
   })
 })
 
-Cypress.Commands.add("login", () => {
-  cy.signup()
+Cypress.Commands.add("login", ({ username, password }) => {
+  cy.signup({ username, password })
   cy.request(
     "POST",
     `${Cypress.env().backendUrl}lubricentro_myc/account/login/`,
-    {
-      username: Cypress.env("lmycUsername"),
-      password: Cypress.env("lmycPassword")
-    }
+    { username, password }
   ).then((response) => {
     cy.setCookie("lmyc_jwt", response.body["lmyc_jwt"])
     cy.visit("/")

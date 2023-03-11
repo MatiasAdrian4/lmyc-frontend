@@ -1,6 +1,8 @@
+import {testUser} from '../constants.js'
+
 describe("Navigation Bar", () => {
   beforeEach(() => {
-    cy.login()
+    cy.login(testUser)
   })
 
   it("Should navigate to sales page", () => {

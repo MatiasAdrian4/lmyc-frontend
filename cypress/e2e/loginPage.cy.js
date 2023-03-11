@@ -1,3 +1,5 @@
+import {testUser} from '../constants.js'
+
 describe("Login Page", () => {
   beforeEach(() => {
     cy.visit("/")
@@ -16,7 +18,7 @@ describe("Login Page", () => {
   })
 
   it("Should correctly login", () => {
-    cy.signup()
+    cy.signup(testUser)
     cy.get('[data-cy="login-form"] input')
       .first()
       .type(Cypress.env("lmycUsername"))
