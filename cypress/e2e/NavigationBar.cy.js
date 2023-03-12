@@ -1,4 +1,4 @@
-import {testUser} from '../constants.js'
+import {testUser} from '../fixtures.js'
 
 describe("Navigation Bar", () => {
   beforeEach(() => {

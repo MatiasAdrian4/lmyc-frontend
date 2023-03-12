@@ -1,4 +1,4 @@
-import { testUser, testProducts } from "../constants.js"
+import { testUser, testProducts } from "../fixtures.js"
 
 describe("Products Page", () => {
   before(() => {
