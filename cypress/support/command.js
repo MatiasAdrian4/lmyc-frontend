@@ -4,6 +4,7 @@ import {
   loginUrl,
   productsUrl,
   clientsUrl,
+  invoicesUrl,
   resetDBUrl
 } from "../constants.js"
 
@@ -32,16 +33,28 @@ Cypress.Commands.add("login", ({ username, password }) => {
   })
 })
 
+Cypress.Commands.add("loadProduct", (product) => {
+  cy.request({ method: "POST", url: productsUrl, body: product })
+})
+
 Cypress.Commands.add("loadProducts", (products) => {
   products.forEach((product) => {
-    cy.request({ method: "POST", url: productsUrl, body: product })
+    cy.loadProduct(product)
   })
+})
+
+Cypress.Commands.add("loadClient", (client) => {
+  cy.request({ method: "POST", url: clientsUrl, body: client })
 })
 
 Cypress.Commands.add("loadClients", (clients) => {
   clients.forEach((client) => {
-    cy.request({ method: "POST", url: clientsUrl, body: client })
+    cy.loadClient(client)
   })
+})
+
+Cypress.Commands.add("loadInvoice", (invoice) => {
+  cy.request({ method: "POST", url: invoicesUrl, body: invoice })
 })
 
 Cypress.Commands.add("resetDB", () => {

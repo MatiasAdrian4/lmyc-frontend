@@ -28,7 +28,10 @@ export default function Client({ client }) {
         />
       </div>
       <h3 className={styles.sectionTitle}>Deudas</h3>
-      <div className={`${styles.debtSection} ${styles.section}`}>
+      <div
+        data-cy="client-debts"
+        className={`${styles.debtSection} ${styles.section}`}
+      >
         {client.deuda_actual > 0 && (
           <>
             <p>
