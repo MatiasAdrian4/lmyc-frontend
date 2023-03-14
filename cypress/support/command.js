@@ -1,26 +1,42 @@
-Cypress.Commands.add("signup", () => {
+import {
+  jwtToken,
+  signupUrl,
+  loginUrl,
+  productsUrl,
+  resetDBUrl
+} from "../constants.js"
+
+Cypress.Commands.add("getByDataCy", (dataCy, extra = "") => {
+  cy.get(`[data-cy="${dataCy}"] ${extra}`)
+})
+
+Cypress.Commands.add("signup", ({ username, password }) => {
   cy.request({
     method: "POST",
-    url: `${Cypress.env().backendUrl}lubricentro_myc/account/signup/`,
-    body: {
-      username: Cypress.env("lmycUsername"),
-      password: Cypress.env("lmycPassword")
-    },
+    url: signupUrl,
+    body: { username, password },
     failOnStatusCode: false // it prevents the test to fail if the user already exists
   })
 })
 
-Cypress.Commands.add("login", () => {
-  cy.signup()
-  cy.request(
-    "POST",
-    `${Cypress.env().backendUrl}lubricentro_myc/account/login/`,
-    {
-      username: Cypress.env("lmycUsername"),
-      password: Cypress.env("lmycPassword")
-    }
-  ).then((response) => {
-    cy.setCookie("lmyc_jwt", response.body["lmyc_jwt"])
+Cypress.Commands.add("login", ({ username, password }) => {
+  cy.signup({ username, password })
+  cy.request({
+    method: "POST",
+    url: loginUrl,
+    body: { username, password }
+  }).then((response) => {
+    cy.setCookie(jwtToken, response.body["lmyc_jwt"])
     cy.visit("/")
   })
+})
+
+Cypress.Commands.add("loadProducts", (products) => {
+  products.forEach((product) => {
+    cy.request({ method: "POST", url: productsUrl, body: product })
+  })
+})
+
+Cypress.Commands.add("resetDB", () => {
+  cy.request({ method: "GET", url: resetDBUrl })
 })

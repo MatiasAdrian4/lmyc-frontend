@@ -67,7 +67,7 @@ export const CustomForm: React.FC<CustomFormProps> = ({
 
   return (
     <>
-      <div>
+      <div data-cy={`${modelName.toLowerCase()}-form`}>
         {sections.map((section, i) => {
           return (
             <fieldset className={styles.formSection} key={i}>
