@@ -17,7 +17,7 @@ import { Models } from "utils/constants"
 export default function Client({ client }) {
   return (
     <>
-      <h3 className={styles.sectionTitle}>Información del cliente</h3>
+      <h3 className={styles.sectionTitle}>Información del Cliente</h3>
       <div className={`${styles.clientSection} ${styles.section}`}>
         <CustomForm
           modelName={"Cliente"}

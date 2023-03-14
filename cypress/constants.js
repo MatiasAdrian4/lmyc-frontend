@@ -8,4 +8,6 @@ export const loginUrl = `${backendUrl}lubricentro_myc/account/login/`
 
 export const productsUrl = `${backendUrl}lubricentro_myc/productos/`
 
+export const clientsUrl = `${backendUrl}lubricentro_myc/clientes/`
+
 export const resetDBUrl = `${backendUrl}lubricentro_myc/reset/`

@@ -260,3 +260,138 @@ export const testProducts = [
   product15,
   product10700
 ]
+
+export const client1 = {
+  nombre: "Perez, Pablo",
+  direccion: "",
+  localidad: "Tandil",
+  codigo_postal: "7000",
+  telefono: "",
+  cuit: "",
+  email: "pablo.perez@gmail.com"
+}
+
+export const client2 = {
+  nombre: "Diaz, Jose",
+  direccion: "",
+  localidad: "La Dulce",
+  codigo_postal: "7637",
+  telefono: "",
+  cuit: "",
+  email: "jose.diaz@gmail.com"
+}
+
+export const client3 = {
+  nombre: "Fernandez, Pedro",
+  direccion: "",
+  localidad: "Tandil",
+  codigo_postal: "7000",
+  telefono: "",
+  cuit: "",
+  email: "pedro.fernandez@gmail.com"
+}
+
+export const client4 = {
+  nombre: "Diaz, Martina",
+  direccion: "",
+  localidad: "Tandil",
+  codigo_postal: "7000",
+  telefono: "",
+  cuit: "",
+  email: "martina.diaz@gmail.com"
+}
+
+export const client5 = {
+  nombre: "Martinez, Juan",
+  direccion: "",
+  localidad: "La Dulce",
+  codigo_postal: "7637",
+  telefono: "",
+  cuit: "",
+  email: "juan.martinez@gmail.com"
+}
+
+export const client6 = {
+  nombre: "Perez, Juan",
+  direccion: "",
+  localidad: "Tandil",
+  codigo_postal: "7000",
+  telefono: "",
+  cuit: "",
+  email: "juan.perez@gmail.com"
+}
+
+export const client7 = {
+  nombre: "Perez, Ricardo",
+  direccion: "",
+  localidad: "Tandil",
+  codigo_postal: "7000",
+  telefono: "",
+  cuit: "",
+  email: "ricardo.perez@gmail.com"
+}
+
+export const client8 = {
+  nombre: "Fernandez, Pablo",
+  direccion: "",
+  localidad: "Tandil",
+  codigo_postal: "7000",
+  telefono: "",
+  cuit: "",
+  email: "pablo.fernandez@gmail.com"
+}
+
+export const client9 = {
+  nombre: "Hernandez, Maria",
+  direccion: "",
+  localidad: "La Dulce",
+  codigo_postal: "7637",
+  telefono: "",
+  cuit: "",
+  email: "maria.hernandez@gmail.com"
+}
+
+export const client10 = {
+  nombre: "Gonzalez, Martin",
+  direccion: "",
+  localidad: "Tandil",
+  codigo_postal: "7000",
+  telefono: "",
+  cuit: "",
+  email: "martin.gonzalez@gmail.com"
+}
+
+export const client11 = {
+  nombre: "Garcia, Ana",
+  direccion: "",
+  localidad: "Tandil",
+  codigo_postal: "7000",
+  telefono: "",
+  cuit: "",
+  email: "ana.garcia@gmail.com"
+}
+
+export const client12 = {
+  nombre: "Gomez, Soledad",
+  direccion: "",
+  localidad: "Tandil",
+  codigo_postal: "7000",
+  telefono: "",
+  cuit: "",
+  email: "soledad.gonzalez@gmail.com"
+}
+
+export const testClients = [
+  client1,
+  client2,
+  client3,
+  client4,
+  client5,
+  client6,
+  client7,
+  client8,
+  client9,
+  client10,
+  client11,
+  client12
+]
