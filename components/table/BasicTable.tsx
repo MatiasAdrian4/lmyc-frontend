@@ -25,7 +25,11 @@ export const BasicTable: React.FC<BasicTableProps> = ({
 
   return (
     <>
-      <table className={styles.basicTable} {...getTableProps()}>
+      <table
+        data-cy={`${title.toLowerCase()}-table`}
+        className={styles.basicTable}
+        {...getTableProps()}
+      >
         <thead>
           {headerGroups.map((headerGroup, i) => (
             <tr {...headerGroup.getHeaderGroupProps()} key={i}>

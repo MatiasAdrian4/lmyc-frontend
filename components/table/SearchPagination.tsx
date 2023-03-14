@@ -119,7 +119,7 @@ export const SearchPagination: React.FC<SearchPaginationProps> = ({
 
   return (
     <>
-      <div className={styles.pagination}>
+      <div data-cy="search-pagination" className={styles.pagination}>
         <div className={styles.paginationBar}>
           {!useDatePicker && (
             <input

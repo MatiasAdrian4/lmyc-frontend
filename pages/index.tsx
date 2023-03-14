@@ -28,7 +28,7 @@ export default function Home() {
   }
 
   return (
-    <div className={styles.signin} data-cy="login-form">
+    <div data-cy="login-form" className={styles.signin}>
       <p>{"Lubricentro M&C"}</p>
       <input
         type="text"

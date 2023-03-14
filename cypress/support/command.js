@@ -6,6 +6,10 @@ import {
   resetDBUrl
 } from "../constants.js"
 
+Cypress.Commands.add("getByDataCy", (dataCy, extra = "") => {
+  cy.get(`[data-cy="${dataCy}"] ${extra}`)
+})
+
 Cypress.Commands.add("signup", ({ username, password }) => {
   cy.request({
     method: "POST",
