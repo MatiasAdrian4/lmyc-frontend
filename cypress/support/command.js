@@ -3,6 +3,7 @@ import {
   signupUrl,
   loginUrl,
   productsUrl,
+  clientsUrl,
   resetDBUrl
 } from "../constants.js"
 
@@ -34,6 +35,12 @@ Cypress.Commands.add("login", ({ username, password }) => {
 Cypress.Commands.add("loadProducts", (products) => {
   products.forEach((product) => {
     cy.request({ method: "POST", url: productsUrl, body: product })
+  })
+})
+
+Cypress.Commands.add("loadClients", (clients) => {
+  clients.forEach((client) => {
+    cy.request({ method: "POST", url: clientsUrl, body: client })
   })
 })
 
