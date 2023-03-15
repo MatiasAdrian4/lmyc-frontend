@@ -1,4 +1,3 @@
-import { clientsUrl, productsUrl } from "../constants.js"
 import { testUser, testClients, client1, product10553 } from "../fixtures.js"
 
 describe("Clients Page", () => {
