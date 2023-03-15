@@ -1,4 +1,5 @@
-import { testUser, testProducts } from "../fixtures.js"
+import { productsUrl } from "../constants.js"
+import { testUser, testProducts, product15101 } from "../fixtures.js"
 
 describe("Products Page", () => {
   before(() => {
@@ -108,6 +109,71 @@ describe("Products Page", () => {
     cy.getByDataCy("producto-table", "tbody tr:first td:nth-child(2)").should(
       "have.text",
       "Test product"
+    )
+  })
+})
+
+describe("Single Products Page", () => {
+  let productId
+
+  before(() => {
+    cy.login(testUser)
+
+    cy.loadProduct(product15101).then((response) => {
+      productId = response.body.codigo
+    })
+  })
+
+  after(() => {
+    cy.resetDB()
+  })
+
+  beforeEach(() => {
+    cy.login(testUser)
+    cy.visit(`/products/${productId}`)
+  })
+
+  it("should display the product form", () => {
+    cy.contains("Información del Producto")
+    cy.getByDataCy("producto-form").should("exist")
+    cy.getByDataCy("producto-form", "[id=detalle]").should(
+      "have.value",
+      "TAPA TB-81 VW POLO-GOLF (NAP)"
+    )
+  })
+
+  it("should be able to edit the product", () => {
+    cy.getByDataCy("producto-form", "[id=stock]").clear().type("4.5")
+    cy.getByDataCy("producto-form", "[id=ganancia]").clear().type("60")
+    cy.getByDataCy("producto-form", "button").click()
+
+    cy.get(".swal2-container").contains(
+      "Producto actualizado satisfactoriamente."
+    )
+    cy.get(".swal2-container button.swal2-confirm").click()
+
+    cy.visit(`/products/${productId}`)
+    cy.getByDataCy("producto-form", "[id=stock]").should("have.value", "4.5")
+    cy.getByDataCy("producto-form", "[id=ganancia]").should("have.value", "60")
+  })
+
+  it("should be able to see the product price history", () => {
+    cy.getByDataCy("producto-form", "[id=precio_costo]").clear().type("690")
+    cy.getByDataCy("producto-form", "button").click()
+
+    cy.get(".swal2-container").contains(
+      "Producto actualizado satisfactoriamente."
+    )
+    cy.get(".swal2-container button.swal2-confirm").click()
+
+    cy.visit(`/products/${productId}`)
+    cy.getByDataCy("producto-table", "tbody tr td:nth-child(2)").should(
+      "have.text",
+      "627.00"
+    )
+    cy.getByDataCy("producto-table", "tbody tr td:nth-child(3)").should(
+      "have.text",
+      "690.00"
     )
   })
 })

@@ -10,4 +10,6 @@ export const productsUrl = `${backendUrl}lubricentro_myc/productos/`
 
 export const clientsUrl = `${backendUrl}lubricentro_myc/clientes/`
 
+export const invoicesUrl = `${backendUrl}lubricentro_myc/remitos/`
+
 export const resetDBUrl = `${backendUrl}lubricentro_myc/reset/`
