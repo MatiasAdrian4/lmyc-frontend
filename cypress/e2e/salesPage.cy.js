@@ -72,7 +72,7 @@ describe("Sales Page", () => {
     cy.get("@clientSelected").should("have.value", "Diaz, Martina")
   })
 
-  it.only("should be able to make a sell", () => {
+  it("should be able to make a sell", () => {
     cy.get("[id=sales] button:first").click()
     cy.contains("Buscador de Productos")
 
