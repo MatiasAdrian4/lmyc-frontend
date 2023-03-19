@@ -71,4 +71,81 @@ describe("Sales Page", () => {
     cy.getByDataCy("cliente-table", "tbody tr td:nth-child(3) button").click()
     cy.get("@clientSelected").should("have.value", "Diaz, Martina")
   })
+
+  it.only("should be able to make a sell", () => {
+    cy.get("[id=sales] button:first").click()
+    cy.contains("Buscador de Productos")
+
+    cy.getByDataCy("producto-search-pagination", "input").type("portalampara")
+    cy.getByDataCy("producto-table", "tbody tr td:nth-child(3) button").click()
+    cy.getByDataCy("cart-table", "tbody tr").should("have.length", 2)
+    cy.getByDataCy("cart-table", "tbody tr td:nth-child(1)").should(
+      "have.text",
+      64049
+    )
+
+    cy.get("[id=sales] button:first").click()
+    cy.getByDataCy("producto-search-pagination", "input").type(
+      "correa gates 10 x 9"
+    )
+    cy.getByDataCy("producto-table", "tbody tr td:nth-child(3) button").click()
+    cy.getByDataCy("cart-table", "tbody tr").should("have.length", 3)
+    cy.getByDataCy(
+      "cart-table",
+      "tbody tr:nth-child(2) td:nth-child(1)"
+    ).should("have.text", 9668)
+
+    cy.getByDataCy(
+      "cart-table",
+      "tbody tr:nth-child(1) td:nth-child(4) input"
+    ).type("2")
+    cy.getByDataCy(
+      "cart-table",
+      "tbody tr:nth-child(2) td:nth-child(4) input"
+    ).type("3")
+    cy.getByDataCy(
+      "cart-table",
+      "tbody tr:nth-child(3) td:nth-child(5) input"
+    ).should("have.value", 3062.24)
+    cy.getByDataCy("sale-type", "button:last").click()
+
+    cy.get(".swal2-container").contains("Venta registrada correctamente.")
+    cy.get(".swal2-container button.swal2-confirm").click()
+
+    cy.visit("/sales-history")
+    cy.getByDataCy(
+      "venta-search-pagination",
+      "[class='react-datepicker__input-container'] input"
+    ).type(new Date().toJSON().slice(0, 10).split("-").reverse().join("/"))
+
+    cy.getByDataCy("venta-table", "tbody tr").should("have.length", 2)
+
+    cy.getByDataCy(
+      "venta-table",
+      "tbody tr:nth-child(1) td:nth-child(1)"
+    ).should("have.text", "PORTALAMPARA F-100 2 POLOS")
+    cy.getByDataCy(
+      "venta-table",
+      "tbody tr:nth-child(1) td:nth-child(2)"
+    ).should("have.text", "2")
+    cy.getByDataCy(
+      "venta-table",
+      "tbody tr:nth-child(1) td:nth-child(3)"
+    ).should("have.text", "138.74")
+
+    cy.getByDataCy(
+      "venta-table",
+      "tbody tr:nth-child(2) td:nth-child(1)"
+    ).should("have.text", "CORREA GATES 10 X 970")
+    cy.getByDataCy(
+      "venta-table",
+      "tbody tr:nth-child(2) td:nth-child(2)"
+    ).should("have.text", "3")
+    cy.getByDataCy(
+      "venta-table",
+      "tbody tr:nth-child(2) td:nth-child(3)"
+    ).should("have.text", "2923.50")
+  })
+
+  it("should be able to generate an invoice", () => {})
 })
