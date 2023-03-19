@@ -25,8 +25,8 @@ describe("Clients Page", () => {
   })
 
   it("should be able to search clients by name", () => {
-    cy.getByDataCy("search-pagination").should("exist")
-    cy.getByDataCy("search-pagination", "input").type("Perez")
+    cy.getByDataCy("cliente-search-pagination").should("exist")
+    cy.getByDataCy("cliente-search-pagination", "input").type("Perez")
     cy.getByDataCy("cliente-table", "tbody tr").should("have.length", 3)
     cy.getByDataCy("cliente-table", "tbody tr:first td:nth-child(2)").should(
       "have.text",
@@ -43,20 +43,28 @@ describe("Clients Page", () => {
   })
 
   it("should display a message when no clients were found", () => {
-    cy.getByDataCy("search-pagination").should("exist")
-    cy.getByDataCy("search-pagination", "input").type("qwerty")
+    cy.getByDataCy("cliente-search-pagination").should("exist")
+    cy.getByDataCy("cliente-search-pagination", "input").type("qwerty")
     cy.contains("No se encontraron clientes.")
   })
 
   it("should be able to go to the next page and come back", () => {
-    cy.getByDataCy("search-pagination", "button:first").should("be.disabled")
-    cy.getByDataCy("search-pagination", "button:last").should("be.enabled")
-    cy.getByDataCy("search-pagination", "button:last").click()
+    cy.getByDataCy("cliente-search-pagination", "button:first").should(
+      "be.disabled"
+    )
+    cy.getByDataCy("cliente-search-pagination", "button:last").should(
+      "be.enabled"
+    )
+    cy.getByDataCy("cliente-search-pagination", "button:last").click()
     cy.getByDataCy("cliente-table", "tbody tr").should("have.length", 2)
 
-    cy.getByDataCy("search-pagination", "button:first").should("be.enabled")
-    cy.getByDataCy("search-pagination", "button:last").should("be.disabled")
-    cy.getByDataCy("search-pagination", "button:first").click()
+    cy.getByDataCy("cliente-search-pagination", "button:first").should(
+      "be.enabled"
+    )
+    cy.getByDataCy("cliente-search-pagination", "button:last").should(
+      "be.disabled"
+    )
+    cy.getByDataCy("cliente-search-pagination", "button:first").click()
     cy.getByDataCy("cliente-table", "tbody tr").should("have.length", 10)
   })
 
@@ -80,7 +88,7 @@ describe("Clients Page", () => {
     cy.get(".swal2-container").contains("Cliente creado satisfactoriamente.")
     cy.get(".swal2-container button.swal2-confirm").click()
 
-    cy.getByDataCy("search-pagination", "input").type("Test, Client")
+    cy.getByDataCy("cliente-search-pagination", "input").type("Test, Client")
     cy.getByDataCy("cliente-table", "tbody tr").should("have.length", 1)
     cy.getByDataCy("cliente-table", "tbody tr:first td:nth-child(2)").should(
       "have.text",
