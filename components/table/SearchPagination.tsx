@@ -6,6 +6,8 @@ import es from "date-fns/locale/es"
 import { getDayMonthAndYear, getMonthAndYear, getYear } from "utils/utils"
 
 interface SearchPaginationProps {
+  /** What the table displays */
+  title: string
   /** Number of pages */
   totalRows: number
   /** Number of elements per page */
@@ -31,6 +33,7 @@ enum DatepickerType {
 }
 
 export const SearchPagination: React.FC<SearchPaginationProps> = ({
+  title,
   totalRows,
   rowsPerPage,
   pageChangeHandler,
@@ -119,7 +122,10 @@ export const SearchPagination: React.FC<SearchPaginationProps> = ({
 
   return (
     <>
-      <div data-cy="search-pagination" className={styles.pagination}>
+      <div
+        data-cy={`${title.toLowerCase()}-search-pagination`}
+        className={styles.pagination}
+      >
         <div className={styles.paginationBar}>
           {!useDatePicker && (
             <input

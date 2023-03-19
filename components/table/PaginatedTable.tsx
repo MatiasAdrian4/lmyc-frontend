@@ -67,6 +67,7 @@ export const PaginatedTable: React.FC<PaginatedTableProps> = ({
   return (
     <>
       <SearchPagination
+        title={title}
         totalRows={pageData.totalRows}
         rowsPerPage={rowsPerPage}
         pageChangeHandler={setCurrentPage}
