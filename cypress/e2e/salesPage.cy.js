@@ -73,6 +73,8 @@ describe("Sales Page", () => {
   })
 
   it("should be able to make a sell", () => {
+    cy.getByDataCy("sale-type", "button:last").should("be.disabled")
+
     cy.get("[id=sales] button:first").click()
     cy.contains("Buscador de Productos")
 
@@ -94,11 +96,16 @@ describe("Sales Page", () => {
       "cart-table",
       "tbody tr:nth-child(2) td:nth-child(1)"
     ).should("have.text", 9668)
+    cy.getByDataCy(
+      "cart-table",
+      "tbody tr:nth-child(3) td:nth-child(5) input"
+    ).should("have.value", 0)
 
     cy.getByDataCy(
       "cart-table",
       "tbody tr:nth-child(1) td:nth-child(4) input"
     ).type("2")
+    cy.getByDataCy("sale-type", "button:last").should("be.enabled")
     cy.getByDataCy(
       "cart-table",
       "tbody tr:nth-child(2) td:nth-child(4) input"
