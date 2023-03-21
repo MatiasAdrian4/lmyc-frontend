@@ -169,7 +169,7 @@ export default function SalesList() {
             Agregar Producto
           </button>
         </div>
-        <table className={styles.cartTable}>
+        <table data-cy="cart-table" className={styles.cartTable}>
           <thead>
             <tr>
               <th>Código</th>
@@ -183,7 +183,7 @@ export default function SalesList() {
           <tbody>
             {products.map((product) => (
               <tr key={product.codigo ? product.codigo : "total"}>
-                <td>{product.codigo}</td>
+                <td>{product.codigo_en_pantalla}</td>
                 <td>{product.detalle}</td>
                 <td>
                   {product.codigo && (
@@ -238,7 +238,11 @@ export default function SalesList() {
           fetchData={getClients}
           searchInputPlaceholder={"Buscar por Cód. o Nombre."}
         />
-        <div className={styles.salesActions} onChange={onChangeSaleType}>
+        <div
+          data-cy="sale-type"
+          className={styles.salesActions}
+          onChange={onChangeSaleType}
+        >
           <input
             type="radio"
             value={SaleType.Cash}
@@ -261,6 +265,7 @@ export default function SalesList() {
             Buscar Cliente
           </button>
           <input
+            data-cy="client-selected"
             readOnly={true}
             disabled={saleTypeSelected == SaleType.Cash}
             type="text"

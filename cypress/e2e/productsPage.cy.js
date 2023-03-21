@@ -1,4 +1,3 @@
-import { productsUrl } from "../constants.js"
 import { testUser, testProducts, product15101 } from "../fixtures.js"
 
 describe("Products Page", () => {
@@ -26,8 +25,8 @@ describe("Products Page", () => {
   })
 
   it("should be able to search products by code", () => {
-    cy.getByDataCy("search-pagination").should("exist")
-    cy.getByDataCy("search-pagination", "input").type("10553")
+    cy.getByDataCy("producto-search-pagination").should("exist")
+    cy.getByDataCy("producto-search-pagination", "input").type("10553")
     cy.getByDataCy("producto-table", "tbody tr:first td:first").should(
       "have.text",
       10553
@@ -35,8 +34,10 @@ describe("Products Page", () => {
   })
 
   it("should be able to search products by name", () => {
-    cy.getByDataCy("search-pagination").should("exist")
-    cy.getByDataCy("search-pagination", "input").type("CORREA GATES 10")
+    cy.getByDataCy("producto-search-pagination").should("exist")
+    cy.getByDataCy("producto-search-pagination", "input").type(
+      "CORREA GATES 10"
+    )
     cy.getByDataCy("producto-table", "tbody tr").should("have.length", 3)
     cy.getByDataCy("producto-table", "tbody tr:first td:first").should(
       "have.text",
@@ -53,8 +54,8 @@ describe("Products Page", () => {
   })
 
   it("should be able to search products by category", () => {
-    cy.getByDataCy("search-pagination").should("exist")
-    cy.getByDataCy("search-pagination", "input").type("Tapas")
+    cy.getByDataCy("producto-search-pagination").should("exist")
+    cy.getByDataCy("producto-search-pagination", "input").type("Tapas")
     cy.getByDataCy("producto-table", "tbody tr").should("have.length", 2)
     cy.getByDataCy("producto-table", "tbody tr:first td:first").should(
       "have.text",
@@ -67,20 +68,28 @@ describe("Products Page", () => {
   })
 
   it("should display a message when no products were found", () => {
-    cy.getByDataCy("search-pagination").should("exist")
-    cy.getByDataCy("search-pagination", "input").type("qwerty")
+    cy.getByDataCy("producto-search-pagination").should("exist")
+    cy.getByDataCy("producto-search-pagination", "input").type("qwerty")
     cy.contains("No se encontraron productos.")
   })
 
   it("should be able to go to the next page and come back", () => {
-    cy.getByDataCy("search-pagination", "button:first").should("be.disabled")
-    cy.getByDataCy("search-pagination", "button:last").should("be.enabled")
-    cy.getByDataCy("search-pagination", "button:last").click()
+    cy.getByDataCy("producto-search-pagination", "button:first").should(
+      "be.disabled"
+    )
+    cy.getByDataCy("producto-search-pagination", "button:last").should(
+      "be.enabled"
+    )
+    cy.getByDataCy("producto-search-pagination", "button:last").click()
     cy.getByDataCy("producto-table", "tbody tr").should("have.length", 5)
 
-    cy.getByDataCy("search-pagination", "button:first").should("be.enabled")
-    cy.getByDataCy("search-pagination", "button:last").should("be.disabled")
-    cy.getByDataCy("search-pagination", "button:first").click()
+    cy.getByDataCy("producto-search-pagination", "button:first").should(
+      "be.enabled"
+    )
+    cy.getByDataCy("producto-search-pagination", "button:last").should(
+      "be.disabled"
+    )
+    cy.getByDataCy("producto-search-pagination", "button:first").click()
     cy.getByDataCy("producto-table", "tbody tr").should("have.length", 10)
   })
 
@@ -104,7 +113,7 @@ describe("Products Page", () => {
     cy.get(".swal2-container").contains("Producto creado satisfactoriamente.")
     cy.get(".swal2-container button.swal2-confirm").click()
 
-    cy.getByDataCy("search-pagination", "input").type("Test product")
+    cy.getByDataCy("producto-search-pagination", "input").type("Test product")
     cy.getByDataCy("producto-table", "tbody tr").should("have.length", 1)
     cy.getByDataCy("producto-table", "tbody tr:first td:nth-child(2)").should(
       "have.text",
