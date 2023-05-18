@@ -57,7 +57,7 @@ class LMYCApi {
 class UsersApi extends LMYCApi {
   usersAPI: LMYCUsersApi
 
-  constructor(lmyc_jwt: string = undefined, internal: boolean = true) {
+  constructor(lmyc_jwt: string = undefined, internal: boolean = false) {
     super(lmyc_jwt, internal)
     this.usersAPI = new LMYCUsersApi(this.config)
   }
@@ -85,7 +85,7 @@ class UsersApi extends LMYCApi {
 class ProductsApi extends LMYCApi {
   productsAPI: LMYCProductsApi
 
-  constructor(lmyc_jwt: string = undefined, internal: boolean = true) {
+  constructor(lmyc_jwt: string = undefined, internal: boolean = false) {
     super(lmyc_jwt, internal)
     this.productsAPI = new LMYCProductsApi(this.config)
   }
@@ -161,7 +161,7 @@ class ProductsApi extends LMYCApi {
 class ClientsApi extends LMYCApi {
   clientsAPI: LMYCClientsApi
 
-  constructor(lmyc_jwt: string = undefined, internal: boolean = true) {
+  constructor(lmyc_jwt: string = undefined, internal: boolean = false) {
     super(lmyc_jwt, internal)
     this.clientsAPI = new LMYCClientsApi(this.config)
   }
@@ -201,7 +201,7 @@ class ClientsApi extends LMYCApi {
 class InvoicesApi extends LMYCApi {
   invoicesAPI: LMYCInvoicesApi
 
-  constructor(lmyc_jwt: string = undefined, internal: boolean = true) {
+  constructor(lmyc_jwt: string = undefined, internal: boolean = false) {
     super(lmyc_jwt, internal)
     this.invoicesAPI = new LMYCInvoicesApi(this.config)
   }
@@ -241,7 +241,7 @@ class InvoicesApi extends LMYCApi {
 class InvoiceItemsApi extends LMYCApi {
   invoiceItemsApi: LMYCInvoiceItemsApi
 
-  constructor(lmyc_jwt: string = undefined, internal: boolean = true) {
+  constructor(lmyc_jwt: string = undefined, internal: boolean = false) {
     super(lmyc_jwt, internal)
     this.invoiceItemsApi = new LMYCInvoiceItemsApi(this.config)
   }
@@ -267,7 +267,7 @@ class InvoiceItemsApi extends LMYCApi {
 class SalesApi extends LMYCApi {
   salesHistoryApi: LMYCSalesApi
 
-  constructor(lmyc_jwt: string = undefined, internal: boolean = true) {
+  constructor(lmyc_jwt: string = undefined, internal: boolean = false) {
     super(lmyc_jwt, internal)
     this.salesHistoryApi = new LMYCSalesApi(this.config)
   }
@@ -319,7 +319,7 @@ class SalesApi extends LMYCApi {
 class FileActionsApi extends LMYCApi {
   fileActionsApi: LMYCFileActionsApi
 
-  constructor(lmyc_jwt: string = undefined, internal: boolean = true) {
+  constructor(lmyc_jwt: string = undefined, internal: boolean = false) {
     super(lmyc_jwt, internal)
     this.fileActionsApi = new LMYCFileActionsApi(this.config)
   }
