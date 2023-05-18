@@ -140,7 +140,7 @@ export default function Invoice({ invoice }) {
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   if (!(await isUserAuthenticated(ctx))) return ssRedirectToLoginPage()
 
-  const invoicesApi = new InvoicesApi(getJWTFromCtx(ctx))
+  const invoicesApi = new InvoicesApi(getJWTFromCtx(ctx), true)
   const invoice = await invoicesApi.getInvoice(+ctx.params.invoiceId)
 
   return {

@@ -29,7 +29,7 @@ export default function InvoicesList({ paginatedInvoices }) {
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   if (!(await isUserAuthenticated(ctx))) return ssRedirectToLoginPage()
 
-  const invoicesApi = new InvoicesApi(getJWTFromCtx(ctx))
+  const invoicesApi = new InvoicesApi(getJWTFromCtx(ctx), true)
   const paginatedInvoices = await invoicesApi.getInvoices()
   return {
     props: {

@@ -13,7 +13,7 @@ export const getJWTFromCtx = (ctx: GetServerSidePropsContext) => {
 }
 
 export const isUserAuthenticated = async (ctx: GetServerSidePropsContext) => {
-  const usersApi = new UsersApi(getJWTFromCtx(ctx))
+  const usersApi = new UsersApi(getJWTFromCtx(ctx), true)
   const user = await usersApi.getUser()
   return user ? true : false
 }

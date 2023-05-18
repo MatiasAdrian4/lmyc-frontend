@@ -53,7 +53,7 @@ export default function ProductsList({
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   if (!(await isUserAuthenticated(ctx))) return ssRedirectToLoginPage()
 
-  const productsApi = new ProductsApi(getJWTFromCtx(ctx))
+  const productsApi = new ProductsApi(getJWTFromCtx(ctx), true)
   const paginatedProducts = await productsApi.getProducts()
   const availableCodes = await productsApi.getAvailableCodes(1, 1)
   return {
