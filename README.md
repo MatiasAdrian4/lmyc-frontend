@@ -24,6 +24,8 @@ docker compose build
 docker compose up
 ```
 
+The server runs in http://docker.for.mac.localhost:3000.
+
 ## Run Cypress E2E tests
 
 In the BE root folder (`./lubricentro_myc`):
