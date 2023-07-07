@@ -1,5 +1,5 @@
 import { format } from "date-fns"
-import { GetServerSidePropsContext } from "next"
+import { GetServerSidePropsContext, NextPageContext } from "next"
 import { NextApiRequestCookies } from "next/dist/server/api-utils"
 import Swal from "sweetalert2"
 import { FileActionsApi, UsersApi } from "api/lmycApi"
@@ -10,6 +10,11 @@ import { getAvailableCodes } from "api/fetch"
 export const getJWTFromCtx = (ctx: GetServerSidePropsContext) => {
   const cookies: NextApiRequestCookies = ctx.req.cookies
   return cookies[LMYC_JWT]
+}
+
+export const isMobile = (ctx: NextPageContext) => {
+  const userAgent = ctx.req.headers["user-agent"]
+  return /mobile/i.test(userAgent)
 }
 
 export const isUserAuthenticated = async (ctx: GetServerSidePropsContext) => {
@@ -32,6 +37,15 @@ export const ssRedirectToLoginPage = () => {
     redirect: {
       permanent: false,
       destination: "/"
+    }
+  }
+}
+
+export const ssRedirectToMobilePage = () => {
+  return {
+    redirect: {
+      permanent: false,
+      destination: "/mobile"
     }
   }
 }
