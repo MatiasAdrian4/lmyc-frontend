@@ -13,7 +13,7 @@ export const getJWTFromCtx = (ctx: GetServerSidePropsContext) => {
 }
 
 export const isMobile = (ctx: NextPageContext) => {
-  const userAgent = ctx.req.headers["user-agent"]
+  const userAgent = ctx.req?.headers["user-agent"]
   return /mobile/i.test(userAgent)
 }
 
