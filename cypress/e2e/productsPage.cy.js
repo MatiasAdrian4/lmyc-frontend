@@ -27,6 +27,7 @@ describe("Products Page", () => {
   it("should be able to search products by code", () => {
     cy.getByDataCy("producto-search-pagination").should("exist")
     cy.getByDataCy("producto-search-pagination", "input").type("10553")
+    cy.wait(2000)
     cy.getByDataCy("producto-table", "tbody tr:first td:first").should(
       "have.text",
       10553
@@ -38,6 +39,7 @@ describe("Products Page", () => {
     cy.getByDataCy("producto-search-pagination", "input").type(
       "CORREA GATES 10"
     )
+    cy.wait(2000)
     cy.getByDataCy("producto-table", "tbody tr").should("have.length", 3)
     cy.getByDataCy("producto-table", "tbody tr:first td:first").should(
       "have.text",
@@ -56,6 +58,7 @@ describe("Products Page", () => {
   it("should be able to search products by category", () => {
     cy.getByDataCy("producto-search-pagination").should("exist")
     cy.getByDataCy("producto-search-pagination", "input").type("Tapas")
+    cy.wait(2000)
     cy.getByDataCy("producto-table", "tbody tr").should("have.length", 2)
     cy.getByDataCy("producto-table", "tbody tr:first td:first").should(
       "have.text",
@@ -70,6 +73,7 @@ describe("Products Page", () => {
   it("should display a message when no products were found", () => {
     cy.getByDataCy("producto-search-pagination").should("exist")
     cy.getByDataCy("producto-search-pagination", "input").type("qwerty")
+    cy.wait(2000)
     cy.contains("No se encontraron productos.")
   })
 
@@ -114,6 +118,7 @@ describe("Products Page", () => {
     cy.get(".swal2-container button.swal2-confirm").click()
 
     cy.getByDataCy("producto-search-pagination", "input").type("Test product")
+    cy.wait(2000)
     cy.getByDataCy("producto-table", "tbody tr").should("have.length", 1)
     cy.getByDataCy("producto-table", "tbody tr:first td:nth-child(2)").should(
       "have.text",

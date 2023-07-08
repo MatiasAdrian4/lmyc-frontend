@@ -54,3 +54,7 @@ button:disabled {
 .react-datepicker__year-wrapper {
   display: block !important;
 }
+
+.mobileErrorMsg {
+  text-align: center;
+}
