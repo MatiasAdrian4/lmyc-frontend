@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { debounce } from "lodash"
 import styles from "styles/components/SearchPagination.module.css"
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
@@ -120,6 +121,10 @@ export const SearchPagination: React.FC<SearchPaginationProps> = ({
     setDatepickerSelected(+event.target.value)
   }
 
+  const handleInputChange = debounce((value) => {
+    setText(value)
+  }, 300)
+
   return (
     <>
       <div
@@ -132,7 +137,7 @@ export const SearchPagination: React.FC<SearchPaginationProps> = ({
               className={styles.searchInput}
               type="text"
               placeholder={searchInputPlaceholder}
-              onChange={(e) => setText(e.target.value)}
+              onChange={(e) => handleInputChange(e.target.value)}
             />
           )}
           {useDatePicker && (
