@@ -33,7 +33,7 @@ export default function ClientList({ paginatedClients }) {
           onClick={() => setDisplayAddNewClientForm(!displayAddNewClientForm)}
         >
           Agregar Nuevo Cliente
-          {displayAddNewClientForm ? (
+          {!displayAddNewClientForm ? (
             <span className={styles.triangle}>△</span>
           ) : (
             <span className={styles.triangle}>▽</span>

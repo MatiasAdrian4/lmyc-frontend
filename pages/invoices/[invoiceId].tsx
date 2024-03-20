@@ -61,7 +61,7 @@ export default function Invoice({ invoice }) {
           <input
             readOnly={true}
             type="text"
-            value={invoice.cliente}
+            value={invoice.cliente.nombre}
             style={{ width: "200px" }}
           ></input>
           <label>Fecha</label>

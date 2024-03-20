@@ -1,9 +1,5 @@
 import Link from "next/link"
-import {
-  downloadInvoicePDF,
-  formatDate,
-  parseInvoiceItem
-} from "utils/utils"
+import { downloadInvoicePDF, formatDate, parseInvoiceItem } from "utils/utils"
 
 export interface Column {
   /** Column's header */
@@ -212,8 +208,15 @@ export const INVOICE_COLUMNS: Column[] = [
   },
   {
     Header: "Cliente",
-    accessor: "cliente",
-    width: "20%"
+    accessor: "cliente.nombre",
+    width: "20%",
+    Cell: ({ row }) => (
+      <Link href={`/clients/${row.original.cliente.id}`}>
+        <a style={{ color: "black", fontWeight: "bold" }}>
+          {row.original.cliente.nombre}
+        </a>
+      </Link>
+    )
   },
   {
     Header: "Fecha",

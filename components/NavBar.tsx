@@ -11,8 +11,6 @@ export default function NavBar() {
       {asPath !== "/" && (
         <nav className={styles.header}>
           <div className={styles.logo}>
-            <span>Lubricentro</span>
-            <br></br>
             <span>M&C</span>
           </div>
           <ul data-cy="navigation-bar">

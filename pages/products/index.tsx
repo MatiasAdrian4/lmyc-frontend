@@ -38,7 +38,7 @@ export default function ProductsList({
           onClick={() => setDisplayAddNewProductForm(!displayAddNewProductForm)}
         >
           Agregar Nuevo Producto
-          {displayAddNewProductForm ? (
+          {!displayAddNewProductForm ? (
             <span className={styles.triangle}>△</span>
           ) : (
             <span className={styles.triangle}>▽</span>
