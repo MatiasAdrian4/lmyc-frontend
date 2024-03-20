@@ -12,8 +12,11 @@ import styles from "styles/clients/Clients.module.css"
 import { CustomForm } from "components/form/CustomForm"
 import { CLIENT_SECTIONS } from "components/form/forms"
 import { getClients, newClient } from "api/fetch"
+import { useState } from "react"
 
 export default function ClientList({ paginatedClients }) {
+  const [displayAddNewClientForm, setDisplayAddNewClientForm] = useState(false)
+
   return (
     <>
       <PaginatedTable
@@ -26,14 +29,25 @@ export default function ClientList({ paginatedClients }) {
         searchInputPlaceholder={"Buscar por Cód. o Nombre"}
       />
       <div className={styles.newClientSection}>
-        <h3>Agregar Nuevo Cliente</h3>
-        <CustomForm
-          modelName={"Cliente"}
-          data={null}
-          dataId={null}
-          sections={CLIENT_SECTIONS}
-          submitFunction={newClient}
-        />
+        <h3
+          onClick={() => setDisplayAddNewClientForm(!displayAddNewClientForm)}
+        >
+          Agregar Nuevo Cliente
+          {displayAddNewClientForm ? (
+            <span className={styles.triangle}>△</span>
+          ) : (
+            <span className={styles.triangle}>▽</span>
+          )}
+        </h3>
+        {displayAddNewClientForm && (
+          <CustomForm
+            modelName={"Cliente"}
+            data={null}
+            dataId={null}
+            sections={CLIENT_SECTIONS}
+            submitFunction={newClient}
+          />
+        )}
       </div>
     </>
   )

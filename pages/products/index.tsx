@@ -3,11 +3,7 @@ import { ProductsApi } from "api/lmycApi"
 import { CustomForm } from "components/form/CustomForm"
 import { PaginatedTable } from "components/table/PaginatedTable"
 import { PRODUCT_COLUMNS } from "components/table/columns"
-import {
-  Models,
-  PRODUCT_CATEGORIES,
-  ROWS_PER_PAGE
-} from "utils/constants"
+import { Models, PRODUCT_CATEGORIES, ROWS_PER_PAGE } from "utils/constants"
 import { PRODUCT_SECTIONS } from "components/form/forms"
 import {
   fetchAvailableCodes,
@@ -17,11 +13,15 @@ import {
 } from "utils/utils"
 import styles from "styles/products/Products.module.css"
 import { getProducts, newProduct } from "api/fetch"
+import { useState } from "react"
 
 export default function ProductsList({
   paginatedProducts,
   firstAvailableCode
 }) {
+  const [displayAddNewProductForm, setDisplayAddNewProductForm] =
+    useState(false)
+
   return (
     <>
       <PaginatedTable
@@ -34,17 +34,28 @@ export default function ProductsList({
         searchInputPlaceholder={"Buscar por Cód., Det. o Cat."}
       />
       <div className={styles.newProductSection}>
-        <h3>Agregar Nuevo Producto</h3>
-        <CustomForm
-          modelName={"Producto"}
-          data={{
-            codigo_en_pantalla: firstAvailableCode,
-            categoria: PRODUCT_CATEGORIES[0]
-          }}
-          dataId={null}
-          sections={PRODUCT_SECTIONS(fetchAvailableCodes)}
-          submitFunction={newProduct}
-        />
+        <h3
+          onClick={() => setDisplayAddNewProductForm(!displayAddNewProductForm)}
+        >
+          Agregar Nuevo Producto
+          {displayAddNewProductForm ? (
+            <span className={styles.triangle}>△</span>
+          ) : (
+            <span className={styles.triangle}>▽</span>
+          )}
+        </h3>
+        {displayAddNewProductForm && (
+          <CustomForm
+            modelName={"Producto"}
+            data={{
+              codigo_en_pantalla: firstAvailableCode,
+              categoria: PRODUCT_CATEGORIES[0]
+            }}
+            dataId={null}
+            sections={PRODUCT_SECTIONS(fetchAvailableCodes)}
+            submitFunction={newProduct}
+          />
+        )}
       </div>
     </>
   )
