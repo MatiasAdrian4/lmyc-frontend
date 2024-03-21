@@ -11,14 +11,18 @@ export default function Home() {
 
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
   const [errorMsg, setErrorMsg] = useState("")
 
   const login = async () => {
+    setIsLoading(true)
     try {
       await usersApi.login(username, password)
+      setIsLoading(false)
       setErrorMsg("")
       router.push("/sales")
     } catch (err) {
+      setIsLoading(false)
       if (err.status == 403) {
         setErrorMsg("Usuario o contraseña incorrectos.")
       } else {
@@ -46,10 +50,18 @@ export default function Home() {
         onChange={(event) => setPassword(event.target.value)}
       />
       <br></br>
-      <button type="button" onClick={login}>
-        Iniciar Sesión
-      </button>
-      <p className={styles.error}>{errorMsg}</p>
+      {isLoading ? (
+        <div className={styles.spinnerContainer}>
+          <div className={styles.spinner}></div>
+        </div>
+      ) : (
+        <div>
+          <button type="button" onClick={login}>
+            Iniciar Sesión
+          </button>
+          <p className={styles.error}>{errorMsg}</p>
+        </div>
+      )}
     </div>
   )
 }

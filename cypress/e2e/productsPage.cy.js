@@ -108,6 +108,7 @@ describe("Products Page", () => {
   })
 
   it("should be able to add a new product", () => {
+    cy.getByDataCy("open-new-product-form").click()
     cy.getByDataCy("producto-form").should("exist")
     cy.getByDataCy("producto-form", "[id=detalle]").type("Test product")
     cy.getByDataCy("producto-form", "[id=stock]").type("10.0")
