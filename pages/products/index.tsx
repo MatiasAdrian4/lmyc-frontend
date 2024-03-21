@@ -35,6 +35,7 @@ export default function ProductsList({
       />
       <div className={styles.newProductSection}>
         <h3
+          data-cy="open-new-product-form"
           onClick={() => setDisplayAddNewProductForm(!displayAddNewProductForm)}
         >
           Agregar Nuevo Producto

@@ -30,6 +30,7 @@ export default function ClientList({ paginatedClients }) {
       />
       <div className={styles.newClientSection}>
         <h3
+          data-cy="open-new-client-form"
           onClick={() => setDisplayAddNewClientForm(!displayAddNewClientForm)}
         >
           Agregar Nuevo Cliente

@@ -79,6 +79,7 @@ describe("Clients Page", () => {
   })
 
   it("should be able to add a new client", () => {
+    cy.getByDataCy("open-new-client-form").click()
     cy.getByDataCy("cliente-form").should("exist")
     cy.getByDataCy("cliente-form", "[id=nombre]").type("Test, Client")
     cy.getByDataCy("cliente-form", "[id=cuit]").type("1234567890")
