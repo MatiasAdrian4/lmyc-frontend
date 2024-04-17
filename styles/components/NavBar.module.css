@@ -30,6 +30,10 @@
   -webkit-text-stroke: 1px white;
 }
 
+.selectedTab {
+  text-decoration: underline !important;
+}
+
 .navigation {
   float: right;
   display: flex;
