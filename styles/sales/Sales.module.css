@@ -54,3 +54,10 @@
 .submitButton {
   min-width: 120px;
 }
+
+@media only screen and (max-width: 767px) {
+  .addProductSection,
+  .salesActions {
+    min-width: 450px;
+  }
+}

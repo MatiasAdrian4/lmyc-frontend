@@ -41,3 +41,17 @@
 .currentPageInfo {
   padding: 10px;
 }
+
+@media only screen and (max-width: 767px) {
+  .paginationBar {
+    min-width: 450px;
+  }
+
+  .searchInput {
+    width: 120px;
+  }
+
+  .datepicker {
+    padding-left: 30px;
+  }
+}

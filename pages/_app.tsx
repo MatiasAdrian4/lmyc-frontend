@@ -4,14 +4,9 @@ import "styles/globals.css"
 import { isMobile } from "utils/utils"
 
 function MyApp({ Component, pageProps }) {
-  if (pageProps.isMobile) {
-    return (
-      <div className={"mobileErrorMsg"}>
-        Lubricentro M&C no se encuentra disponible en dispositivos móviles por
-        el momento.
-      </div>
-    )
-  }
+  /*if (pageProps.isMobile) {
+    return <div className={"mobileErrorMsg"}></div>
+  }*/
   return (
     <>
       <NavBar />

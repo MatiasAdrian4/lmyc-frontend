@@ -23,3 +23,10 @@
   margin-left: 10px;
   margin-right: 40px;
 }
+
+@media only screen and (max-width: 767px) {
+  .section {
+    min-width: 450px;
+    margin-left: 10px;
+  }
+}

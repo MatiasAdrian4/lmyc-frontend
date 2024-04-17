@@ -152,7 +152,7 @@ export default function SalesList() {
         cliente: clientSelected.id,
         elementos_remito: producstForSale
       })
-      actionPopup("El recibo fue generado correctamente.", "Descargar", () =>
+      actionPopup("El remito fue generado correctamente.", "Descargar", () =>
         downloadInvoicePDF(response.data["codigo"])
       )
       setProducts([{ total: 0.0 }])

@@ -44,3 +44,9 @@
 .submitSection ul li {
   font-size: 13px;
 }
+
+@media only screen and (max-width: 767px) {
+  .formSection {
+    display: inline-grid;
+  }
+}
