@@ -28,18 +28,6 @@ button:disabled {
   cursor: default;
 }
 
-.watermark {
-  position: absolute;
-  margin-left: 400px;
-  opacity: 0.04;
-  background: gray;
-  width: 800px;
-  height: 800px;
-  border-radius: 50%;
-  right: -300px;
-  pointer-events: none;
-}
-
 /* React-Datepicker custom styles */
 
 .react-datepicker__current-month,
@@ -57,4 +45,18 @@ button:disabled {
 
 .mobileErrorMsg {
   text-align: center;
+}
+
+@media only screen and (min-width: 767px) {
+  .watermark {
+    position: absolute;
+    margin-left: 400px;
+    opacity: 0.04;
+    background: gray;
+    width: 800px;
+    height: 800px;
+    border-radius: 50%;
+    right: -300px;
+    pointer-events: none;
+  }
 }

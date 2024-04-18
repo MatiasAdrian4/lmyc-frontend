@@ -220,7 +220,7 @@ describe("Sales Page", () => {
     cy.wait("@invoiceCreation").then((interception) => {
       const invoiceId = interception.response.body.codigo
       cy.get(".swal2-container").contains(
-        "El recibo fue generado correctamente."
+        "El remito fue generado correctamente."
       )
       cy.get(".swal2-container button.swal2-confirm").click()
       cy.readFile(`cypress/downloads/remito_${invoiceId}.pdf`)

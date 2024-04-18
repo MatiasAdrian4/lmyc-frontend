@@ -1,16 +1,10 @@
 .header {
   background-color: #a7c13c;
-  position: absolute; /* or fixed */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-}
-
-.header ul {
-  float: right;
-  display: flex;
-  list-style: none;
-  padding: 10px;
+  z-index: 1;
 }
 
 .header a {
@@ -24,6 +18,7 @@
   float: left;
   margin-top: 15px;
   margin-left: 20px;
+  margin-right: 20px;
   margin-bottom: 5px;
   text-align: center;
 }
@@ -37,4 +32,39 @@
 
 .selectedTab {
   text-decoration: underline !important;
+}
+
+.navigation {
+  float: right;
+  display: flex;
+  list-style: none;
+  padding: 10px;
+}
+
+.menuToggle {
+  cursor: pointer;
+  float: right;
+  color: white;
+  margin-top: 15px;
+  margin-right: 20px;
+}
+
+@media only screen and (max-width: 767px) {
+  .logo {
+    float: left;
+    cursor: pointer;
+  }
+
+  .navigation {
+    display: inline;
+    float: left;
+  }
+
+  .navigation li {
+    padding: 5px;
+  }
+
+  .closed {
+    display: none;
+  }
 }

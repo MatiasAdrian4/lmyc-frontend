@@ -132,76 +132,83 @@ export default function Graphs() {
   return (
     <>
       <h3 className={styles.sectionTitle}>Gráfico de Ventas</h3>
-      <div className={styles.datepickerType} onChange={onChangeDateType}>
-        <input
-          type="radio"
-          value={SalesDatepickerType.Month}
-          name="date"
-          defaultChecked
-        />{" "}
-        Mes/Año
-        <input type="radio" value={SalesDatepickerType.Year} name="date" /> Año
-      </div>
-      <div className={styles.datepicker}>
-        {datepickerSelected == SalesDatepickerType.Month && (
-          <DatePicker
-            locale={es}
-            dateFormat="MM/yyyy"
-            selected={date}
-            onChange={(date) => setDate(date)}
-            showMonthYearPicker
-            showFullMonthYearPicker
-          />
+      <div className={styles.searchFilters}>
+        <div className={styles.datepickerType} onChange={onChangeDateType}>
+          <input
+            type="radio"
+            value={SalesDatepickerType.Month}
+            name="date"
+            defaultChecked
+          />{" "}
+          Mes/Año
+          <input
+            type="radio"
+            value={SalesDatepickerType.Year}
+            name="date"
+          />{" "}
+          Año
+        </div>
+        <div className={styles.datepicker}>
+          {datepickerSelected == SalesDatepickerType.Month && (
+            <DatePicker
+              locale={es}
+              dateFormat="MM/yyyy"
+              selected={date}
+              onChange={(date) => setDate(date)}
+              showMonthYearPicker
+              showFullMonthYearPicker
+            />
+          )}
+          {datepickerSelected == SalesDatepickerType.Year && (
+            <DatePicker
+              locale={es}
+              dateFormat="yyyy"
+              selected={date}
+              onChange={(date) => setDate(date)}
+              showYearPicker
+            />
+          )}
+        </div>
+        <div className={styles.incrementalCheck}>
+          <input
+            type="checkbox"
+            checked={incremental}
+            onChange={(e) => setIncremental(e.target.checked)}
+          />{" "}
+          Incremental
+          <input
+            type="checkbox"
+            checked={compare}
+            onChange={(e) => setCompare(e.target.checked)}
+          />{" "}
+          Comparar con otro periodo
+        </div>
+        {compare && (
+          <>
+            <div className={styles.datepicker}>
+              {datepickerSelected == SalesDatepickerType.Month && (
+                <DatePicker
+                  locale={es}
+                  dateFormat="MM/yyyy"
+                  selected={compareDate}
+                  onChange={(compareDate) => setCompareDate(compareDate)}
+                  showMonthYearPicker
+                  showFullMonthYearPicker
+                />
+              )}
+              {datepickerSelected == SalesDatepickerType.Year && (
+                <DatePicker
+                  locale={es}
+                  dateFormat="yyyy"
+                  selected={compareDate}
+                  onChange={(compareDate) => setCompareDate(compareDate)}
+                  showYearPicker
+                />
+              )}
+            </div>
+          </>
         )}
-        {datepickerSelected == SalesDatepickerType.Year && (
-          <DatePicker
-            locale={es}
-            dateFormat="yyyy"
-            selected={date}
-            onChange={(date) => setDate(date)}
-            showYearPicker
-          />
-        )}
       </div>
-      <div className={styles.incrementalCheck}>
-        <input
-          type="checkbox"
-          checked={incremental}
-          onChange={(e) => setIncremental(e.target.checked)}
-        />{" "}
-        Incremental
-        <input
-          type="checkbox"
-          checked={compare}
-          onChange={(e) => setCompare(e.target.checked)}
-        />{" "}
-        Comparar con otro periodo
-      </div>
-      {compare && (
-        <>
-          <div className={styles.datepicker}>
-            {datepickerSelected == SalesDatepickerType.Month && (
-              <DatePicker
-                locale={es}
-                dateFormat="MM/yyyy"
-                selected={compareDate}
-                onChange={(compareDate) => setCompareDate(compareDate)}
-                showMonthYearPicker
-                showFullMonthYearPicker
-              />
-            )}
-            {datepickerSelected == SalesDatepickerType.Year && (
-              <DatePicker
-                locale={es}
-                dateFormat="yyyy"
-                selected={compareDate}
-                onChange={(compareDate) => setCompareDate(compareDate)}
-                showYearPicker
-              />
-            )}
-          </div>
-        </>
-      )}
       <div className={styles.graphSection}>
         <LineChart labels={getGraphLabels()} datasets={getDatasets()} />
       </div>
