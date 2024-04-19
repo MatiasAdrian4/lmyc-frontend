@@ -361,7 +361,10 @@ export const UPDATE_PRODUCT_PRICES_COLUMNS = (
   {
     Header: "Precio Costo",
     accessor: "precio_costo",
-    width: "10%"
+    width: "10%",
+    Cell: ({ value }) => {
+      return value.toFixed(2)
+    }
   },
   {
     Header: "",
