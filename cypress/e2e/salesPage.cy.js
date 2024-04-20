@@ -123,7 +123,7 @@ describe("Sales Page", () => {
     cy.getByDataCy(
       "cart-table",
       "tbody tr:nth-child(3) td:nth-child(5) input"
-    ).should("have.value", 3062.24)
+    ).should("have.value", 3065)
 
     // make sale
     cy.getByDataCy("sale-type", "button:last").click()
@@ -148,7 +148,7 @@ describe("Sales Page", () => {
     cy.getByDataCy(
       "venta-table",
       "tbody tr:nth-child(1) td:nth-child(3)"
-    ).should("have.text", "138.74")
+    ).should("have.text", "140.00")
     cy.getByDataCy(
       "venta-table",
       "tbody tr:nth-child(2) td:nth-child(1)"
@@ -160,7 +160,7 @@ describe("Sales Page", () => {
     cy.getByDataCy(
       "venta-table",
       "tbody tr:nth-child(2) td:nth-child(3)"
-    ).should("have.text", "2923.50")
+    ).should("have.text", "2925.00")
   })
 
   it("should be able to generate an invoice", () => {
@@ -212,7 +212,7 @@ describe("Sales Page", () => {
     cy.getByDataCy(
       "cart-table",
       "tbody tr:nth-child(3) td:nth-child(5) input"
-    ).should("have.value", 4012.55)
+    ).should("have.value", 4014.5)
 
     // generate invoice
     cy.intercept("POST", invoicesUrl).as("invoiceCreation")
