@@ -74,7 +74,10 @@ export const PRODUCT_COLUMNS: Column[] = [
   {
     Header: "Stock",
     accessor: "stock",
-    width: "5%"
+    width: "5%",
+    Cell: ({ value }) => {
+      return value.toFixed(2)
+    }
   },
   {
     Header: "Precio Costo",
@@ -361,7 +364,10 @@ export const UPDATE_PRODUCT_PRICES_COLUMNS = (
   {
     Header: "Precio Costo",
     accessor: "precio_costo",
-    width: "10%"
+    width: "10%",
+    Cell: ({ value }) => {
+      return value.toFixed(2)
+    }
   },
   {
     Header: "",
