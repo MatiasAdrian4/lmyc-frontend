@@ -9,6 +9,7 @@ function MyApp({ Component, pageProps }) {
   }*/
   return (
     <>
+      <meta name="viewport" content="width=device-width, user-scalable=no" />
       <NavBar />
       <div className={"watermark"}></div>
       <Component {...pageProps} />
