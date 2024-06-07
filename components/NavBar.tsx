@@ -21,88 +21,75 @@ export default function NavBar() {
             className={`${styles.navigation} ${!menuOpen ? styles.closed : ""}`}
           >
             <li>
-              <Link href="/sales">
-                <a
-                  className={`${asPath == "/sales" ? styles.selectedTab : ""}`}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Ventas
-                </a>
+              <Link
+                href="/sales"
+                className={`${asPath == "/sales" ? styles.selectedTab : ""}`}
+                onClick={() => setMenuOpen(false)}
+              >
+                Ventas
               </Link>
             </li>
             <li>
-              <Link href="/products">
-                <a
-                  className={`${
-                    asPath == "/products" ? styles.selectedTab : ""
-                  }`}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Productos
-                </a>
+              <Link
+                href="/products"
+                className={`${asPath == "/products" ? styles.selectedTab : ""}`}
+                onClick={() => setMenuOpen(false)}
+              >
+                Productos
               </Link>
             </li>
             <li>
-              <Link href="/price-updates">
-                <a
-                  className={`${
-                    asPath == "/price-updates" ? styles.selectedTab : ""
-                  }`}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Actualización de Precios
-                </a>
+              <Link
+                href="/price-updates"
+                className={`${
+                  asPath == "/price-updates" ? styles.selectedTab : ""
+                }`}
+                onClick={() => setMenuOpen(false)}
+              >
+                Actualización de Precios
               </Link>
             </li>
             <li>
-              <Link href="/clients">
-                <a
-                  className={`${
-                    asPath == "/clients" ? styles.selectedTab : ""
-                  }`}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Clientes
-                </a>
+              <Link
+                href="/clients"
+                className={`${asPath == "/clients" ? styles.selectedTab : ""}`}
+                onClick={() => setMenuOpen(false)}
+              >
+                Clientes
               </Link>
             </li>
             <li>
-              <Link href="/invoices">
-                <a
-                  className={`${
-                    asPath == "/invoices" ? styles.selectedTab : ""
-                  }`}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Remitos
-                </a>
+              <Link
+                href="/invoices"
+                className={`${asPath == "/invoices" ? styles.selectedTab : ""}`}
+                onClick={() => setMenuOpen(false)}
+              >
+                Remitos
               </Link>
             </li>
             <li>
-              <Link href="/sales-history">
-                <a
-                  className={`${
-                    asPath == "/sales-history" ? styles.selectedTab : ""
-                  }`}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Historial de Ventas
-                </a>
+              <Link
+                href="/sales-history"
+                className={`${
+                  asPath == "/sales-history" ? styles.selectedTab : ""
+                }`}
+                onClick={() => setMenuOpen(false)}
+              >
+                Historial de Ventas
               </Link>
             </li>
             <li>
-              <Link href="/graphs">
-                <a
-                  className={`${asPath == "/graphs" ? styles.selectedTab : ""}`}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Gráficos
-                </a>
+              <Link
+                href="/graphs"
+                className={`${asPath == "/graphs" ? styles.selectedTab : ""}`}
+                onClick={() => setMenuOpen(false)}
+              >
+                Gráficos
               </Link>
             </li>
             <li>
-              <Link href="/">
-                <a onClick={logout}>Cerrar Sesión</a>
+              <Link href="/" onClick={logout}>
+                Cerrar Sesión
               </Link>
             </li>
           </ul>
