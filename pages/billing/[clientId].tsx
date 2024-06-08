@@ -122,11 +122,11 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   if (!(await isUserAuthenticated(ctx))) return ssRedirectToLoginPage()
 
   const clientsApi = new ClientsApi(getJWTFromCtx(ctx), true)
-  const client = await clientsApi.getClient(+ctx.params.clientId)
+  const client = await clientsApi.getClient(+ctx.params?.clientId!)
 
   const invoiceItemsApi = new InvoiceItemsApi(getJWTFromCtx(ctx), true)
   const invoiceItems = await invoiceItemsApi.getInvoiceItems(
-    +ctx.params.clientId,
+    +ctx.params?.clientId!,
     false
   )
 

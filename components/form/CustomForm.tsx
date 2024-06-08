@@ -46,7 +46,7 @@ export const CustomForm: React.FC<CustomFormProps> = ({
 }: CustomFormProps) => {
   const [model, setModel] = useState(data)
   const [updating, setUpdating] = useState(false)
-  const [errors, setErrors] = useState(null)
+  const [errors, setErrors] = useState({})
 
   const saveChanges = async () => {
     try {
@@ -100,7 +100,7 @@ export const CustomForm: React.FC<CustomFormProps> = ({
                             value: model[field.name]
                           }}
                           onChange={(option) => {
-                            setModel({ ...model, [field.name]: option.value })
+                            setModel({ ...model, [field.name]: option?.value })
                             setUpdating(true)
                           }}
                           options={field.selectOptions.map((value) => ({
@@ -122,7 +122,7 @@ export const CustomForm: React.FC<CustomFormProps> = ({
                           loadOptions={field.fetchSelectOptions}
                           styles={REACT_SELECT_STYLES}
                           onChange={(option) => {
-                            setModel({ ...model, [field.name]: option.value })
+                            setModel({ ...model, [field.name]: option?.value })
                             setUpdating(true)
                           }}
                         />

@@ -58,9 +58,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   if (!(await isUserAuthenticated(ctx))) return ssRedirectToLoginPage()
 
   const productsApi = new ProductsApi(getJWTFromCtx(ctx), true)
-  const product = await productsApi.getProduct(+ctx.params.productId)
+  const product = await productsApi.getProduct(+ctx.params?.productId!)
   const historyPrices = await productsApi.getProductHistory(
-    +ctx.params.productId
+    +ctx.params?.productId!
   )
 
   return {

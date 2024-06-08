@@ -17,7 +17,7 @@ type ProductForUpdate = ExtendedProduct & {
 }
 
 export default function PriceUpdates({}) {
-  const [products, setProducts] = useState([])
+  const [products, setProducts] = useState<ProductForUpdate[]>([])
   const [searchText, setSearchText] = useState("")
   const [increasePercentage, setIncreasePercentage] = useState(0)
 
@@ -28,14 +28,13 @@ export default function PriceUpdates({}) {
   }
 
   const searchProducts = async () => {
-    const productsForUpdate: ProductForUpdate[] = (
-      await getProducts(1, 100000, searchText)
-    ).results
+    const productsForUpdate: ProductForUpdate[] =
+      (await getProducts(1, 100000, searchText)).results ?? []
     productsForUpdate.forEach((product) => (product.selected = true))
     setProducts(productsForUpdate)
   }
 
-  const setSelected = (productCode: string, selected: boolean) => {
+  const setSelected = (productCode: number, selected: boolean) => {
     products.filter((product) => product.codigo === productCode)[0].selected =
       selected
     setProducts([...products])
@@ -47,7 +46,7 @@ export default function PriceUpdates({}) {
         porcentaje_aumento: increasePercentage,
         productos: products
           .filter((product) => product.selected)
-          .map((product) => product.codigo)
+          .map((product) => product.codigo!)
       })
       successPopup(`Precios actualizados correctamente.`)
       resetFields()
