@@ -7,7 +7,7 @@ function MyApp({ Component, pageProps }) {
     <>
       <meta name="viewport" content="width=device-width, user-scalable=no" />
       <NavBar />
-      <div className={"watermark"}></div>
+      {/*<div className={"watermark"}></div>*/}
       <Component {...pageProps} />
     </>
   )
