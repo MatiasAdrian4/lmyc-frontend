@@ -1,5 +1,3 @@
-import getConfig from "next/config"
-
 import { LMYC_JWT, ROWS_PER_PAGE } from "utils/constants"
 import {
   UsersApi as LMYCUsersApi,
@@ -39,12 +37,10 @@ class LMYCApi {
     lmyc_jwt: string | undefined = undefined,
     internal: boolean = false
   ) {
-    const { publicRuntimeConfig } = getConfig()
-
     this.config = new Configuration({
       basePath: internal
-        ? publicRuntimeConfig.LMYC_BACKEND_HOST_INTERNAL
-        : publicRuntimeConfig.LMYC_BACKEND_HOST_EXTERNAL,
+        ? process.env.NEXT_PUBLIC_LMYC_BACKEND_HOST_INTERNAL
+        : process.env.NEXT_PUBLIC_LMYC_BACKEND_HOST_EXTERNAL,
       baseOptions: {
         withCredentials: true
       }
@@ -69,10 +65,14 @@ class UsersApi extends LMYCApi {
   }
 
   async login(username: string, password: string) {
-    await this.usersAPI.accountLoginPost({
-      username: username,
-      password: password
-    })
+    try {
+      return await this.usersAPI.accountLoginPost({
+        username: username,
+        password: password
+      })
+    } catch (err) {
+      return undefined
+    }
   }
 
   async getUser(): Promise<User | undefined> {

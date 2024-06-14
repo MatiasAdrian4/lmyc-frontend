@@ -1,11 +1,11 @@
-import { GetServerSideProps } from "next"
-import { useRouter } from "next/router"
+"use client"
+
+import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { UsersApi } from "api/lmycApi"
 import styles from "styles/Home.module.css"
-import { isUserAuthenticated, ssRedirectToSalesPage } from "utils/utils"
 
-export default function Home() {
+export default function LoginForm() {
   const router = useRouter()
   const usersApi = new UsersApi()
 
@@ -32,6 +32,7 @@ export default function Home() {
   }
 
   return (
+    // TODO: use "form" instead
     <div data-cy="login-form" className={styles.signin}>
       <p>{"Lubricentro M&C"}</p>
       <input
@@ -64,12 +65,4 @@ export default function Home() {
       )}
     </div>
   )
-}
-
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  if (await isUserAuthenticated(ctx)) return ssRedirectToSalesPage()
-
-  return {
-    props: {}
-  }
 }
