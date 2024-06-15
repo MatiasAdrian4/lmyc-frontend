@@ -52,7 +52,7 @@ export const SearchModal = forwardRef(
           style={customStyles}
           onRequestClose={() => setIsOpen(false)}
         >
-          <h2>Buscador de {modelName}s</h2>
+          <h2 style={{fontSize: "18px"}}>Buscador de {modelName}s</h2>
           <PaginatedTable
             title={modelName}
             columns={columns}

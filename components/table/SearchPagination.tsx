@@ -47,8 +47,8 @@ export const SearchPagination: React.FC<SearchPaginationProps> = ({
   const numberOfPages = Math.ceil(totalRows / rowsPerPage)
 
   const [currentPage, setCurrentPage] = useState(1)
-  const [text, setText] = useState(null)
-  const [date, setDate] = useState(null)
+  const [text, setText] = useState<string | null>(null)
+  const [date, setDate] = useState<Date | null>(null)
   const [datepickerSelected, setDatepickerSelected] = useState(
     DatepickerType.Day
   )

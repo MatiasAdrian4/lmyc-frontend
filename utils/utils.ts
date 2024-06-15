@@ -1,5 +1,5 @@
 import { format } from "date-fns"
-import { GetServerSidePropsContext, NextPageContext } from "next"
+import { GetServerSidePropsContext } from "next"
 import { NextApiRequestCookies } from "next/dist/server/api-utils"
 import Swal from "sweetalert2"
 import { FileActionsApi, UsersApi } from "api/lmycApi"
@@ -10,11 +10,6 @@ import { getAvailableCodes } from "api/fetch"
 export const getJWTFromCtx = (ctx: GetServerSidePropsContext) => {
   const cookies: NextApiRequestCookies = ctx.req.cookies
   return cookies[LMYC_JWT]
-}
-
-export const isMobile = (ctx: NextPageContext) => {
-  const userAgent = ctx.req?.headers["user-agent"]
-  return /mobile/i.test(userAgent)
 }
 
 export const isUserAuthenticated = async (ctx: GetServerSidePropsContext) => {
@@ -83,7 +78,7 @@ export const downloadInvoicePDF = async (code: number) => {
 export const parseInvoiceItem = (
   invoiceItem: SimplifiedInvoiceItem
 ): string => {
-  return `${invoiceItem.cantidad} und. - ${invoiceItem.producto.codigo} (${invoiceItem.producto.detalle})`
+  return `${invoiceItem.cantidad} und. - ${invoiceItem.producto?.codigo} (${invoiceItem.producto?.detalle})`
 }
 
 export const successPopup = (message: string) => {
@@ -126,7 +121,7 @@ export const actionPopup = (
 
 export const fetchAvailableCodes = (start: number) => {
   return getAvailableCodes(start, AMOUNT_OPTIONS_IN_SELECT).then((data) => {
-    return data.available_codes.map((code) => ({
+    return data.available_codes?.map((code) => ({
       label: code,
       value: code
     }))

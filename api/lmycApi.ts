@@ -1,5 +1,3 @@
-import getConfig from "next/config"
-
 import { LMYC_JWT, ROWS_PER_PAGE } from "utils/constants"
 import {
   UsersApi as LMYCUsersApi,
@@ -35,13 +33,14 @@ import { Configuration } from "lmyc_client/configuration"
 class LMYCApi {
   config: Configuration
 
-  constructor(lmyc_jwt: string = undefined, internal: boolean = false) {
-    const { publicRuntimeConfig } = getConfig()
-
+  constructor(
+    lmyc_jwt: string | undefined = undefined,
+    internal: boolean = false
+  ) {
     this.config = new Configuration({
       basePath: internal
-        ? publicRuntimeConfig.LMYC_BACKEND_HOST_INTERNAL
-        : publicRuntimeConfig.LMYC_BACKEND_HOST_EXTERNAL,
+        ? process.env.NEXT_PUBLIC_LMYC_BACKEND_HOST_INTERNAL
+        : process.env.NEXT_PUBLIC_LMYC_BACKEND_HOST_EXTERNAL,
       baseOptions: {
         withCredentials: true
       }
@@ -57,7 +56,10 @@ class LMYCApi {
 class UsersApi extends LMYCApi {
   usersAPI: LMYCUsersApi
 
-  constructor(lmyc_jwt: string = undefined, internal: boolean = false) {
+  constructor(
+    lmyc_jwt: string | undefined = undefined,
+    internal: boolean = false
+  ) {
     super(lmyc_jwt, internal)
     this.usersAPI = new LMYCUsersApi(this.config)
   }
@@ -69,7 +71,7 @@ class UsersApi extends LMYCApi {
     })
   }
 
-  async getUser(): Promise<User> {
+  async getUser(): Promise<User | undefined> {
     try {
       return (await this.usersAPI.accountUserGet()).data
     } catch (err) {
@@ -85,7 +87,10 @@ class UsersApi extends LMYCApi {
 class ProductsApi extends LMYCApi {
   productsAPI: LMYCProductsApi
 
-  constructor(lmyc_jwt: string = undefined, internal: boolean = false) {
+  constructor(
+    lmyc_jwt: string | undefined = undefined,
+    internal: boolean = false
+  ) {
     super(lmyc_jwt, internal)
     this.productsAPI = new LMYCProductsApi(this.config)
   }
@@ -116,7 +121,7 @@ class ProductsApi extends LMYCApi {
     return await this.productsAPI.productosPost(data)
   }
 
-  async getProduct(productId: number): Promise<ExtendedProduct> {
+  async getProduct(productId: number): Promise<ExtendedProduct | undefined> {
     try {
       return (await this.productsAPI.productosProductoIdGet(productId)).data
     } catch {
@@ -161,7 +166,10 @@ class ProductsApi extends LMYCApi {
 class ClientsApi extends LMYCApi {
   clientsAPI: LMYCClientsApi
 
-  constructor(lmyc_jwt: string = undefined, internal: boolean = false) {
+  constructor(
+    lmyc_jwt: string | undefined = undefined,
+    internal: boolean = false
+  ) {
     super(lmyc_jwt, internal)
     this.clientsAPI = new LMYCClientsApi(this.config)
   }
@@ -185,7 +193,7 @@ class ClientsApi extends LMYCApi {
     return await this.clientsAPI.clientesPost(data)
   }
 
-  async getClient(clientId: number): Promise<ExtendedClient> {
+  async getClient(clientId: number): Promise<ExtendedClient | undefined> {
     try {
       return (await this.clientsAPI.clientesClienteIdGet(clientId)).data
     } catch {
@@ -201,7 +209,10 @@ class ClientsApi extends LMYCApi {
 class InvoicesApi extends LMYCApi {
   invoicesAPI: LMYCInvoicesApi
 
-  constructor(lmyc_jwt: string = undefined, internal: boolean = false) {
+  constructor(
+    lmyc_jwt: string | undefined = undefined,
+    internal: boolean = false
+  ) {
     super(lmyc_jwt, internal)
     this.invoicesAPI = new LMYCInvoicesApi(this.config)
   }
@@ -213,8 +224,8 @@ class InvoicesApi extends LMYCApi {
   async getInvoices(
     pageNumber = 1,
     pageSize = ROWS_PER_PAGE,
-    name: string = undefined,
-    query: string = undefined
+    name: string | undefined = undefined,
+    query: string | undefined = undefined
   ): Promise<PaginatedInvoices> {
     try {
       return (
@@ -225,7 +236,7 @@ class InvoicesApi extends LMYCApi {
     }
   }
 
-  async getInvoice(invoiceId: number): Promise<ExtendedInvoice> {
+  async getInvoice(invoiceId: number): Promise<ExtendedInvoice | undefined> {
     try {
       return (await this.invoicesAPI.remitosRemitoIdGet(invoiceId)).data
     } catch {
@@ -241,14 +252,17 @@ class InvoicesApi extends LMYCApi {
 class InvoiceItemsApi extends LMYCApi {
   invoiceItemsApi: LMYCInvoiceItemsApi
 
-  constructor(lmyc_jwt: string = undefined, internal: boolean = false) {
+  constructor(
+    lmyc_jwt: string | undefined = undefined,
+    internal: boolean = false
+  ) {
     super(lmyc_jwt, internal)
     this.invoiceItemsApi = new LMYCInvoiceItemsApi(this.config)
   }
 
   async getInvoiceItems(
-    codigoCliente: number = undefined,
-    pago: boolean = undefined
+    codigoCliente: number | undefined = undefined,
+    pago: boolean | undefined = undefined
   ): Promise<InvoiceItemWithProductData[]> {
     try {
       return (
@@ -267,7 +281,10 @@ class InvoiceItemsApi extends LMYCApi {
 class SalesApi extends LMYCApi {
   salesHistoryApi: LMYCSalesApi
 
-  constructor(lmyc_jwt: string = undefined, internal: boolean = false) {
+  constructor(
+    lmyc_jwt: string | undefined = undefined,
+    internal: boolean = false
+  ) {
     super(lmyc_jwt, internal)
     this.salesHistoryApi = new LMYCSalesApi(this.config)
   }
@@ -319,7 +336,10 @@ class SalesApi extends LMYCApi {
 class FileActionsApi extends LMYCApi {
   fileActionsApi: LMYCFileActionsApi
 
-  constructor(lmyc_jwt: string = undefined, internal: boolean = false) {
+  constructor(
+    lmyc_jwt: string | undefined = undefined,
+    internal: boolean = false
+  ) {
     super(lmyc_jwt, internal)
     this.fileActionsApi = new LMYCFileActionsApi(this.config)
   }

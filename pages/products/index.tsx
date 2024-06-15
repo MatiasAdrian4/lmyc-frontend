@@ -71,7 +71,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   return {
     props: {
       paginatedProducts: paginatedProducts,
-      firstAvailableCode: availableCodes.available_codes[0]
+      firstAvailableCode: availableCodes?.available_codes?.[0]
     }
   }
 }

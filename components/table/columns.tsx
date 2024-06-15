@@ -53,9 +53,7 @@ export const CLIENT_COLUMNS: Column[] = [
     accessor: "ir_a",
     width: "10%",
     Cell: ({ row }) => (
-      <Link href={`/clients/${row.original.id}`}>
-        <a>Abrir Cliente</a>
-      </Link>
+      <Link href={`/clients/${row.original.id}`}>Abrir Cliente</Link>
     )
   }
 ]
@@ -113,9 +111,7 @@ export const PRODUCT_COLUMNS: Column[] = [
     accessor: "ir_a",
     width: "10%",
     Cell: ({ row }) => (
-      <Link href={`/products/${row.original.codigo}`}>
-        <a>Abrir Producto</a>
-      </Link>
+      <Link href={`/products/${row.original.codigo}`}>Abrir Producto</Link>
     )
   }
 ]
@@ -214,10 +210,11 @@ export const INVOICE_COLUMNS: Column[] = [
     accessor: "cliente.nombre",
     width: "20%",
     Cell: ({ row }) => (
-      <Link href={`/clients/${row.original.cliente.id}`}>
-        <a style={{ color: "black", fontWeight: "bold" }}>
-          {row.original.cliente.nombre}
-        </a>
+      <Link
+        href={`/clients/${row.original.cliente.id}`}
+        style={{ color: "black", fontWeight: "bold" }}
+      >
+        {row.original.cliente.nombre}
       </Link>
     )
   },
@@ -260,9 +257,7 @@ export const INVOICE_COLUMNS: Column[] = [
     accessor: "ir_a",
     width: "10%",
     Cell: ({ row }) => (
-      <Link href={`/invoices/${row.original.codigo}`}>
-        <a>Abrir Remito</a>
-      </Link>
+      <Link href={`/invoices/${row.original.codigo}`}>Abrir Remito</Link>
     )
   },
   {

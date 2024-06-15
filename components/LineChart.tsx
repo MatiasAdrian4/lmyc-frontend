@@ -20,7 +20,7 @@ ChartJS.register(
   Legend
 )
 
-export interface DatasetProps {
+export interface Dataset {
   /** Dataset label */
   label: string
   /** Dataset data */
@@ -35,7 +35,7 @@ interface LineChartProps {
   /** Labels in the X */
   labels: string[]
   /** Data to be render in the graph. Each dataset represents a line */
-  datasets: DatasetProps[]
+  datasets: Dataset[]
 }
 
 export const LineChart: React.FC<LineChartProps> = ({

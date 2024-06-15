@@ -40,13 +40,17 @@ enum SaleType {
   CheckingAccount = 2
 }
 
-export default function SalesList() {
-  const productModalRef = useRef(null)
-  const clientModalRef = useRef(null)
+interface ModalRef {
+  closeModal: () => void
+}
 
-  const [products, setProducts] = useState([].concat({ total: 0.0 }))
+export default function SalesList() {
+  const productModalRef = useRef<ModalRef | null>(null)
+  const clientModalRef = useRef<ModalRef | null>(null)
+
+  const [products, setProducts] = useState<CartProduct[]>([{ total: 0.0 }])
   const [saleTypeSelected, setSaleTypeSelected] = useState(SaleType.Cash)
-  const [clientSelected, setClientSelected] = useState(null)
+  const [clientSelected, setClientSelected] = useState<Client | null>(null)
 
   const openModal = (modalRef) => {
     modalRef.current.openModal()
@@ -58,14 +62,14 @@ export default function SalesList() {
       product.cantidad = 0
       product.total = 0
       product.borrar = true
-      const totalProduct = products.pop()
+      const totalProduct = products.pop()!
       setProducts(products.concat(product).concat(totalProduct))
     }
   }
 
   const selectProduct = (product: ExtendedProduct) => {
     addProduct(product)
-    productModalRef.current.closeModal()
+    productModalRef.current!.closeModal()
   }
 
   const currentTotal = (products) => {
@@ -83,7 +87,7 @@ export default function SalesList() {
       .indexOf(productId)
     products[productIndex].cantidad = quantity
     products[productIndex].total = toFixed2(
-      products[productIndex].precio_venta_contado * quantity
+      products[productIndex].precio_venta_contado! * quantity
     )
 
     /* Update total */
@@ -93,7 +97,7 @@ export default function SalesList() {
 
   const selectClient = (client: Client) => {
     setClientSelected(client)
-    clientModalRef.current.closeModal()
+    clientModalRef.current!.closeModal()
   }
 
   const onChangeSaleType = (event) => {
@@ -114,7 +118,7 @@ export default function SalesList() {
     const totalProduct: CartProduct = products.filter(
       (product) => !product.codigo
     )[0]
-    return !(totalProduct.total > 0)
+    return !(totalProduct.total! > 0)
   }
 
   const getProductsReadyForSale = () => {
@@ -149,7 +153,7 @@ export default function SalesList() {
     )
     try {
       const response = await newInvoice({
-        cliente: clientSelected.id,
+        cliente: clientSelected!.id,
         elementos_remito: producstForSale
       })
       actionPopup("El remito fue generado correctamente.", "Descargar", () =>
@@ -207,7 +211,7 @@ export default function SalesList() {
                   <input
                     type="number"
                     readOnly={true}
-                    value={parseFloat(product.total)}
+                    value={parseFloat(String(product.total))}
                   />
                 </td>
                 <td>

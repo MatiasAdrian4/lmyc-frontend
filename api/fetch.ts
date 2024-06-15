@@ -144,7 +144,7 @@ export const getSales = async (
   date: string
 ): Promise<PaginatedSales> => {
   if (!date) {
-    return { count: 0, next: null, previous: null, results: [] }
+    return { count: 0, next: undefined, previous: undefined, results: [] }
   }
 
   const salesApi = new SalesApi()
@@ -172,7 +172,7 @@ export const getSales = async (
       return await salesApi.getSales(pageNumber, pageSize, "", "", splitDate[0])
     }
     default: {
-      return { count: 0, next: null, previous: null, results: [] }
+      return { count: 0, next: undefined, previous: undefined, results: [] }
     }
   }
 }

@@ -10,7 +10,7 @@ import { useEffect, useState } from "react"
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 import es from "date-fns/locale/es"
-import { DatasetProps, LineChart } from "components/LineChart"
+import { Dataset, LineChart } from "components/LineChart"
 import { MONTHS } from "utils/constants"
 import { getSalesPerMonth, getSalesPerYear } from "api/fetch"
 
@@ -24,11 +24,11 @@ export default function Graphs() {
     SalesDatepickerType.Month
   )
 
-  const [date, setDate] = useState(null)
-  const [compareDate, setCompareDate] = useState(null)
+  const [date, setDate] = useState<Date | null>(null)
+  const [compareDate, setCompareDate] = useState<Date | null>(null)
 
-  const [dataset, setDataset] = useState(null)
-  const [compareDataset, setCompareDataset] = useState(null)
+  const [dataset, setDataset] = useState<number[] | null>(null)
+  const [compareDataset, setCompareDataset] = useState<number[] | null>(null)
 
   const [incremental, setIncremental] = useState(false)
   const [compare, setCompare] = useState(false)
@@ -56,31 +56,37 @@ export default function Graphs() {
     }
   }
 
-  const getDataInIncrementalFormat = (datasetSelected) => {
-    const incrementalDataset = []
+  const getDataInIncrementalFormat = (datasetSelected: number[]) => {
+    const incrementalDataset: number[] = []
     datasetSelected.reduce((a, b, i) => (incrementalDataset[i] = a + b), 0)
     return incrementalDataset
   }
 
-  const fetchDataset = async (dateSelected, setDatasetSelected) => {
+  const fetchDataset = async (dateSelected: Date, setDatasetSelected) => {
     if (dateSelected && datepickerSelected == SalesDatepickerType.Month) {
       const data = await getSalesPerMonth(
-        getFormattedDate(dateSelected).split("/")[0],
-        getFormattedDate(dateSelected).split("/")[1]
+        getFormattedDate(dateSelected)!.split("/")[0],
+        getFormattedDate(dateSelected)!.split("/")[1]
       )
-      setDatasetSelected([].concat(data.sales_per_month))
+      const emptyDataset: number[] = []
+      setDatasetSelected(emptyDataset.concat(data.sales_per_month || []))
     } else if (dateSelected && datepickerSelected == SalesDatepickerType.Year) {
-      const data = await getSalesPerYear(getFormattedDate(dateSelected))
-      setDatasetSelected([].concat(data.sales_per_year))
+      const data = await getSalesPerYear(getFormattedDate(dateSelected)!)
+      const emptyDataset: number[] = []
+      setDatasetSelected(emptyDataset.concat(data.sales_per_year || []))
     }
   }
 
   useEffect(() => {
-    fetchDataset(date, setDataset)
+    if (date != null) {
+      fetchDataset(date, setDataset)
+    }
   }, [date])
 
   useEffect(() => {
-    fetchDataset(compareDate, setCompareDataset)
+    if (compareDate != null) {
+      fetchDataset(compareDate, setCompareDataset)
+    }
   }, [compareDate])
 
   useEffect(() => {
@@ -89,8 +95,8 @@ export default function Graphs() {
     }
   }, [compare])
 
-  const getDatasets = (): DatasetProps[] => {
-    const datasets = []
+  const getDatasets = (): Dataset[] => {
+    const datasets: Dataset[] = []
     if (date && dataset) {
       datasets.push({
         label: `Ventas ${getFormattedDate(date)}`,
