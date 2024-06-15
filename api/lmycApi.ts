@@ -65,14 +65,10 @@ class UsersApi extends LMYCApi {
   }
 
   async login(username: string, password: string) {
-    try {
-      return await this.usersAPI.accountLoginPost({
-        username: username,
-        password: password
-      })
-    } catch (err) {
-      return undefined
-    }
+    await this.usersAPI.accountLoginPost({
+      username: username,
+      password: password
+    })
   }
 
   async getUser(): Promise<User | undefined> {

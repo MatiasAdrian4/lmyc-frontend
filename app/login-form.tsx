@@ -1,7 +1,7 @@
 "use client"
 
 import { useRouter } from "next/navigation"
-import { useState } from "react"
+import { FormEvent, useState } from "react"
 import { UsersApi } from "api/lmycApi"
 import styles from "styles/Home.module.css"
 
@@ -9,15 +9,18 @@ export default function LoginForm() {
   const router = useRouter()
   const usersApi = new UsersApi()
 
-  const [username, setUsername] = useState("")
-  const [password, setPassword] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [errorMsg, setErrorMsg] = useState("")
 
-  const login = async () => {
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
     setIsLoading(true)
     try {
-      await usersApi.login(username, password)
+      const formData = new FormData(event.currentTarget)
+      await usersApi.login(
+        formData.get("username") as string,
+        formData.get("password") as string
+      )
       setIsLoading(false)
       setErrorMsg("")
       router.push("/sales")
@@ -32,23 +35,15 @@ export default function LoginForm() {
   }
 
   return (
-    // TODO: use "form" instead
-    <div data-cy="login-form" className={styles.signin}>
+    <form onSubmit={onSubmit} data-cy="login-form" className={styles.signin}>
       <p>{"Lubricentro M&C"}</p>
-      <input
-        type="text"
-        id="username"
-        placeholder="Usuario"
-        value={username}
-        onChange={(event) => setUsername(event.target.value)}
-      />
+      <input type="text" id="username" placeholder="Usuario" name="username" />
       <br></br>
       <input
         type="password"
         id="password"
         placeholder="Contraseña"
-        value={password}
-        onChange={(event) => setPassword(event.target.value)}
+        name="password"
       />
       <br></br>
       {isLoading ? (
@@ -57,12 +52,10 @@ export default function LoginForm() {
         </div>
       ) : (
         <div>
-          <button type="button" onClick={login}>
-            Iniciar Sesión
-          </button>
+          <button type="submit">Iniciar Sesión</button>
           <p className={styles.error}>{errorMsg}</p>
         </div>
       )}
-    </div>
+    </form>
   )
 }
