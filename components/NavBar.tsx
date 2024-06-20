@@ -46,7 +46,7 @@ export default function NavBar() {
                 }`}
                 onClick={() => setMenuOpen(false)}
               >
-                Actualización de Precios
+                Act. de Precios
               </Link>
             </li>
             <li>
@@ -76,6 +76,17 @@ export default function NavBar() {
                 onClick={() => setMenuOpen(false)}
               >
                 Historial de Ventas
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/account-summaries"
+                className={`${
+                  asPath == "/account-summaries" ? styles.selectedTab : ""
+                }`}
+                onClick={() => setMenuOpen(false)}
+              >
+                Resumenes
               </Link>
             </li>
             <li>
