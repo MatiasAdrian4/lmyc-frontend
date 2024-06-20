@@ -1,1 +1,10 @@
+.clientSearchSection {
+  margin-left: 100px;
+}
 
+.clientSearchSection input {
+  margin: 15px;
+  padding: 10px;
+  text-align: center;
+  min-width: 180px;
+}
