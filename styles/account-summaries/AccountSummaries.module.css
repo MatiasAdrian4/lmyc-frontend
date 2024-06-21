@@ -1,5 +1,8 @@
-.clientSearchSection {
+.newAccountSummarySection,
+.clientSearchSection,
+.accountSummarySection {
   margin-left: 100px;
+  margin-bottom: 30px;
 }
 
 .clientSearchSection input {
@@ -7,4 +10,49 @@
   padding: 10px;
   text-align: center;
   min-width: 180px;
+}
+
+.triangle {
+  font-size: 15px;
+  padding-left: 10px;
+}
+
+.newItemForm {
+  margin: 35px;
+}
+
+.formField {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.formField span {
+  margin-right: 10px;
+}
+
+.formField label {
+  margin-right: 15px;
+}
+
+.formField input[type="radio"] {
+  accent-color: black;
+  margin-right: 10px;
+}
+
+.formField input {
+  text-align: center;
+  padding: 5px;
+}
+
+.datepicker input {
+  width: 100px;
+  text-align: center;
+  padding: 5px;
+}
+
+.formField input::-webkit-outer-spin-button,
+.formField input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
