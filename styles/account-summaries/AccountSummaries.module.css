@@ -56,3 +56,8 @@
   -webkit-appearance: none;
   margin: 0;
 }
+
+.accountSummaryTable {
+  max-width: 1200px;
+  padding: 10px;
+}

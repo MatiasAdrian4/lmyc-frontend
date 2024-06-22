@@ -11,9 +11,11 @@ import {
   UpdateInvoice,
   InvoiceItemIds,
   SalesList,
-  PaginatedSales
+  PaginatedSales,
+  AccountSummaryItem
 } from "lmyc_client"
 import {
+  AccountSummariesApi,
   ClientsApi,
   InvoiceItemsApi,
   InvoicesApi,
@@ -190,4 +192,20 @@ export const getSalesPerMonth = async (month: string, year: string) => {
 export const getSalesPerYear = async (year: string) => {
   const salesApi = new SalesApi()
   return await salesApi.getSalesPerYear(year)
+}
+
+/*********************************************************************/
+/********** Account Summaries ****************************************/
+/*********************************************************************/
+
+export const newAccountSummaryItem = async (data: AccountSummaryItem) => {
+  const accountSummariesApi = new AccountSummariesApi()
+  return await accountSummariesApi.newAccountSummaryItem(data)
+}
+
+export const getAccountSummaryItems = async (
+  clientId: number
+): Promise<AccountSummaryItem[]> => {
+  const accountSummariesApi = new AccountSummariesApi()
+  return await accountSummariesApi.getAccountSummaryItems(clientId)
 }

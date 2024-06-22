@@ -8,12 +8,16 @@ import styles from "styles/account-summaries/AccountSummaries.module.css"
 import { useRef, useState } from "react"
 import { Client } from "lmyc_client"
 import { SearchModal } from "components/SearchModal"
-import { SEARCH_CLIENT_COLUMNS } from "components/table/columns"
+import {
+  ACCOUNT_SUMMARY_ITEMS_COLUMNS,
+  SEARCH_CLIENT_COLUMNS
+} from "components/table/columns"
 import { getClients } from "api/fetch"
 import { Models } from "utils/constants"
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 import es from "date-fns/locale/es"
+import { BasicTable } from "components/table/BasicTable"
 
 interface ModalRef {
   closeModal: () => void
@@ -38,6 +42,8 @@ export default function AccountSummariesList({}) {
   const [newItemType, setNewItemType] = useState(ItemType.Debe)
   const [newItemDescription, setNewItemDescription] = useState("")
   const [newItemAmount, setNewItemAmount] = useState(0)
+
+  const [accountSummaryItems, setAccountSummaryItems] = useState([])
 
   const createNewItem = () => {
     console.log("date: ", newItemDate)
@@ -153,6 +159,13 @@ export default function AccountSummariesList({}) {
 
       <div className={styles.accountSummarySection}>
         <h3>Resumenes de cuenta de: {client?.nombre}</h3>
+        <div className={styles.accountSummaryTable}>
+          <BasicTable
+            title="Item"
+            columns={ACCOUNT_SUMMARY_ITEMS_COLUMNS}
+            data={accountSummaryItems}
+          />
+        </div>
       </div>
     </>
   )

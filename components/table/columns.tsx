@@ -379,3 +379,43 @@ export const UPDATE_PRODUCT_PRICES_COLUMNS = (
     )
   }
 ]
+
+export const ACCOUNT_SUMMARY_ITEMS_COLUMNS: Column[] = [
+  {
+    Header: "Descripción",
+    accessor: "description",
+    width: "20%"
+  },
+  {
+    Header: "Fecha",
+    accessor: "date",
+    width: "20%",
+    Cell: ({ value }) => {
+      return formatDate(value)
+    }
+  },
+  {
+    Header: "Debe",
+    accessor: "debe",
+    width: "20%",
+    Cell: ({ value }) => {
+      return value.toFixed(2)
+    }
+  },
+  {
+    Header: "Haber",
+    accessor: "haber",
+    width: "20%",
+    Cell: ({ value }) => {
+      return value.toFixed(2)
+    }
+  },
+  {
+    Header: "Saldo",
+    accessor: "total",
+    width: "20%",
+    Cell: ({ value }) => {
+      return value.toFixed(2)
+    }
+  }
+]
