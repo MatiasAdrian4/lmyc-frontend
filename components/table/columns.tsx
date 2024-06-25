@@ -391,7 +391,7 @@ export const ACCOUNT_SUMMARY_ITEMS_COLUMNS: Column[] = [
     accessor: "date",
     width: "20%",
     Cell: ({ value }) => {
-      return formatDate(value)
+      return value ? formatDate(value) : ""
     }
   },
   {
@@ -399,7 +399,7 @@ export const ACCOUNT_SUMMARY_ITEMS_COLUMNS: Column[] = [
     accessor: "debe",
     width: "20%",
     Cell: ({ value }) => {
-      return value.toFixed(2)
+      return value ? value.toFixed(2) : ""
     }
   },
   {
@@ -407,7 +407,7 @@ export const ACCOUNT_SUMMARY_ITEMS_COLUMNS: Column[] = [
     accessor: "haber",
     width: "20%",
     Cell: ({ value }) => {
-      return value.toFixed(2)
+      return value ? value.toFixed(2) : ""
     }
   },
   {
