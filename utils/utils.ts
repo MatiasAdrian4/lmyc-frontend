@@ -102,11 +102,12 @@ export const errorPopup = (message: string) => {
 export const actionPopup = (
   message: string,
   confirmButtonText: string,
-  action: Function
+  action: Function,
+  isWarning: boolean = false
 ) => {
   Swal.fire({
     title: message,
-    icon: "success",
+    icon: !isWarning ? "success" : "warning",
     confirmButtonText: confirmButtonText,
     confirmButtonColor: "#a7c13c",
     showCancelButton: true,

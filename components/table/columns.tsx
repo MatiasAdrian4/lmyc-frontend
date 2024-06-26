@@ -380,16 +380,18 @@ export const UPDATE_PRODUCT_PRICES_COLUMNS = (
   }
 ]
 
-export const ACCOUNT_SUMMARY_ITEMS_COLUMNS: Column[] = [
+export const ACCOUNT_SUMMARY_ITEMS_COLUMNS = (
+  deleteFunction: Function
+): Column[] => [
   {
     Header: "Descripción",
     accessor: "description",
-    width: "20%"
+    width: "19%"
   },
   {
     Header: "Fecha",
     accessor: "date",
-    width: "20%",
+    width: "19%",
     Cell: ({ value }) => {
       return value ? formatDate(value) : ""
     }
@@ -397,7 +399,7 @@ export const ACCOUNT_SUMMARY_ITEMS_COLUMNS: Column[] = [
   {
     Header: "Debe",
     accessor: "debe",
-    width: "20%",
+    width: "19%",
     Cell: ({ value }) => {
       return value ? value.toFixed(2) : ""
     }
@@ -405,7 +407,7 @@ export const ACCOUNT_SUMMARY_ITEMS_COLUMNS: Column[] = [
   {
     Header: "Haber",
     accessor: "haber",
-    width: "20%",
+    width: "19%",
     Cell: ({ value }) => {
       return value ? value.toFixed(2) : ""
     }
@@ -413,9 +415,23 @@ export const ACCOUNT_SUMMARY_ITEMS_COLUMNS: Column[] = [
   {
     Header: "Saldo",
     accessor: "total",
-    width: "20%",
+    width: "19%",
     Cell: ({ value }) => {
       return value.toFixed(2)
     }
+  },
+  {
+    Header: "",
+    accessor: "delete",
+    width: "5%",
+    Cell: ({ row }) =>
+      (row.original.debe || row.original.haber) && (
+        <button
+          style={{ padding: "3px 7px 3px 7px", backgroundColor: "#636363" }}
+          onClick={() => deleteFunction(row.original)}
+        >
+          X
+        </button>
+      )
   }
 ]

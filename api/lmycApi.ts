@@ -375,6 +375,12 @@ class AccountSummariesApi extends LMYCApi {
       return []
     }
   }
+
+  async deleteAccountSummaryItem(itemId: number) {
+    return await this.accountSummariesApi.accountSummariesAccountSummaryIdDelete(
+      itemId
+    )
+  }
 }
 
 export {

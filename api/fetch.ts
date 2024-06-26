@@ -209,3 +209,8 @@ export const getAccountSummaryItems = async (
   const accountSummariesApi = new AccountSummariesApi()
   return await accountSummariesApi.getAccountSummaryItems(clientId)
 }
+
+export const deleteAccountSummaryItem = async (itemId: number) => {
+  const accountSummariesApi = new AccountSummariesApi()
+  return await accountSummariesApi.deleteAccountSummaryItem(itemId)
+}

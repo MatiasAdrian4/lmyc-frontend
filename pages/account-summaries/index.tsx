@@ -1,5 +1,6 @@
 import { GetServerSideProps } from "next"
 import {
+  actionPopup,
   errorPopup,
   isUserAuthenticated,
   ssRedirectToLoginPage,
@@ -8,13 +9,14 @@ import {
 } from "utils/utils"
 import styles from "styles/account-summaries/AccountSummaries.module.css"
 import { useEffect, useRef, useState } from "react"
-import { Client } from "lmyc_client"
+import { AccountSummaryItem, Client } from "lmyc_client"
 import { SearchModal } from "components/SearchModal"
 import {
   ACCOUNT_SUMMARY_ITEMS_COLUMNS,
   SEARCH_CLIENT_COLUMNS
 } from "components/table/columns"
 import {
+  deleteAccountSummaryItem,
   getAccountSummaryItems,
   getClients,
   newAccountSummaryItem
@@ -35,6 +37,7 @@ enum ItemType {
 }
 
 type Item = {
+  id?: number
   description?: string
   date?: string
   debe?: number
@@ -76,6 +79,7 @@ export default function AccountSummariesList({}) {
       }
 
       newItems.push({
+        id: item.id,
         description: item.description,
         date: item.date,
         debe: item.type === "debe" ? item.amount : undefined,
@@ -124,6 +128,24 @@ export default function AccountSummariesList({}) {
       fetchAccountSummaryItems(client.id!)
     }
   }, [client])
+
+  const deleteItem = async (itemId: number) => {
+    try {
+      await deleteAccountSummaryItem(itemId)
+    } catch {
+      errorPopup("Ha occurido un error al intentar eliminar el item.")
+    }
+    fetchAccountSummaryItems(client?.id!)
+  }
+
+  const confirmDeleteAccountSummaryItem = (item: AccountSummaryItem) => {
+    actionPopup(
+      "¿Esta seguro de querer eliminar este item?",
+      "Eliminar",
+      () => deleteItem(item.id!),
+      true
+    )
+  }
 
   return (
     <>
@@ -234,7 +256,9 @@ export default function AccountSummariesList({}) {
             <div className={styles.accountSummaryTable}>
               <BasicTable
                 title="Item"
-                columns={ACCOUNT_SUMMARY_ITEMS_COLUMNS}
+                columns={ACCOUNT_SUMMARY_ITEMS_COLUMNS(
+                  confirmDeleteAccountSummaryItem
+                )}
                 data={accountSummaryItems}
               />
             </div>
