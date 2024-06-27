@@ -42,8 +42,8 @@ export function toTitleCase(str) {
   })
 }
 
-export const formatDate = (value) => {
-  return format(new Date(value), "dd/MM/yyyy")
+export const formatDate = (value, schema = "dd/MM/yyyy") => {
+  return format(new Date(value), schema)
 }
 
 export const getDayMonthAndYear = (date) => {

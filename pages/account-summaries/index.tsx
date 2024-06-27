@@ -2,6 +2,7 @@ import { GetServerSideProps } from "next"
 import {
   actionPopup,
   errorPopup,
+  formatDate,
   isUserAuthenticated,
   ssRedirectToLoginPage,
   successPopup,
@@ -60,12 +61,24 @@ export default function AccountSummariesList({}) {
   const [newItemDescription, setNewItemDescription] = useState("")
   const [newItemAmount, setNewItemAmount] = useState(0)
 
+  // search
+  const [startDate, setStartDate] = useState(
+    new Date(new Date().getFullYear(), 0, 1)
+  )
+  const [endDate, setEndDate] = useState(
+    new Date(new Date().getFullYear(), 11, 31)
+  )
+
   const [accountSummaryItems, setAccountSummaryItems] = useState<Item[]>([
     { total: 0.0 }
   ])
 
   const fetchAccountSummaryItems = async (clientId: number) => {
-    const items = await getAccountSummaryItems(clientId)
+    const items = await getAccountSummaryItems(
+      clientId,
+      formatDate(startDate, "yyyy-MM-dd"),
+      formatDate(endDate, "yyyy-MM-dd")
+    )
 
     let newItems: Item[] = []
     let total: number = 0.0
@@ -127,7 +140,7 @@ export default function AccountSummariesList({}) {
     if (client) {
       fetchAccountSummaryItems(client.id!)
     }
-  }, [client])
+  }, [client, startDate, endDate])
 
   const deleteItem = async (itemId: number) => {
     try {
@@ -145,6 +158,10 @@ export default function AccountSummariesList({}) {
       () => deleteItem(item.id!),
       true
     )
+  }
+
+  const downloadAccountSummaryPDF = () => {
+    console.log("hey!")
   }
 
   return (
@@ -252,7 +269,31 @@ export default function AccountSummariesList({}) {
           </div>
 
           <div className={styles.accountSummarySection}>
-            <h3>Resumenes de cuenta de: {client?.nombre}</h3>
+            <div className={styles.menuControls}>
+              <div className={styles.datepicker}>
+                <div className={styles.datepickerField}>
+                  <span>Desde</span>
+                  <DatePicker
+                    locale={es}
+                    dateFormat="dd/MM/yyyy"
+                    selected={startDate}
+                    onChange={(date) => setStartDate(date)}
+                  />
+                </div>
+              </div>
+              <div className={styles.datepicker}>
+                <div className={styles.datepickerField}>
+                  <span>Hasta</span>
+                  <DatePicker
+                    locale={es}
+                    dateFormat="dd/MM/yyyy"
+                    selected={endDate}
+                    onChange={(date) => setEndDate(date)}
+                  />
+                </div>
+              </div>
+              <button onClick={downloadAccountSummaryPDF}>Descargar PDF</button>
+            </div>
             <div className={styles.accountSummaryTable}>
               <BasicTable
                 title="Item"

@@ -367,10 +367,18 @@ class AccountSummariesApi extends LMYCApi {
   }
 
   async getAccountSummaryItems(
-    clientId: number
+    clientId: number,
+    startDate: string,
+    endDate: string
   ): Promise<AccountSummaryItem[]> {
     try {
-      return (await this.accountSummariesApi.accountSummariesGet(clientId)).data
+      return (
+        await this.accountSummariesApi.accountSummariesGet(
+          clientId,
+          startDate,
+          endDate
+        )
+      ).data
     } catch {
       return []
     }

@@ -57,6 +57,23 @@
   margin: 0;
 }
 
+.menuControls {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+  margin-right: 100px;
+}
+
+.datepickerField {
+  display: flex;
+  align-items: center;
+}
+
+.datepickerField span {
+  margin-right: 10px;
+}
+
 .accountSummaryTable {
   max-width: 1200px;
   padding: 10px;

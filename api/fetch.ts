@@ -204,10 +204,16 @@ export const newAccountSummaryItem = async (data: AccountSummaryItem) => {
 }
 
 export const getAccountSummaryItems = async (
-  clientId: number
+  clientId: number,
+  startDate: string,
+  endDate: string
 ): Promise<AccountSummaryItem[]> => {
   const accountSummariesApi = new AccountSummariesApi()
-  return await accountSummariesApi.getAccountSummaryItems(clientId)
+  return await accountSummariesApi.getAccountSummaryItems(
+    clientId,
+    startDate,
+    endDate
+  )
 }
 
 export const deleteAccountSummaryItem = async (itemId: number) => {
