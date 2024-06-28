@@ -7,6 +7,7 @@ import {
   InvoiceItemsApi as LMYCInvoiceItemsApi,
   FileActionsApi as LMYCFileActionsApi,
   SalesApi as LMYCSalesApi,
+  AccountSummariesApi as LMYCAccountSummariesApi,
   User,
   PaginatedProducts,
   Product,
@@ -26,7 +27,8 @@ import {
   SalesList,
   PaginatedSales,
   SalesPerMonth,
-  SalesPerYear
+  SalesPerYear,
+  AccountSummaryItem
 } from "lmyc_client/api"
 import { Configuration } from "lmyc_client/configuration"
 
@@ -349,6 +351,46 @@ class FileActionsApi extends LMYCApi {
   }
 }
 
+class AccountSummariesApi extends LMYCApi {
+  accountSummariesApi: LMYCAccountSummariesApi
+
+  constructor(
+    lmyc_jwt: string | undefined = undefined,
+    internal: boolean = false
+  ) {
+    super(lmyc_jwt, internal)
+    this.accountSummariesApi = new LMYCAccountSummariesApi(this.config)
+  }
+
+  async newAccountSummaryItem(data: AccountSummaryItem) {
+    return await this.accountSummariesApi.accountSummariesPost(data)
+  }
+
+  async getAccountSummaryItems(
+    clientId: number,
+    startDate: string,
+    endDate: string
+  ): Promise<AccountSummaryItem[]> {
+    try {
+      return (
+        await this.accountSummariesApi.accountSummariesGet(
+          clientId,
+          startDate,
+          endDate
+        )
+      ).data
+    } catch {
+      return []
+    }
+  }
+
+  async deleteAccountSummaryItem(itemId: number) {
+    return await this.accountSummariesApi.accountSummariesAccountSummaryIdDelete(
+      itemId
+    )
+  }
+}
+
 export {
   UsersApi,
   ProductsApi,
@@ -356,5 +398,6 @@ export {
   InvoicesApi,
   InvoiceItemsApi,
   FileActionsApi,
-  SalesApi
+  SalesApi,
+  AccountSummariesApi
 }

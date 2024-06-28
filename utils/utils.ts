@@ -42,8 +42,8 @@ export function toTitleCase(str) {
   })
 }
 
-export const formatDate = (value) => {
-  return format(new Date(value), "dd/MM/yyyy")
+export const formatDate = (value, schema = "dd/MM/yyyy") => {
+  return format(new Date(value), schema)
 }
 
 export const getDayMonthAndYear = (date) => {
@@ -102,11 +102,12 @@ export const errorPopup = (message: string) => {
 export const actionPopup = (
   message: string,
   confirmButtonText: string,
-  action: Function
+  action: Function,
+  isWarning: boolean = false
 ) => {
   Swal.fire({
     title: message,
-    icon: "success",
+    icon: !isWarning ? "success" : "warning",
     confirmButtonText: confirmButtonText,
     confirmButtonColor: "#a7c13c",
     showCancelButton: true,

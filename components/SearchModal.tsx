@@ -17,8 +17,8 @@ interface SearchModalProps {
 const customStyles = {
   content: {
     width: "80%",
-    height: "80%",
-    top: "50%",
+    height: "70%",
+    top: "57%",
     left: "50%",
     right: "auto",
     bottom: "auto",
@@ -52,7 +52,7 @@ export const SearchModal = forwardRef(
           style={customStyles}
           onRequestClose={() => setIsOpen(false)}
         >
-          <h2 style={{fontSize: "18px"}}>Buscador de {modelName}s</h2>
+          <h3>Buscador de {modelName}s</h3>
           <PaginatedTable
             title={modelName}
             columns={columns}
